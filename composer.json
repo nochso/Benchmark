@@ -1,0 +1,27 @@
+{
+  "name": "nochso/benchmark",
+  "description": "Benchmark with reliable results",
+  "keywords": [
+    "benchmark", "performance", "timing", "testing", "optimization"
+  ],
+  "authors": [
+    {
+      "name": "Marcel Voigt",
+      "email": "marcelpvoigt@gmail.com",
+      "homepage": "http://noch.so",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "nochso\\Benchmark\\": "src/"
+    }
+  },
+  "require": {
+    "symfony/console": "^2.7"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8",
+    "sami/sami": "^3.0"
+  }
+}
