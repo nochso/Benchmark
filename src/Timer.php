@@ -2,9 +2,21 @@
 
 namespace nochso\Benchmark;
 
+/**
+ * Timer runs a closure for a minimum duration to ensure stable results.
+ *
+ * The minimum duration is configurable and defaults to 1000 milliseconds.
+ */
 class Timer
 {
+    /**
+     * Increase $n only by this much between runs.
+     */
     const MAX_FACTOR = 15.0;
+
+    /**
+     * Increase $n at least this much between runs.
+     */
     const BONUS_GAIN = 1.03;
 
     /**
@@ -18,6 +30,19 @@ class Timer
     private $minDuration = self::DEFAULT_MIN_DURATION;
 
     /**
+     * Runs and times a closure until a minimum duration has been reached.
+     *
+     * The closure is called with a single integer $n. It is best to let $n
+     * control a simple loop in your closure.
+     *
+     * If your test is computationally intensive by nature this might not work
+     * for you. In this case use $n to control the cost or difficulty of your
+     * algorithm.
+     *
+     * It is important that you **do not use a loop in addition** when doing
+     * this. This also means you can not change the parameters of your
+     * algorithm when you are using a loop based on $n.
+     * 
      * @param \Closure $closure
      *
      * @return Result
@@ -41,10 +66,14 @@ class Timer
     }
 
     /**
+     * Runs $closure and returns the duration in milliseconds.
+     *
      * @param \Closure $closure
-     * @param $n
+     * @param int      $n       Iteration count or difficulty used by the closure
      *
      * @return float
+     *
+     * @see Timer::time
      */
     private function run(\Closure $closure, $n)
     {
@@ -56,8 +85,10 @@ class Timer
     }
 
     /**
-     * @param $n
-     * @param $duration
+     * Returns an adjusted iteration count based on a previous run's duration.
+     *
+     * @param int   $n        Iteration count of a previous run
+     * @param float $duration Duration when using $n iterations
      *
      * @return int
      */
@@ -71,6 +102,8 @@ class Timer
     }
 
     /**
+     * Sets the minimum duration of a run in milliseconds.
+     *
      * @return int Minimum duration in milliseconds
      */
     public function getMinDuration()
@@ -79,6 +112,8 @@ class Timer
     }
 
     /**
+     * Gets the minimum duration of a run in milliseconds.
+     *
      * @param int $minDuration Minimum duration in milliseconds
      */
     public function setMinDuration($minDuration)
