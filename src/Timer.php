@@ -4,6 +4,9 @@ namespace nochso\Benchmark;
 
 class Timer
 {
+    const MAX_FACTOR = 15.0;
+    const BONUS_GAIN = 1.03;
+
     /**
      * @var int Default minimum duration in milliseconds
      */
@@ -60,7 +63,11 @@ class Timer
      */
     private function adjust($n, $duration)
     {
-        return (int) ($n * max(1.01, min(15, $this->minDuration / $duration * 1.07)));
+        $factor = $this->minDuration / $duration * self::BONUS_GAIN;
+        $factor = min(self::MAX_FACTOR, $factor);
+        $new = (int) ($n * $factor);
+        $new = max($new, $n + 1);
+        return $new;
     }
 
     /**
