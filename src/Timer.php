@@ -5,9 +5,14 @@ namespace nochso\Benchmark;
 class Timer
 {
     /**
+     * @var int Default minimum duration in milliseconds
+     */
+    const DEFAULT_MIN_DURATION = 1000;
+
+    /**
      * @var int Milliseconds
      */
-    private $minDuration = 1000;
+    private $minDuration = self::DEFAULT_MIN_DURATION;
 
     /**
      * @param \Closure $closure

@@ -27,7 +27,7 @@ class TimerTest extends \PHPUnit_Framework_TestCase
     public function testMinDuration()
     {
         $timer = new Timer();
-        $this->assertNotEquals(500, $timer->getMinDuration());
+        $this->assertEquals(Timer::DEFAULT_MIN_DURATION, $timer->getMinDuration());
         $timer->setMinDuration(500);
         $this->assertEquals(500, $timer->getMinDuration());
 
