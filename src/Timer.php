@@ -40,21 +40,22 @@ class Timer
      * this. This also means you can not change the parameters of your
      * algorithm when you are using a loop based on $n.
      *
-     * @param \Closure $closure
+     * @param \Closure  $closure
+     * @param Parameter $parameter
      *
      * @return Result
      */
-    public function time(\Closure $closure)
+    public function time(\Closure $closure, Parameter $parameter = null)
     {
         $n = $lastn = 1;
-        $duration = $this->run($closure, $n);
+        $duration = $this->run($closure, $n, $parameter);
         if ($duration < 0.01) {
             $n = 10000;
         } else {
             $n = $this->adjust($n, $duration);
         }
         while ($duration < $this->minDuration) {
-            $duration = $this->run($closure, $n);
+            $duration = $this->run($closure, $n, $parameter);
             $lastn = $n;
             $n = $this->adjust($n, $duration);
         }
@@ -65,17 +66,24 @@ class Timer
     /**
      * Runs $closure and returns the duration in milliseconds.
      *
-     * @param \Closure $closure
-     * @param int      $n       Iteration count or difficulty used by the closure
+     * @param \Closure  $closure
+     * @param int       $n         Iteration count or difficulty used by the closure
+     * @param Parameter $parameter
      *
      * @return float
      *
      * @see Timer::time
      */
-    private function run(\Closure $closure, $n)
+    private function run(\Closure $closure, $n, Parameter $parameter = null)
     {
-        $start = microtime(true);
-        $closure($n);
+        if ($parameter !== null) {
+            $p = $parameter->getParameter();
+            $start = microtime(true);
+            $closure($n, $p);
+        } else {
+            $start = microtime(true);
+            $closure($n);
+        }
         $end = microtime(true);
         $duration = ($end - $start) * 1000;
         return $duration;
