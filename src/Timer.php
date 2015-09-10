@@ -13,17 +13,14 @@ class Timer
      * Increase $n only by this much between runs.
      */
     const MAX_FACTOR = 15.0;
-
     /**
      * Increase $n at least this much between runs.
      */
     const BONUS_GAIN = 1.03;
-
     /**
      * @var int Default minimum duration in milliseconds
      */
     const DEFAULT_MIN_DURATION = 1000;
-
     /**
      * @var int Milliseconds
      */
@@ -42,7 +39,7 @@ class Timer
      * It is important that you **do not use a loop in addition** when doing
      * this. This also means you can not change the parameters of your
      * algorithm when you are using a loop based on $n.
-     * 
+     *
      * @param \Closure $closure
      *
      * @return Result
