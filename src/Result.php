@@ -12,15 +12,27 @@ class Result
      * @var int
      */
     private $operations;
+    /**
+     * @var Method
+     */
+    private $method;
+    /**
+     * @var Parameter
+     */
+    private $parameter;
 
     /**
-     * @param float $duration
-     * @param int   $operations
+     * @param float     $duration
+     * @param int       $operations
+     * @param Method    $method
+     * @param Parameter $parameter
      */
-    public function __construct($duration, $operations)
+    public function __construct($duration, $operations, Method $method, Parameter $parameter = null)
     {
         $this->duration = $duration;
         $this->operations = $operations;
+        $this->method = $method;
+        $this->parameter = $parameter;
     }
 
     /**
@@ -41,12 +53,10 @@ class Result
         return $this->operations;
     }
 
-    /**
-     * @return float
-     */
-    public function getOperationsPerSecond()
+    public function __toString()
     {
-        return ($this->operations / $this->duration) * 1000.0;
+        $ops = $this->formatNumber($this->getOperationsPerSecond());
+        return $ops . ' op/sec';
     }
 
     /**
@@ -72,9 +82,27 @@ class Result
         return number_format($newValue, $decimals) . $suffix;
     }
 
-    public function __toString()
+    /**
+     * @return float
+     */
+    public function getOperationsPerSecond()
     {
-        $ops = $this->formatNumber($this->getOperationsPerSecond());
-        return $ops . ' op/sec';
+        return ($this->operations / $this->duration) * 1000.0;
+    }
+
+    /**
+     * @return Method
+     */
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    /**
+     * @return Parameter
+     */
+    public function getParameter()
+    {
+        return $this->parameter;
     }
 }

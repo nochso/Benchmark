@@ -2,6 +2,8 @@
 
 namespace nochso\Benchmark\test;
 
+use nochso\Benchmark\Method;
+use nochso\Benchmark\Parameter;
 use nochso\Benchmark\Result;
 
 class ResultTest extends \PHPUnit_Framework_TestCase
@@ -15,7 +17,7 @@ class ResultTest extends \PHPUnit_Framework_TestCase
      */
     public function testToString($duration, $ops, $expected)
     {
-        $result = new Result($duration, $ops);
+        $result = new Result($duration, $ops, new Method(null, ''), new Parameter(null, ''));
         $this->assertEquals($expected, (string) $result);
     }
 

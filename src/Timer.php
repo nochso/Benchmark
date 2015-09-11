@@ -20,11 +20,27 @@ class Timer
     /**
      * @var int Default minimum duration in milliseconds
      */
-    const DEFAULT_MIN_DURATION = 1000;
+    public static $defaultMinDuration = 1000;
     /**
      * @var int Milliseconds
      */
-    private $minDuration = self::DEFAULT_MIN_DURATION;
+    private $minDuration;
+    /**
+     * @var int
+     */
+    private $n;
+    /**
+     * @var Parameter
+     */
+    private $parameter;
+    /**
+     * @var Method
+     */
+    private $method;
+    /**
+     * @var bool
+     */
+    private $debug;
 
     /**
      * Runs and times a closure until a minimum duration has been reached.
@@ -40,69 +56,80 @@ class Timer
      * this. This also means you can not change the parameters of your
      * algorithm when you are using a loop based on $n.
      *
-     * @param \Closure  $closure
+     * @param Method    $method
      * @param Parameter $parameter
      *
      * @return Result
      */
-    public function time(\Closure $closure, Parameter $parameter = null)
+    public function time(Method $method, Parameter $parameter = null)
     {
-        $n = $lastn = 1;
-        $duration = $this->run($closure, $n, $parameter);
-        if ($duration < 0.01) {
-            $n = 10000;
-        } else {
-            $n = $this->adjust($n, $duration);
+        $this->method = $method;
+        $this->n = 1;
+        $this->parameter = $parameter;
+
+        $result = $this->run();
+        if ($result->getDuration() < $this->minDuration) {
+            if ($result->getDuration() < 0.01) {
+                $this->n = 10000;
+            } else {
+                $this->n = $this->adjust($result);
+            }
+            while ($result->getDuration() < $this->minDuration) {
+                $result = $this->run();
+                $this->n = $this->adjust($result);
+            }
         }
-        while ($duration < $this->minDuration) {
-            $duration = $this->run($closure, $n, $parameter);
-            $lastn = $n;
-            $n = $this->adjust($n, $duration);
-        }
-        $result = new Result($duration, $lastn);
         return $result;
+    }
+
+    public function __construct($minDuration = null, $debug = false)
+    {
+        $this->debug = $debug;
+        $this->minDuration = self::$defaultMinDuration;
+        if ($minDuration !== null) {
+            $this->minDuration = $minDuration;
+        }
     }
 
     /**
      * Runs $closure and returns the duration in milliseconds.
      *
-     * @param \Closure  $closure
-     * @param int       $n         Iteration count or difficulty used by the closure
-     * @param Parameter $parameter
-     *
-     * @return float
+     * @return Result
      *
      * @see Timer::time
      */
-    private function run(\Closure $closure, $n, Parameter $parameter = null)
+    private function run()
     {
-        if ($parameter !== null) {
-            $p = $parameter->getParameter();
+        $closure = $this->method->getMethod();
+        if ($this->parameter !== null) {
+            $p = $this->parameter->getParameter();
             $start = microtime(true);
-            $closure($n, $p);
+            $closure($this->n, $p);
         } else {
             $start = microtime(true);
-            $closure($n);
+            $closure($this->n);
         }
         $end = microtime(true);
         $duration = ($end - $start) * 1000;
-        return $duration;
+        if ($this->debug) {
+            echo $this->n . ' iterations in ' . number_format($duration) . "ms\n";
+        }
+        return new Result($duration, $this->n, $this->method, $this->parameter);
     }
 
     /**
      * Returns an adjusted iteration count based on a previous run's duration.
      *
-     * @param int   $n        Iteration count of a previous run
-     * @param float $duration Duration when using $n iterations
+     * @param Result $result
      *
      * @return int
      */
-    private function adjust($n, $duration)
+    private function adjust(Result $result)
     {
-        $factor = $this->minDuration / $duration * self::BONUS_GAIN;
+        $factor = $this->minDuration / $result->getDuration() * self::BONUS_GAIN;
         $factor = min(self::MAX_FACTOR, $factor);
-        $new = (int) ($n * $factor);
-        $new = max($new, $n + 1);
+        $new = (int) ($result->getOperations() * $factor);
+        $new = max($new, $result->getOperations() + 1);
         return $new;
     }
 

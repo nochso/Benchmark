@@ -2,6 +2,7 @@
 
 namespace nochso\Benchmark\test;
 
+use nochso\Benchmark\Method;
 use nochso\Benchmark\Timer;
 
 class TimerTest extends \PHPUnit_Framework_TestCase
@@ -27,12 +28,14 @@ class TimerTest extends \PHPUnit_Framework_TestCase
     public function testMinDuration()
     {
         $timer = new Timer();
-        $this->assertEquals(Timer::DEFAULT_MIN_DURATION, $timer->getMinDuration());
-        $timer->setMinDuration(500);
-        $this->assertEquals(500, $timer->getMinDuration());
+        $this->assertEquals(Timer::$defaultMinDuration, $timer->getMinDuration());
+        $timer->setMinDuration(100);
+        $this->assertEquals(100, $timer->getMinDuration());
+
+        $method = new Method(self::$slowClosure, '');
 
         $start = microtime(true);
-        $result = $timer->time(self::$slowClosure);
+        $result = $timer->time($method);
         $duration = (microtime(true) - $start) * 1000;
 
         $this->assertGreaterThan($timer->getMinDuration(), $duration);
@@ -41,8 +44,9 @@ class TimerTest extends \PHPUnit_Framework_TestCase
 
     public function testAdjustmentOfFastTests()
     {
-        $timer = new Timer();
-        $result = $timer->time(self::$fastClosure);
+        $timer = new Timer(100);
+        $method = new Method(self::$fastClosure, '');
+        $result = $timer->time($method);
         $this->assertGreaterThan($timer->getMinDuration(), $result->getDuration());
         $this->assertLessThan($timer->getMinDuration() * 1.2, $result->getDuration(), 'Minimum duration must not be exceeded by 20% for fast tests.');
     }
