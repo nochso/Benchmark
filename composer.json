@@ -15,7 +15,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "nochso\\Benchmark\\": "src/"
+      "nochso\\Benchmark\\": "src/",
+      "nochso\\Benchmark\\Test\\": "test/"
     }
   },
   "require": {

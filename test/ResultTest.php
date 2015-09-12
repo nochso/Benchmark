@@ -1,6 +1,6 @@
 <?php
 
-namespace nochso\Benchmark\test;
+namespace nochso\Benchmark\Test;
 
 use nochso\Benchmark\Method;
 use nochso\Benchmark\Parameter;
