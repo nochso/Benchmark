@@ -1,0 +1,77 @@
+{% extends 'layout.twig' %}
+{% import _self as macro %}
+{% block content %}
+  <div class="row">
+    <h1>{{ title }}</h1>
+
+    {% if report.getDescription|length > 0 %}
+      <p>{{ report.getDescription }}</p>
+    {% endif %}
+
+    {% if results|length > 1 %}
+    <ul>
+      {% for unitName, methods in results %}
+        <li><a href="#{{ unitName|slugify }}">{{ unitName }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% for unitName, methods in results %}
+      {{ block('unit') }}
+    {% endfor %}
+
+    <dl>
+      <dt><a href="https://github.com/nochso/benchmark">nochso/Benchmark</a></dt>
+      <dd>{{ constant('nochso\\Benchmark\\Report::BENCHMARK_VERSION') }}</dd>
+      <dt>ran each test</dt>
+      <dd>&gt; {{ min_duration }} ms</dd>
+
+      <dt>on</dt>
+      <dd>{{ macro.datetime('now') }}</dd>
+      <dt>in</dt>
+      <dd>{{ duration|number_format(1) }} seconds</dd>
+      <dt>using PHP</dt>
+      <dd>{{ constant('PHP_VERSION') }}</dd>
+      <dt><span title="only Zend extensions are listed">with</span></dt>
+      {% for ext in zend_extensions %}
+        <dd>{{ ext }}</dd>
+      {% else %}
+        <dd>no Zend extensions</dd>
+      {% endfor %}
+      <dt>on</dt>
+      <dd>{{ os }}</dd>
+    </dl>
+  </div>
+{% endblock %}
+{% macro datetime(dt) %}
+  {% set rfc3339 = dt|date(constant('DateTime::RFC3339')) %}
+  <time datetime="{{ rfc3339 }}" title="{{ rfc3339 }}">{{ dt|date('M. jS, Y H:i T') }}</time>
+{% endmacro %}
+
+{% block unit %}
+  <h2><a name="{{ unitName|slugify }}"></a> {{ unitName }}</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Method</th>
+      {% set params = report.getUnit(unitName).getParams %}
+      {% for param in params %}
+        <th>{{ param }}</th>
+      {% endfor %}
+      <th>Average &oslash;</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{ block('methods') }}
+    </tbody>
+  </table>
+{% endblock %}
+{% block methods %}
+  {% for methodName, methodResults in methods %}
+    <tr>
+      <td><code>{{ methodName }}</code></td>
+      {% for result in methodResults %}
+        <td>{{ result }}</td>
+      {% endfor %}
+    </tr>
+  {% endfor %}
+{% endblock %}

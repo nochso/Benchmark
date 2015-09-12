@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block head %}
+    <meta charset="utf-8">
+    <title>nochso/Benchmark{% if title is defined %} - {{ title }}{% endif %}</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="asset/css/normalize.css">
+    <link rel="stylesheet" href="asset/css/skeleton.css">
+    <style>
+      body {
+        font-size: 1.6em;
+        font-family: "Source Sans Pro","Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      time, span[title] {
+        text-decoration:  underline #1EAEDB;
+      }
+      dt {
+        float: left;
+        text-align: right;
+        width: 170px;
+      }
+      dd {
+        margin-left: 185px;
+      }
+
+    </style>
+  {% endblock %}
+</head>
+<body>
+{% block body %}
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+{% endblock %}
+</body>
+</html>

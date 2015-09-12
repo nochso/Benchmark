@@ -35,12 +35,5 @@ class UnitTest extends \PHPUnit_Framework_TestCase
         $unit->addParam(new Parameter(5, 'easy'));
         $unit->addParam(new Parameter(10, 'hard'));
         $results = $unit->run();
-
-//        foreach ($results as $methodName => $results) {
-//            foreach ($results as $result) {
-//                $param = $result->getParameter();
-//                echo "$methodName $param $result\n";
-//            }
-//        }
     }
 }

@@ -32,6 +32,22 @@ class Unit
     }
 
     /**
+     * @return Method[]
+     */
+    public function getMethods()
+    {
+        return $this->methods;
+    }
+
+    /**
+     * @return Parameter[]
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    /**
      * @param Method $method
      */
     public function addMethod(Method $method)
@@ -56,15 +72,21 @@ class Unit
     {
         $this->results = array();
         foreach ($this->methods as $methodName => $method) {
+            $duration = 0;
+            $ops = 0;
             if (count($this->params) > 0) {
                 foreach ($this->params as $paramKey => $parameter) {
-                    $this->results[$methodName][] = $method->time($parameter);
+                    $result = $method->time($parameter);
+                    $this->results[$methodName][] = $result;
+                    $duration += $result->getDuration();
+                    $ops += $result->getOperations();
                 }
+                $this->results[$methodName][] = new Result($duration, $ops, $method, new Parameter(null, 'Average'));
             } else {
-                $this->results[$methodName][] = $method->time();
+                $result = $method->time();
+                $this->results[$methodName][] = $result;
             }
         }
-
         return $this->results;
     }
 

@@ -2,3 +2,5 @@ vendor/
 composer.lock
 doc/build/
 doc/cache/
+build/
+cache/
