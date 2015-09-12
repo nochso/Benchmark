@@ -1,8 +1,11 @@
 <?php
+$gitIgnoreLines = array_map(function ($line) {
+    return rtrim($line, "\r\n\\/");
+}, file('.gitignore'));
 
 $finder = Symfony\CS\Finder\DefaultFinder::create()
     ->in(__DIR__)
-    ->exclude('doc');
+    ->exclude($gitIgnoreLines);
 
 return \Symfony\CS\Config\Config::create()
     ->level(\Symfony\CS\FixerInterface::SYMFONY_LEVEL)
