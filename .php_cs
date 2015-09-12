@@ -1,4 +1,13 @@
 <?php
+
+$header = <<<'TAG'
+This file is part of nochso/benchmark.
+
+@copyright Copyright (c) 2015 Marcel Voigt <mv@noch.so>
+@license   https://github.com/nochso/benchmark/blob/master/LICENSE ISC
+@link      https://github.com/nochso/benchmark
+TAG;
+
 $gitIgnoreLines = array_map(function ($line) {
     return rtrim($line, "\r\n\\/");
 }, file('.gitignore'));
@@ -7,6 +16,7 @@ $finder = Symfony\CS\Finder\DefaultFinder::create()
     ->in(__DIR__)
     ->exclude($gitIgnoreLines);
 
+\Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setHeader($header);
 return \Symfony\CS\Config\Config::create()
     ->level(\Symfony\CS\FixerInterface::SYMFONY_LEVEL)
     ->fixers([
@@ -17,5 +27,6 @@ return \Symfony\CS\Config\Config::create()
         '-phpdoc_no_empty_return',
         '-return',
         '-pre_increment',
+        'header_comment',
     ])
     ->finder($finder);
