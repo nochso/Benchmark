@@ -4,6 +4,7 @@
   "keywords": [
     "benchmark", "performance", "timing", "testing", "optimization"
   ],
+  "license": "ISC",
   "authors": [
     {
       "name": "Marcel Voigt",
