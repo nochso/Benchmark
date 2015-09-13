@@ -34,7 +34,7 @@ class ReportTest extends \PHPUnit_Framework_TestCase
                 $x = 'foobar ' . $n;
             }
         }, '$x = \'foobar \' . $n'));
-        $report->addUnits($unit);
+        $report->unitList->add($unit);
 
         $unit2 = new Unit('String concatenation with varying length');
         foreach ($unit->getMethods() as $method) {
@@ -42,7 +42,7 @@ class ReportTest extends \PHPUnit_Framework_TestCase
         }
         $unit2->addParam(new Parameter('x', '$p = \'x\''));
         $unit2->addParam(new Parameter('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '$p = \'xxxxx..\''));
-        $report->addUnits($unit2);
+        $report->unitList->add($unit2);
         $report->run();
     }
 }

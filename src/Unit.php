@@ -79,23 +79,65 @@ class Unit
     public function run()
     {
         $this->results = array();
-        foreach ($this->methods as $methodName => $method) {
-            $duration = 0;
-            $ops = 0;
-            if (count($this->params) > 0) {
-                foreach ($this->params as $paramKey => $parameter) {
-                    $result = $method->time($parameter);
-                    $this->results[$methodName][] = $result;
-                    $duration += $result->getDuration();
-                    $ops += $result->getOperations();
-                }
-                $this->results[$methodName][] = new Result($duration, $ops, $method, new Parameter(null, 'Average'));
-            } else {
-                $result = $method->time();
-                $this->results[$methodName][] = $result;
-            }
+        foreach ($this->methods as $method) {
+            $this->fetchMethodResults($method);
+            $this->addAverageMethodResult($method);
         }
         return $this->results;
+    }
+
+    /**
+     * @param Method $method
+     *
+     * @return Result
+     */
+    private function getAverageMethodResult(Method $method)
+    {
+        $duration = 0.0;
+        $operations = 0;
+        foreach ($this->results[$method->getName()] as $result) {
+            $duration += $result->getDuration();
+            $operations += $result->getOperations();
+        }
+        $averageResult = new Result($duration, $operations, $method, new Parameter(null, 'Average'));
+        return $averageResult;
+    }
+
+    /**
+     * @param Method $method
+     */
+    private function fetchMethodResults(Method $method)
+    {
+        $params = $this->params;
+        if (count($params) === 0) {
+            $params[] = null;
+        }
+        foreach ($params as $paramKey => $parameter) {
+            $result = $method->time($parameter);
+            $this->addMethodResult($method, $result);
+        }
+    }
+
+    /**
+     * @param Method $method
+     */
+    private function addAverageMethodResult(Method $method)
+    {
+        // No need for averages with only one result.
+        if (count($this->params) === 0) {
+            return;
+        }
+        $averageResult = $this->getAverageMethodResult($method);
+        $this->addMethodResult($method, $averageResult);
+    }
+
+    /**
+     * @param Method $method
+     * @param Result $result
+     */
+    private function addMethodResult(Method $method, $result)
+    {
+        $this->results[$method->getName()][] = $result;
     }
 
     /**

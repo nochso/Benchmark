@@ -36,7 +36,7 @@ class Timer
     /**
      * @var int
      */
-    private $n;
+    private $iterationCount;
     /**
      * @var Parameter
      */
@@ -72,20 +72,17 @@ class Timer
     public function time(Method $method, Parameter $parameter = null)
     {
         $this->method = $method;
-        $this->n = 1;
+        $this->iterationCount = 1;
         $this->parameter = $parameter;
 
-        $result = $this->run();
-        if ($result->getDuration() < $this->minDuration) {
-            if ($result->getDuration() < 0.01) {
-                $this->n = 10000;
-            } else {
-                $this->n = $this->adjust($result);
-            }
-            while ($result->getDuration() < $this->minDuration) {
-                $result = $this->run();
-                $this->n = $this->adjust($result);
-            }
+        $result = $this->createResult();
+        if ($result->getDuration() >= $this->minDuration) {
+            return $result;
+        }
+        $this->iterationCount = $this->adjust($result);
+        while ($result->getDuration() < $this->minDuration) {
+            $result = $this->createResult();
+            $this->iterationCount = $this->adjust($result);
         }
         return $result;
     }
@@ -106,23 +103,33 @@ class Timer
      *
      * @see Timer::time
      */
-    private function run()
+    private function createResult()
+    {
+        $duration = $this->measure();
+        if ($this->debug) {
+            echo $this->iterationCount . ' iterations in ' . number_format($duration) . "ms\n";
+        }
+        return new Result($duration, $this->iterationCount, $this->method, $this->parameter);
+    }
+
+    /**
+     * @return float The time it took to execute in milliseconds
+     */
+    private function measure()
     {
         $closure = $this->method->getMethod();
         if ($this->parameter !== null) {
-            $p = $this->parameter->getParameter();
+            // Make sure getParameter() won't be measured.
+            $parameterValue = $this->parameter->getParameter();
             $start = microtime(true);
-            $closure($this->n, $p);
-        } else {
-            $start = microtime(true);
-            $closure($this->n);
+            $closure($this->iterationCount, $parameterValue);
+            return (microtime(true) - $start) * 1000.0;
         }
-        $end = microtime(true);
-        $duration = ($end - $start) * 1000;
-        if ($this->debug) {
-            echo $this->n . ' iterations in ' . number_format($duration) . "ms\n";
-        }
-        return new Result($duration, $this->n, $this->method, $this->parameter);
+
+        // Have to omit the parameter because the closure won't accept it.
+        $start = microtime(true);
+        $closure($this->iterationCount);
+        return (microtime(true) - $start) * 1000.0;
     }
 
     /**
@@ -134,6 +141,9 @@ class Timer
      */
     private function adjust(Result $result)
     {
+        if ($result->getOperations() === 1 && $result->getDuration() < 0.01) {
+            return 10000;
+        }
         $factor = $this->minDuration / $result->getDuration() * self::BONUS_GAIN;
         $factor = min(self::MAX_FACTOR, $factor);
         $new = (int) ($result->getOperations() * $factor);
@@ -158,6 +168,6 @@ class Timer
      */
     public function setMinDuration($minDuration)
     {
-        $this->minDuration = $minDuration;
+        $this->minDuration = (int) $minDuration;
     }
 }

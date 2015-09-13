@@ -53,7 +53,7 @@
     <thead>
     <tr>
       <th>Method</th>
-      {% set params = report.getUnit(unitName).getParams %}
+      {% set params = report.unitList.get(unitName).getParams %}
       {% for param in params %}
         <th>{{ param }}</th>
       {% endfor %}

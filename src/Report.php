@@ -40,9 +40,9 @@ class Report
      */
     private $config = array();
     /**
-     * @var Unit[]
+     * @var UnitList
      */
-    private $units = array();
+    public $unitList;
     /**
      * Grouped by unit name and then method name.
      *
@@ -65,11 +65,12 @@ class Report
      */
     public function __construct($title, $description = '', $config = array())
     {
+        $this->unitList = new UnitList();
         $this->title = $title;
         $this->description = $description;
         $this->config = array_replace_recursive($this->defaultConfig, $config);
-        $this->config['output_dir'] = rtrim($this->config['output_dir'], '/\\');
-        $this->config['template_dir'] = rtrim($this->config['template_dir'], '/\\');
+        $this->config['output_dir'] = Path::join($this->config['output_dir']);
+        $this->config['template_dir'] = Path::join($this->config['template_dir']);
         $loader = new \Twig_Loader_Filesystem($this->config['template_dir']);
         $this->twig = new \Twig_Environment($loader, $this->config['twig']);
         $this->twig->addExtension(new SlugifyExtension(Slugify::create()));
@@ -91,24 +92,10 @@ class Report
         return $this->description;
     }
 
-    /**
-     * @param Unit|Unit[] $unit
-     */
-    public function addUnits($unit)
-    {
-        if (!is_array($unit)) {
-            $unit = array($unit);
-        }
-        /** @var Unit $u */
-        foreach ($unit as $u) {
-            $this->units[$u->getName()] = $u;
-        }
-    }
-
     public function run()
     {
         $duration = -microtime(true);
-        foreach ($this->units as $unitName => $unit) {
+        foreach ($this->unitList as $unitName => $unit) {
             $this->results[$unitName] = $unit->run();
         }
         $duration += microtime(true);
@@ -133,7 +120,7 @@ class Report
     {
         $outputDir = $this->config['output_dir'];
         $this->makeFolder($outputDir);
-        $path = $outputDir . DIRECTORY_SEPARATOR . 'index.html';
+        $path = Path::join($outputDir, 'index.html');
         $html = $this->twig->render('report.twig', $data);
         file_put_contents($path, $html);
     }
@@ -150,48 +137,16 @@ class Report
 
     private function moveAssets()
     {
-        $assetDir = $this->joinPath($this->config['template_dir'], 'asset');
+        $assetDir = Path::join($this->config['template_dir'], 'asset');
         $assets = Finder::create()
             ->in($assetDir)
             ->files();
         foreach ($assets as $asset) {
             /* @var SplFileInfo $asset */
-            $targetFile = $this->joinPath($this->config['output_dir'], 'asset', $asset->getRelativePathname());
+            $targetFile = Path::join($this->config['output_dir'], 'asset', $asset->getRelativePathname());
             $targetDir = dirname($targetFile);
             $this->makeFolder($targetDir);
             copy($asset->getPathname(), $targetFile);
         }
-    }
-
-    /**
-     * @param string $path As many parameters as paths
-     *
-     * @return string
-     */
-    private function joinPath($path)
-    {
-        $parts = array();
-        foreach (func_get_args() as $key => $part) {
-            if ($key > 0) {
-                $part = trim($part, '/\\');
-            } else {
-                $part = rtrim($part, '/\\');
-            }
-            $parts[] = $part;
-        }
-        return implode(DIRECTORY_SEPARATOR, $parts);
-    }
-
-    /**
-     * @param string $name Unit name
-     *
-     * @return Unit|null
-     */
-    public function getUnit($name)
-    {
-        if (isset($this->units[$name])) {
-            return $this->units[$name];
-        }
-        return null;
     }
 }

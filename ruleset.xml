@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Project">
+    <description>Project Coding Standard</description>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/template/*</exclude-pattern>
+    <exclude-pattern>*/build/*</exclude-pattern>
+    <exclude-pattern>*/cache/*</exclude-pattern>
+    <!-- <rule ref="vendor/object-calisthenics/phpcs-calisthenics-rules/ObjectCalisthenics/ruleset.xml"> -->
+    <rule ref="./vendor/object-calisthenics/phpcs-calisthenics-rules/ObjectCalisthenics/ruleset.xml">
+        <exclude name="Squiz.Commenting.VariableComment"/>
+        <exclude name="Squiz.Commenting.FunctionComment"/>
+        <exclude name="ObjectCalisthenics.CodeAnalysis.ArrayPropertyPerClassLimit"/>
+    </rule>
+</ruleset>
