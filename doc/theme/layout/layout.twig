@@ -1,0 +1,31 @@
+{% extends "default/layout/layout.twig" %}
+{% block head %}
+  {{ parent() }}
+  <style>
+    html, body {
+      font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 1em;
+    }
+    #page-content {
+      max-width: 1020px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .method-item h3 {
+      background-color: transparent;
+    }
+    .table {
+      width: auto;
+    }
+    .table-condensed td {
+      padding: 5px 10px !important;
+    }
+    td {
+      border-top: none !important;
+    }
+    code {
+      padding: 0.2em 0.3em;
+    }
+  </style>
+{% endblock %}
+

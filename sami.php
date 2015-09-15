@@ -17,8 +17,10 @@ $iterator = Finder::create()
     ->in('vendor/doctrine/collections/lib/Doctrine/Common/Collections');
 ;
 return new Sami\Sami($iterator, array(
-    'title' => 'nochso/Benchmark documentation',
+    'theme' => 'nochso-benchmark',
+    'title' => 'noch.so Benchmark documentation',
     'build_dir' => __DIR__ . '/doc/build',
     'cache_dir' => __DIR__ . '/doc/cache',
     'default_opened_level' => 2,
+    'template_dirs' => array(__DIR__ . '/doc/theme'),
 ));

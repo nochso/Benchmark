@@ -1,0 +1,38 @@
+{% extends 'default/class.twig' %}
+{% from "default/macros.twig" import method_link, hint_link, source_link %}
+{% block methods %}
+<table class="table table-condensed">
+    {% for method in methods %}
+      <tr>
+        <td>
+          {% if method.static %}static&nbsp;{% endif %}{{ hint_link(method.hint) }}
+        </td>
+        <td>
+          <code><a href="#method_{{ method.name }}">{{ method.name }}</a>{{ block('method_parameters_signature') }}</code>
+          {% if not method.shortdesc %}
+            <p class="no-description">No description</p>
+          {% else %}
+            <p>{{ method.shortdesc|desc(class) }}</p>
+          {%- endif %}
+        </td>
+        <td>
+          {%- if method.class is not same as(class) -%}
+            <small>from&nbsp;{{ method_link(method, false, true) }}</small>
+          {%- endif -%}
+        </td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+
+{#{% block parameters %}#}
+  {#<table class="table table-condensed">#}
+    {#{% for parameter in method.parameters %}#}
+      {#<tr>#}
+        {#<td>{% if parameter.hint %}<code>{{ hint_link(parameter.hint) }}</code>{% endif %}</td>#}
+        {#<td>${{ parameter.name }}</td>#}
+        {#<td>{{ parameter.shortdesc|desc(class) }}</td>#}
+      {#</tr>#}
+    {#{% endfor %}#}
+  {#</table>#}
+{#{% endblock %}#}
