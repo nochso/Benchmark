@@ -8,7 +8,15 @@
  * @link      https://github.com/nochso/benchmark
  */
 
-return new Sami\Sami('src', array(
+use Symfony\Component\Finder\Finder;
+
+$iterator = Finder::create()
+    ->files()
+    ->name('*.php')
+    ->in('src')
+    ->in('vendor/doctrine/collections/lib/Doctrine/Common/Collections');
+;
+return new Sami\Sami($iterator, array(
     'title' => 'nochso/Benchmark documentation',
     'build_dir' => __DIR__ . '/doc/build',
     'cache_dir' => __DIR__ . '/doc/cache',
