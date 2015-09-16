@@ -14,9 +14,10 @@ $iterator = Finder::create()
     ->files()
     ->name('*.php')
     ->in('src')
-    ->in('vendor/doctrine/collections/lib/Doctrine/Common/Collections');
+    ->in('vendor/doctrine/collections/lib/Doctrine/Common/Collections')
 ;
-return new Sami\Sami($iterator, array(
+
+$sami = new Sami\Sami($iterator, array(
     'theme' => 'nochso-benchmark',
     'title' => 'noch.so Benchmark documentation',
     'build_dir' => __DIR__ . '/doc/build',
@@ -24,3 +25,7 @@ return new Sami\Sami($iterator, array(
     'default_opened_level' => 2,
     'template_dirs' => array(__DIR__ . '/doc/theme'),
 ));
+// Used for displaying source code
+/** @var Twig_Environment[] $sami */
+$sami['twig']->addFunction(new Twig_SimpleFunction('file_get_contents', 'file_get_contents'));
+return $sami;
