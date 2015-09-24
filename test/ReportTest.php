@@ -10,7 +10,6 @@
 
 namespace nochso\Benchmark\Test;
 
-use nochso\Benchmark\Method;
 use nochso\Benchmark\Parameter;
 use nochso\Benchmark\Report;
 use nochso\Benchmark\Timer;
@@ -23,17 +22,17 @@ class ReportTest extends \PHPUnit_Framework_TestCase
         Timer::$defaultMinDuration = 100;
         $report = new Report('Test report', 'Example benchmark.');
         $unit = new Unit('String concatenation');
-        $unit->addMethod(new Method(function ($n) {
+        $unit->addClosure(function ($n) {
             while ($n--) {
                 $x = "foobar $n";
             }
-        }, '$x = "foobar $n"'));
+        }, '$x = "foobar $n"');
 
-        $unit->addMethod(new Method(function ($n) {
+        $unit->addClosure(function ($n) {
             while ($n--) {
                 $x = 'foobar ' . $n;
             }
-        }, '$x = \'foobar \' . $n'));
+        }, '$x = \'foobar \' . $n');
         $report->unitList->add($unit);
 
         $unit2 = new Unit('String concatenation with varying length');

@@ -34,11 +34,11 @@ class UnitTest extends \PHPUnit_Framework_TestCase
             }
         }, 'calc', 'calculate stuff'));
 
-        $unit->addMethod(new Method(function ($n, $cost) {
+        $unit->addClosure(function ($n, $cost) {
             while ($n--) {
                 $x = password_hash('xx', PASSWORD_DEFAULT, array('cost' => $cost));
             }
-        }, 'hash', 'password_hash'));
+        }, 'hash', 'password_hash');
 
         $unit->addParam(new Parameter(5, 'easy'));
         $unit->addParam(new Parameter(10, 'hard'));

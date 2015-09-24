@@ -73,7 +73,17 @@ class Unit
     }
 
     /**
-     * @param Parameter|string $parameter
+     * @param \Closure $closure
+     * @param string   $name
+     * @param string   $description
+     */
+    public function addClosure(\Closure $closure, $name, $description = '')
+    {
+        $this->methods[$name] = new Method($closure, $name, $description);
+    }
+
+    /**
+     * @param Parameter $parameter
      */
     public function addParam(Parameter $parameter)
     {
