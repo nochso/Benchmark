@@ -68,7 +68,7 @@
 {% block methods %}
   {% for methodName, methodResults in methods %}
     <tr>
-      <td><code>{{ methodName }}</code></td>
+      <td><code class="language-php">{{ methodName }}</code></td>
       {% for result in methodResults %}
         <td>{{ result }}</td>
       {% endfor %}
