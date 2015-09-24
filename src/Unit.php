@@ -99,6 +99,7 @@ class Unit
     {
         $this->results = array();
         foreach ($this->methods as $method) {
+            Out::writeLine('Method: ' . $method->getName());
             $this->fetchMethodResults($method);
             $this->addAverageMethodResult($method);
         }
@@ -132,8 +133,10 @@ class Unit
             $params[] = null;
         }
         foreach ($params as $paramKey => $parameter) {
+            Out::writeLine('Parameter: ' . ($parameter !== null ? $parameter->getName() : 'null'));
             $result = $method->time($parameter);
             $this->addMethodResult($method, $result);
+            Out::writeLine();
         }
     }
 

@@ -45,10 +45,6 @@ class Timer
      * @var Method
      */
     private $method;
-    /**
-     * @var bool
-     */
-    private $debug;
 
     /**
      * Runs and times a closure until a minimum duration has been reached.
@@ -87,9 +83,8 @@ class Timer
         return $result;
     }
 
-    public function __construct($minDuration = null, $debug = false)
+    public function __construct($minDuration = null)
     {
-        $this->debug = $debug;
         $this->minDuration = self::$defaultMinDuration;
         if ($minDuration !== null) {
             $this->minDuration = $minDuration;
@@ -106,9 +101,7 @@ class Timer
     private function createResult()
     {
         $duration = $this->measure();
-        if ($this->debug) {
-            echo $this->iterationCount . ' iterations in ' . number_format($duration) . "ms\n";
-        }
+        Out::writeLine($this->iterationCount . ' iterations in ' . number_format($duration) . 'ms');
         return new Result($duration, $this->iterationCount, $this->method, $this->parameter);
     }
 

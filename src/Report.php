@@ -100,6 +100,8 @@ class Report
 
     public function run()
     {
+        Out::writeLine('Running nochso/benchmark ' . self::BENCHMARK_VERSION);
+        Out::writeLine();
         $duration = -microtime(true);
         foreach ($this->unitList as $unitName => $unit) {
             $this->results[$unitName] = $unit->run();
@@ -127,6 +129,7 @@ class Report
         $outputDir = $this->config['output_dir'];
         $this->makeFolder($outputDir);
         $path = Path::join($outputDir, 'index.html');
+        Out::writeLine('Saving HTML report to ' . $path);
         $html = $this->twig->render('report.twig', $data);
         file_put_contents($path, $html);
     }
