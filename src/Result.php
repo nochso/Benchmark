@@ -10,6 +10,12 @@
 
 namespace nochso\Benchmark;
 
+/**
+ * Result contains the test results for a specific method and parameter.
+ *
+ * @author Marcel Voigt <mv@noch.so>
+ * @copyright Copyright (c) 2015 Marcel Voigt <mv@noch.so>
+ */
 class Result
 {
     /**

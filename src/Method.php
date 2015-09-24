@@ -10,6 +10,29 @@
 
 namespace nochso\Benchmark;
 
+/**
+ * A method that can be benchmarked with optional parameters.
+ *
+ * The closure is called with a single integer $n. It is best to let $n
+ * control a simple loop in your closure e.g. `while ($n--) { ... }`
+ *
+ * Your closure may optionally accept a second parameter. In this case you must
+ * add parameters to the Unit object. You must omit the second parameter if you
+ * do not add any parameters to your Unit object.
+ *
+ * This library will try to figure out the optimal values for $n for each
+ * method. That way stable measurements can be taken that are easy to compare.
+ *
+ * If your test is computationally intensive by nature this might not work
+ * for you. In this case use $n to control the cost or difficulty of your
+ * algorithm.
+ *
+ * It is important that you **do not use a loop in addition** when doing
+ * this because the duration is not expected to increase exponentially.
+ *
+ * @author Marcel Voigt <mv@noch.so>
+ * @copyright Copyright (c) 2015 Marcel Voigt <mv@noch.so>
+ */
 class Method
 {
     /**

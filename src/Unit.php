@@ -10,6 +10,15 @@
 
 namespace nochso\Benchmark;
 
+/**
+ * Unit is a list of related methods and the parameters they're called with.
+ *
+ * The combination of different implementations (Method objects) and their
+ * parameters should be related as their results should be comparable.
+ *
+ * @author Marcel Voigt <mv@noch.so>
+ * @copyright Copyright (c) 2015 Marcel Voigt <mv@noch.so>
+ */
 class Unit
 {
     /**

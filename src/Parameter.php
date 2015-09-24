@@ -10,6 +10,16 @@
 
 namespace nochso\Benchmark;
 
+/**
+ * Parameter consists of any mixed value and a name.
+ *
+ * A parameter can be added to any Unit object. In this case the Unit's methods
+ * must accept a second parameter which will be the parameter assigned to this
+ * class.
+ *
+ * @author Marcel Voigt <mv@noch.so>
+ * @copyright Copyright (c) 2015 Marcel Voigt <mv@noch.so>
+ */
 class Parameter
 {
     /**

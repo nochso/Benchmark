@@ -15,6 +15,12 @@ use Cocur\Slugify\Slugify;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
+/**
+ * Report takes a list of Unit objects and creates a HTML report of the results.
+ *
+ * @author Marcel Voigt <mv@noch.so>
+ * @copyright Copyright (c) 2015 Marcel Voigt <mv@noch.so>
+ */
 class Report
 {
     const BENCHMARK_VERSION = '0.1';

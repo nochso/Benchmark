@@ -13,7 +13,10 @@ namespace nochso\Benchmark;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * UnitList.
+ * UnitList is a list of Unit objects.
+ *
+ * Right now this is because of blindly following object calisthenics, but it might just be
+ * reverted to a simple array if it doesn't get any love.
  *
  * @method Unit|null offsetGet($offset)
  * @method Unit|null get($key)
