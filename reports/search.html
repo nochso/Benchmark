@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="utf-8">
+    <title>nochso/Benchmark - Searching in lists</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="asset/css/normalize.css">
+    <link rel="stylesheet" href="asset/css/skeleton.css">
+    <link rel="stylesheet" href="asset/css/prism.css">
+    <style>
+      body {
+        font-size: 1.6em;
+        font-family: "Source Sans Pro","Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      time, span[title] {
+        text-decoration:  underline #1EAEDB;
+      }
+      dt {
+        float: left;
+        text-align: right;
+        width: 170px;
+      }
+      dd {
+        margin-left: 185px;
+      }
+      code, pre {
+        border: none !important;
+        background-color: transparent !important;
+      }
+      td p {
+        margin-bottom: 0;
+      }
+      .collapse{
+        display: block;
+      }
+      .collapse + input{
+        display: none;
+      }
+      .collapse + input + *{
+        display: none;
+        background-color: white;
+        border: 1px solid #E1E1E1;
+        -webkit-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.3);
+        -moz-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.3);
+        box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.3);
+        border-radius: 5px;
+        padding: 0.7em;
+      }
+      .collapse+ input:checked + *{
+        display: block;
+        position: absolute;
+      }
+      /* Override Skeleton's label */
+      label.collapse {
+        font-weight: normal;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+<body class="language-php">
+<script src="asset/js/prism.js"></script>
+  <div class="container">
+      <div class="row">
+    <h1>Searching in lists</h1>
+
+    
+
+                <h2><a name="searching-a-specific-string"></a> Searching a specific string</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Method</th>
+                    <th>First of 1000</th>
+              <th>Last of 1000</th>
+              <th>Not found</th>
+            <th>Average &oslash;</th>
+    </tr>
+    </thead>
+    <tbody>
+          <tr>
+      <td>
+                                                                                                        <label class="collapse" for="_Searching a specific stringstrict-foreach-v-n"><p>Strict <code>foreach $v === $n</code></p>
+</label>
+        <input id="_Searching a specific stringstrict-foreach-v-n" type="checkbox">
+        <div>
+          <p>Strict comparison in a foreach loop</p>
+
+          <pre><code class="language-php">$list = $p[&#039;list&#039;];
+$needle = $p[&#039;needle&#039;];
+while ($n--) {
+    $found = false;
+    foreach ($list as $value) {
+        if ($value === $needle) {
+            $found = true;
+            break;
+        }
+    }
+}</code></pre>
+        </div>
+      </td>
+              <td>45.0K op/sec</td>
+              <td>19.2K op/sec</td>
+              <td>20.4K op/sec</td>
+              <td>28.2K op/sec</td>
+          </tr>
+      <tr>
+      <td>
+                                                                                                        <label class="collapse" for="_Searching a specific stringloose-foreach-v-n"><p>Loose <code>foreach $v == $n</code></p>
+</label>
+        <input id="_Searching a specific stringloose-foreach-v-n" type="checkbox">
+        <div>
+          <p>Simple comparison in a foreach loop</p>
+
+          <pre><code class="language-php">$list = $p[&#039;list&#039;];
+$needle = $p[&#039;needle&#039;];
+while ($n--) {
+    $found = false;
+    foreach ($list as $value) {
+        if ($value == $needle) {
+            $found = true;
+            break;
+        }
+    }
+}</code></pre>
+        </div>
+      </td>
+              <td>45.0K op/sec</td>
+              <td>15.5K op/sec</td>
+              <td>15.4K op/sec</td>
+              <td>25.3K op/sec</td>
+          </tr>
+      <tr>
+      <td>
+                                                                                                        <label class="collapse" for="_Searching a specific stringarray-search-n-l"><p><code>array_search($n, $l)</code></p>
+</label>
+        <input id="_Searching a specific stringarray-search-n-l" type="checkbox">
+        <div>
+          <p>Search for value in list</p>
+
+          <pre><code class="language-php">$list = $p[&#039;list&#039;];
+$needle = $p[&#039;needle&#039;];
+while ($n--) {
+    $found = array_search($needle, $list);
+}</code></pre>
+        </div>
+      </td>
+              <td>9.7M op/sec</td>
+              <td>41.7K op/sec</td>
+              <td>44.9K op/sec</td>
+              <td>3.2M op/sec</td>
+          </tr>
+      <tr>
+      <td>
+                                                                                                        <label class="collapse" for="_Searching a specific stringarray-key-exists-n-map"><p><code>array_key_exists($n, $map)</code></p>
+</label>
+        <input id="_Searching a specific stringarray-key-exists-n-map" type="checkbox">
+        <div>
+          <p>Check for string key in a map</p>
+
+          <pre><code class="language-php">$map = $p[&#039;map&#039;];
+$needle = $p[&#039;needle&#039;];
+while ($n--) {
+    $found = array_key_exists($needle, $map);
+}</code></pre>
+        </div>
+      </td>
+              <td>5.9M op/sec</td>
+              <td>5.7M op/sec</td>
+              <td>11.0M op/sec</td>
+              <td>7.5M op/sec</td>
+          </tr>
+      <tr>
+      <td>
+                                                                                                        <label class="collapse" for="_Searching a specific stringisset-map-n"><p><code>isset($map[$n])</code></p>
+</label>
+        <input id="_Searching a specific stringisset-map-n" type="checkbox">
+        <div>
+          <p>Check if string key is set</p>
+
+          <pre><code class="language-php">$map = $p[&#039;map&#039;];
+$needle = $p[&#039;needle&#039;];
+while ($n--) {
+    $found = isset($map[$needle]);
+}</code></pre>
+        </div>
+      </td>
+              <td>9.3M op/sec</td>
+              <td>8.5M op/sec</td>
+              <td>31.1M op/sec</td>
+              <td>16.0M op/sec</td>
+          </tr>
+  
+    </tbody>
+  </table>
+
+    
+    <dl>
+      <dt><a href="https://github.com/nochso/benchmark">nochso/Benchmark</a></dt>
+      <dd>0.1</dd>
+      <dt>ran each test</dt>
+      <dd>&gt; 1000 ms</dd>
+
+      <dt>on</dt>
+      <dd>    <time datetime="2015-09-25T23:32:01+02:00" title="2015-09-25T23:32:01+02:00">Sep. 25th, 2015 23:32 CEST</time>
+</dd>
+      <dt>in</dt>
+      <dd>19.3 seconds</dd>
+      <dt>using PHP</dt>
+      <dd>5.6.13-1+deb.sury.org~trusty+3</dd>
+      <dt><span title="only Zend extensions are listed">with</span></dt>
+              <dd>Zend OPcache</dd>
+            <dt>on</dt>
+      <dd>Linux 3.16.0-38-genericx86_64</dd>
+    </dl>
+  </div>
+  </div>
+</body>
+</html>
