@@ -94,4 +94,28 @@ class Method
     {
         return $this->method;
     }
+
+    public function getSourceCode()
+    {
+        $reflection = new \ReflectionFunction($this->method);
+        $source = file($reflection->getFileName(), FILE_IGNORE_NEW_LINES);
+        $startLine = $reflection->getStartLine();
+        $endLine = $reflection->getEndLine() - 1;
+        $lines = array_slice($source, $startLine, $endLine - $startLine);
+        return implode(PHP_EOL, $this->trimSourceLines($lines));
+    }
+
+    private function trimSourceLines($lines)
+    {
+        $minSpaces = PHP_INT_MAX;
+        foreach ($lines as $line) {
+            $spaces = strlen($line) - strlen(ltrim($line, ' '));
+            $minSpaces = min($minSpaces, $spaces);
+        }
+        $trimmedLines = array();
+        foreach ($lines as $line) {
+            $trimmedLines[] = substr($line, $minSpaces);
+        }
+        return $trimmedLines;
+    }
 }

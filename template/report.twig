@@ -68,7 +68,17 @@
 {% block methods %}
   {% for methodName, methodResults in methods %}
     <tr>
-      <td><code class="language-php">{{ methodName }}</code></td>
+      <td>
+
+        <div class="collapse" tabindex="1">
+          <code class="language-php">{{ methodName }}</code>
+          <div>
+            <pre><code class="language-php">
+              {{- methodResults|first.getMethod.getSourceCode -}}
+            </code></pre>
+          </div>
+        </div>
+      </td>
       {% for result in methodResults %}
         <td>{{ result }}</td>
       {% endfor %}

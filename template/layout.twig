@@ -29,6 +29,28 @@
       }
       code {
         border: none !important;
+        background-color: transparent !important;
+      }
+      .collapse > * + *{
+        display:none;
+      }
+      .collapse pre {
+        border: 1px solid #E1E1E1;
+        background-color: white;
+        -webkit-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.3);
+        -moz-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.3);
+        box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.3);
+        border-radius: 5px;
+      }
+      .collapse > *{
+        cursor:pointer;
+      }
+      .collapse:focus{
+        outline:none;
+      }
+      .collapse:focus > * + *{
+        display:block;
+        position: absolute;
       }
     </style>
   {% endblock %}
