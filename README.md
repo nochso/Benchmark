@@ -1,5 +1,8 @@
 # nochso/benchmark library
 
+[![Latest Stable Version](https://poser.pugx.org/nochso/benchmark/v/stable)](https://packagist.org/packages/nochso/benchmark)
+[![License](https://poser.pugx.org/nochso/benchmark/license)](LICENSE)
+
 nochso/benchmark creates pretty HTML benchmarks from any closures you supply:
 
 - Generate HTML reports including Github flavoured Markdown
@@ -90,6 +93,7 @@ First public release.
 ## License
 This project is licensed under the ISC license which is MIT/GPL compatible and FSF/OSI approved:
 
+```
 Copyright (c) 2015, Marcel Voigt <mv@noch.so>
 
 Permission to use, copy, modify, and/or distribute this software for any
@@ -103,6 +107,7 @@ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
 WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+```
 
 [composeru]: "https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx"
 [composerw]: "https://getcomposer.org/doc/00-intro.md#installation-windows"
