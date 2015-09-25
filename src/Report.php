@@ -80,6 +80,9 @@ class Report
         $loader = new \Twig_Loader_Filesystem($this->config['template_dir']);
         $this->twig = new \Twig_Environment($loader, $this->config['twig']);
         $this->twig->addExtension(new SlugifyExtension(Slugify::create()));
+        $this->twig->addExtension(new \Jralph\Twig\Markdown\Extension(
+            new GithubMarkdownExtension()
+        ));
     }
 
     /**

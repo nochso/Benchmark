@@ -4,9 +4,7 @@
   <div class="row">
     <h1>{{ title }}</h1>
 
-    {% if report.getDescription|length > 0 %}
-      <p>{{ report.getDescription }}</p>
-    {% endif %}
+    {{ report.getDescription|markdown }}
 
     {% if results|length > 1 %}
     <ul>
@@ -69,14 +67,20 @@
   {% for methodName, methodResults in methods %}
     <tr>
       <td>
-
-        <div class="collapse" tabindex="1">
-          <code class="language-php">{{ methodName }}</code>
-          <div>
-            <pre><code class="language-php">
-              {{- methodResults|first.getMethod.getSourceCode -}}
-            </code></pre>
-          </div>
+        {#<div class="collapse" tabindex="1">#}
+          {#{{ methodName|markdown }}#}
+          {#<div>#}
+            {#{{ methodResults|first.getMethod.getDescription|markdown }}#}
+            {#<pre><code class="language-php">#}
+              {#{{- methodResults|first.getMethod.getSourceCode -}}#}
+            {#</code></pre>#}
+          {#</div>#}
+        {#</div>#}
+        <label class="collapse" for="_{{ unitName~methodName|slugify }}">{{ methodName|markdown }}</label>
+        <input id="_{{ unitName~methodName|slugify }}" type="checkbox">
+        <div>
+          {{ methodResults|first.getMethod.getDescription|markdown }}
+          <pre><code class="language-php">{{- methodResults|first.getMethod.getSourceCode -}}</code></pre>
         </div>
       </td>
       {% for result in methodResults %}

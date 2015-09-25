@@ -62,13 +62,13 @@ $isset = function ($n, $p) {
 };
 
 // This is a shortcut to create a Method object and add it to the unit
-$unit->addClosure($foreachExact, 'foreach ($l as $v) { if ($v === $n) { return true; } }');
-$unit->addClosure($foreachEquals, 'foreach ($l as $v) { if ($v == $n) { return true; } }');
-$unit->addClosure($arraySearch, 'array_search($n, $l)');
-$unit->addClosure($arrayKeyExists, 'array_key_exists($n, $map)');
+$unit->addClosure($foreachExact, 'Strict `foreach $v === $n`', 'Strict comparison in a foreach loop');
+$unit->addClosure($foreachEquals, 'Loose `foreach $v == $n`', 'Simple comparison in a foreach loop');
+$unit->addClosure($arraySearch, '`array_search($n, $l)`', 'Search for value in list');
+$unit->addClosure($arrayKeyExists, '`array_key_exists($n, $map)`', 'Check for string key in a map');
 
 // Here's the verbose way:
-$unit->addMethod(new \nochso\Benchmark\Method($isset, 'isset($map[$n])', 'Check if string key is set'));
+$unit->addMethod(new \nochso\Benchmark\Method($isset, '`isset($map[$n])`', 'Check if string key is set'));
 // $unit->addClosure($isset, 'isset($map[$n]');
 
 // Create the list to be searched by each method

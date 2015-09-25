@@ -27,35 +27,42 @@
       dd {
         margin-left: 185px;
       }
-      code {
+      code, pre {
         border: none !important;
         background-color: transparent !important;
       }
-      .collapse > * + *{
-        display:none;
+      td p {
+        margin-bottom: 0;
       }
-      .collapse pre {
-        border: 1px solid #E1E1E1;
+      .collapse{
+        display: block;
+      }
+      .collapse + input{
+        display: none;
+      }
+      .collapse + input + *{
+        display: none;
         background-color: white;
+        border: 1px solid #E1E1E1;
         -webkit-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.3);
         -moz-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.3);
         box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.3);
         border-radius: 5px;
+        padding: 0.7em;
       }
-      .collapse > *{
-        cursor:pointer;
-      }
-      .collapse:focus{
-        outline:none;
-      }
-      .collapse:focus > * + *{
-        display:block;
+      .collapse+ input:checked + *{
+        display: block;
         position: absolute;
+      }
+      /* Override Skeleton's label */
+      label.collapse {
+        font-weight: normal;
+        cursor: pointer;
       }
     </style>
   {% endblock %}
 </head>
-<body>
+<body class="language-php">
 <script src="asset/js/prism.js"></script>
 {% block body %}
   <div class="container">
