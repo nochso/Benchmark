@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="robots" content="index, follow, all" /><title>Doctrine\Common\Collections\Selectable | noch.so Benchmark documentation</title><link rel="stylesheet" type="text/css" href="../../../css/normalize.css"><link rel="stylesheet" type="text/css" href="../../../css/min.css"><link rel="stylesheet" type="text/css" href="../../../css/prism.css"><link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,400italic' rel='stylesheet' type='text/css'><script src="../../../js/prism.js"></script><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"></head><body id="class" data-name="class:Doctrine_Common_Collections_Selectable" data-root-path="../../../"><nav><div class="container"><div class="title"><a href="../../../index.html">noch.so Benchmark documentation</a></div><ul><li><a href="../../../classes.html">Classes</a></li><li><a href="../../../namespaces.html">Namespaces</a></li><li><a href="../../../interfaces.html">Interfaces</a></li><li><a href="../../../traits.html">Traits</a></li><li><a href="../../../doc-index.html">Index</a></li><li><a href="../../../search.html">Search</a></li></ul><ol class="breadcrumb"><li><a href="../../../Doctrine.html">Doctrine</a></li><li><a href="../../../Doctrine/Common.html">Common</a></li><li><a href="../../../Doctrine/Common/Collections.html">Collections</a></li><li>Selectable</li></ol></div></nav><div class="container"><div class="row"><div id="control-panel"></div><div id="api-tree"></div></div><div class="row"><h1>Selectable</h1><p> interface <strong>Selectable</strong></p><p>Interface for collections that allow efficient filtering with an expression API.</p><p>Goal of this interface is a backend independent method to fetch elements from a collections. {@link Expression} is crafted in a way that you can implement queries from both in-memory and database-backed collections.</p><p>For database backed collections this allows very efficient access by utilizing the query APIs, for example SQL in the ORM. Applications using this API can implement efficient database access without having to ask the EntityManager or Repositories.</p><h2>Methods</h2><table class="table"><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"><a href="../../../Doctrine/Common/Collections/Collection.html"><abbr title="Doctrine\Common\Collections\Collection">Collection</abbr></a></code></td><td><code class="language-php"><a href="#method_matching">matching</a>(<abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Criteria">Criteria</abbr> $criteria)</code></td><td> Selects all elements from a selectable that match the expression and returns a new collection containing these elements. </td><td></td></tr></table><h2>Details</h2><div id="method-details"><div><div class="float-right"> at line <a href="#source.47">47</a></div><div><h3 id="method_matching"><code class="language-php">matching()</code></h3><code class="language-php">public <a href="../../../Doctrine/Common/Collections/Collection.html"><abbr title="Doctrine\Common\Collections\Collection">Collection</abbr></a>&nbsp;matching(<abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Criteria">Criteria</abbr> $criteria)</code></div></div><div class="details"><div><p>Selects all elements from a selectable that match the expression and returns a new collection containing these elements.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Criteria">Criteria</abbr></code></td><td><code class="language-php">$criteria</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../../Doctrine/Common/Collections/Collection.html"><abbr title="Doctrine\Common\Collections\Collection">Collection</abbr></a></code></td><td></td></tr></table></div></div><h2>Source code</h2><pre class="language-php line-numbers" id="source"><code>&lt;?php
+/*
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license. For more information, see
+ * &lt;http://www.doctrine-project.org&gt;.
+ */
+
+namespace Doctrine\Common\Collections;
+
+/**
+ * Interface for collections that allow efficient filtering with an expression API.
+ *
+ * Goal of this interface is a backend independent method to fetch elements
+ * from a collections. {@link Expression} is crafted in a way that you can
+ * implement queries from both in-memory and database-backed collections.
+ *
+ * For database backed collections this allows very efficient access by
+ * utilizing the query APIs, for example SQL in the ORM. Applications using
+ * this API can implement efficient database access without having to ask the
+ * EntityManager or Repositories.
+ *
+ * @author Benjamin Eberlei &lt;kontakt@beberlei.de&gt;
+ * @since  2.3
+ */
+interface Selectable
+{
+    /**
+     * Selects all elements from a selectable that match the expression and
+     * returns a new collection containing these elements.
+     *
+     * @param Criteria $criteria
+     *
+     * @return Collection
+     */
+    public function matching(Criteria $criteria);
+}
+</code></pre></div><div class="row"><div id="footer"> Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a> using <a href="https://github.com/nochso/sami-theme">nochso/sami-theme</a>. </div></div></div></body></html>

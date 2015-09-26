@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="robots" content="index, follow, all" /><title>Doctrine\Common\Collections\Criteria | noch.so Benchmark documentation</title><link rel="stylesheet" type="text/css" href="../../../css/normalize.css"><link rel="stylesheet" type="text/css" href="../../../css/min.css"><link rel="stylesheet" type="text/css" href="../../../css/prism.css"><link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,400italic' rel='stylesheet' type='text/css'><script src="../../../js/prism.js"></script><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"></head><body id="class" data-name="class:Doctrine_Common_Collections_Criteria" data-root-path="../../../"><nav><div class="container"><div class="title"><a href="../../../index.html">noch.so Benchmark documentation</a></div><ul><li><a href="../../../classes.html">Classes</a></li><li><a href="../../../namespaces.html">Namespaces</a></li><li><a href="../../../interfaces.html">Interfaces</a></li><li><a href="../../../traits.html">Traits</a></li><li><a href="../../../doc-index.html">Index</a></li><li><a href="../../../search.html">Search</a></li></ul><ol class="breadcrumb"><li><a href="../../../Doctrine.html">Doctrine</a></li><li><a href="../../../Doctrine/Common.html">Common</a></li><li><a href="../../../Doctrine/Common/Collections.html">Collections</a></li><li>Criteria</li></ol></div></nav><div class="container"><div class="row"><div id="control-panel"></div><div id="api-tree"></div></div><div class="row"><h1>Criteria</h1><p> class <strong>Criteria</strong></p><p>Criteria for filtering Selectable collections.</p><h2>Constants</h2><table class="table"><tr><td><code class="language-php">ASC = &#039;ASC&#039;;</code></td><td><p><em></em></p><p></p></td></tr><tr><td><code class="language-php">DESC = &#039;DESC&#039;;</code></td><td><p><em></em></p><p></p></td></tr></table><h2>Methods</h2><table class="table"><tr><td><code class="language-php"> public static </code></td><td class="text-right"><code class="language-php"><a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a></code></td><td><code class="language-php"><a href="#method_create">create</a>()</code></td><td> Creates an instance of the class. </td><td></td></tr><tr><td><code class="language-php"> public static </code></td><td class="text-right"><code class="language-php"><a href="../../../Doctrine/Common/Collections/ExpressionBuilder.html"><abbr title="Doctrine\Common\Collections\ExpressionBuilder">ExpressionBuilder</abbr></a></code></td><td><code class="language-php"><a href="#method_expr">expr</a>()</code></td><td> Returns the expression builder. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"></code></td><td><code class="language-php"><a href="#method___construct">__construct</a>(<abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Expr\Expression">Expression</abbr> $expression = null, array $orderings = null, int|null $firstResult = null, int|null $maxResults = null)</code></td><td> Construct a new Criteria. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"><a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a></code></td><td><code class="language-php"><a href="#method_where">where</a>(<abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Expr\Expression">Expression</abbr> $expression)</code></td><td> Sets the where expression to evaluate when this Criteria is searched for. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"><a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a></code></td><td><code class="language-php"><a href="#method_andWhere">andWhere</a>(<abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Expr\Expression">Expression</abbr> $expression)</code></td><td> Appends the where expression to evaluate when this Criteria is searched for using an AND with previous expression. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"><a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a></code></td><td><code class="language-php"><a href="#method_orWhere">orWhere</a>(<abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Expr\Expression">Expression</abbr> $expression)</code></td><td> Appends the where expression to evaluate when this Criteria is searched for using an OR with previous expression. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"><a href="../../../Doctrine/Common/Collections/Expr/Expression.html"><abbr title="Doctrine\Common\Collections\Expr\Expression">Expression</abbr></a>|null</code></td><td><code class="language-php"><a href="#method_getWhereExpression">getWhereExpression</a>()</code></td><td> Gets the expression attached to this Criteria. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">string[]</code></td><td><code class="language-php"><a href="#method_getOrderings">getOrderings</a>()</code></td><td> Gets the current orderings of this Criteria. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"><a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a></code></td><td><code class="language-php"><a href="#method_orderBy">orderBy</a>(array $orderings)</code></td><td> Sets the ordering of the result of this Criteria. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">int|null</code></td><td><code class="language-php"><a href="#method_getFirstResult">getFirstResult</a>()</code></td><td> Gets the current first result option of this Criteria. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"><a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a></code></td><td><code class="language-php"><a href="#method_setFirstResult">setFirstResult</a>(int|null $firstResult)</code></td><td> Set the number of first result that this Criteria should return. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">int|null</code></td><td><code class="language-php"><a href="#method_getMaxResults">getMaxResults</a>()</code></td><td> Gets maxResults. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"><a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a></code></td><td><code class="language-php"><a href="#method_setMaxResults">setMaxResults</a>(int|null $maxResults)</code></td><td> Sets maxResults. </td><td></td></tr></table><h2>Details</h2><div id="method-details"><div><div class="float-right"> at line <a href="#source.73">73</a></div><div><h3 id="method_create"><code class="language-php">create()</code></h3><code class="language-php">public static <a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a>&nbsp;create()</code></div></div><div class="details"><div><p>Creates an instance of the class.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a></code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.83">83</a></div><div><h3 id="method_expr"><code class="language-php">expr()</code></h3><code class="language-php">public static <a href="../../../Doctrine/Common/Collections/ExpressionBuilder.html"><abbr title="Doctrine\Common\Collections\ExpressionBuilder">ExpressionBuilder</abbr></a>&nbsp;expr()</code></div></div><div class="details"><div><p>Returns the expression builder.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../../Doctrine/Common/Collections/ExpressionBuilder.html"><abbr title="Doctrine\Common\Collections\ExpressionBuilder">ExpressionBuilder</abbr></a></code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.100">100</a></div><div><h3 id="method___construct"><code class="language-php">__construct()</code></h3><code class="language-php">public __construct(<abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Expr\Expression">Expression</abbr> $expression = null, array $orderings = null, int|null $firstResult = null, int|null $maxResults = null)</code></div></div><div class="details"><div><p>Construct a new Criteria.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Expr\Expression">Expression</abbr></code></td><td><code class="language-php">$expression</code></td><td></td></tr><tr><td><code class="language-php">array</code></td><td><code class="language-php">$orderings</code></td><td></td></tr><tr><td><code class="language-php">int|null</code></td><td><code class="language-php">$firstResult</code></td><td></td></tr><tr><td><code class="language-php">int|null</code></td><td><code class="language-php">$maxResults</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.119">119</a></div><div><h3 id="method_where"><code class="language-php">where()</code></h3><code class="language-php">public <a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a>&nbsp;where(<abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Expr\Expression">Expression</abbr> $expression)</code></div></div><div class="details"><div><p>Sets the where expression to evaluate when this Criteria is searched for.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Expr\Expression">Expression</abbr></code></td><td><code class="language-php">$expression</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a></code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.134">134</a></div><div><h3 id="method_andWhere"><code class="language-php">andWhere()</code></h3><code class="language-php">public <a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a>&nbsp;andWhere(<abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Expr\Expression">Expression</abbr> $expression)</code></div></div><div class="details"><div><p>Appends the where expression to evaluate when this Criteria is searched for using an AND with previous expression.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Expr\Expression">Expression</abbr></code></td><td><code class="language-php">$expression</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a></code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.155">155</a></div><div><h3 id="method_orWhere"><code class="language-php">orWhere()</code></h3><code class="language-php">public <a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a>&nbsp;orWhere(<abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Expr\Expression">Expression</abbr> $expression)</code></div></div><div class="details"><div><p>Appends the where expression to evaluate when this Criteria is searched for using an OR with previous expression.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Expr\Expression">Expression</abbr></code></td><td><code class="language-php">$expression</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a></code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.173">173</a></div><div><h3 id="method_getWhereExpression"><code class="language-php">getWhereExpression()</code></h3><code class="language-php">public <a href="../../../Doctrine/Common/Collections/Expr/Expression.html"><abbr title="Doctrine\Common\Collections\Expr\Expression">Expression</abbr></a>|null&nbsp;getWhereExpression()</code></div></div><div class="details"><div><p>Gets the expression attached to this Criteria.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../../Doctrine/Common/Collections/Expr/Expression.html"><abbr title="Doctrine\Common\Collections\Expr\Expression">Expression</abbr></a>|null</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.183">183</a></div><div><h3 id="method_getOrderings"><code class="language-php">getOrderings()</code></h3><code class="language-php">public string[]&nbsp;getOrderings()</code></div></div><div class="details"><div><p>Gets the current orderings of this Criteria.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">string[]</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.200">200</a></div><div><h3 id="method_orderBy"><code class="language-php">orderBy()</code></h3><code class="language-php">public <a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a>&nbsp;orderBy(array $orderings)</code></div></div><div class="details"><div><p>Sets the ordering of the result of this Criteria.</p><p>Keys are field and values are the order, being either ASC or DESC.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">array</code></td><td><code class="language-php">$orderings</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a></code></td><td></td></tr></table><h4>See also</h4><table class="table"><tr><td>Criteria::ASC</td><td></td></tr><tr><td>Criteria::DESC</td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.217">217</a></div><div><h3 id="method_getFirstResult"><code class="language-php">getFirstResult()</code></h3><code class="language-php">public int|null&nbsp;getFirstResult()</code></div></div><div class="details"><div><p>Gets the current first result option of this Criteria.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">int|null</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.229">229</a></div><div><h3 id="method_setFirstResult"><code class="language-php">setFirstResult()</code></h3><code class="language-php">public <a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a>&nbsp;setFirstResult(int|null $firstResult)</code></div></div><div class="details"><div><p>Set the number of first result that this Criteria should return.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">int|null</code></td><td><code class="language-php">$firstResult</code></td><td>The value to set.</td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a></code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.241">241</a></div><div><h3 id="method_getMaxResults"><code class="language-php">getMaxResults()</code></h3><code class="language-php">public int|null&nbsp;getMaxResults()</code></div></div><div class="details"><div><p>Gets maxResults.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">int|null</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.253">253</a></div><div><h3 id="method_setMaxResults"><code class="language-php">setMaxResults()</code></h3><code class="language-php">public <a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a>&nbsp;setMaxResults(int|null $maxResults)</code></div></div><div class="details"><div><p>Sets maxResults.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">int|null</code></td><td><code class="language-php">$maxResults</code></td><td>The value to set.</td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../../Doctrine/Common/Collections/Criteria.html"><abbr title="Doctrine\Common\Collections\Criteria">Criteria</abbr></a></code></td><td></td></tr></table></div></div><h2>Source code</h2><pre class="language-php line-numbers" id="source"><code>&lt;?php
+/*
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license. For more information, see
+ * &lt;http://www.doctrine-project.org&gt;.
+ */
+
+namespace Doctrine\Common\Collections;
+
+use Doctrine\Common\Collections\Expr\Expression;
+use Doctrine\Common\Collections\Expr\CompositeExpression;
+
+/**
+ * Criteria for filtering Selectable collections.
+ *
+ * @author Benjamin Eberlei &lt;kontakt@beberlei.de&gt;
+ * @since 2.3
+ */
+class Criteria
+{
+    /**
+     * @var string
+     */
+    const ASC  = &#039;ASC&#039;;
+
+    /**
+     * @var string
+     */
+    const DESC = &#039;DESC&#039;;
+
+    /**
+     * @var \Doctrine\Common\Collections\ExpressionBuilder|null
+     */
+    private static $expressionBuilder;
+
+    /**
+     * @var \Doctrine\Common\Collections\Expr\Expression|null
+     */
+    private $expression;
+
+    /**
+     * @var string[]
+     */
+    private $orderings = array();
+
+    /**
+     * @var int|null
+     */
+    private $firstResult;
+
+    /**
+     * @var int|null
+     */
+    private $maxResults;
+
+    /**
+     * Creates an instance of the class.
+     *
+     * @return Criteria
+     */
+    public static function create()
+    {
+        return new static();
+    }
+
+    /**
+     * Returns the expression builder.
+     *
+     * @return \Doctrine\Common\Collections\ExpressionBuilder
+     */
+    public static function expr()
+    {
+        if (self::$expressionBuilder === null) {
+            self::$expressionBuilder = new ExpressionBuilder();
+        }
+
+        return self::$expressionBuilder;
+    }
+
+    /**
+     * Construct a new Criteria.
+     *
+     * @param Expression    $expression
+     * @param string[]|null $orderings
+     * @param int|null      $firstResult
+     * @param int|null      $maxResults
+     */
+    public function __construct(Expression $expression = null, array $orderings = null, $firstResult = null, $maxResults = null)
+    {
+        $this-&gt;expression = $expression;
+
+        $this-&gt;setFirstResult($firstResult);
+        $this-&gt;setMaxResults($maxResults);
+
+        if (null !== $orderings) {
+            $this-&gt;orderBy($orderings);
+        }
+    }
+
+    /**
+     * Sets the where expression to evaluate when this Criteria is searched for.
+     *
+     * @param Expression $expression
+     *
+     * @return Criteria
+     */
+    public function where(Expression $expression)
+    {
+        $this-&gt;expression = $expression;
+
+        return $this;
+    }
+
+    /**
+     * Appends the where expression to evaluate when this Criteria is searched for
+     * using an AND with previous expression.
+     *
+     * @param Expression $expression
+     *
+     * @return Criteria
+     */
+    public function andWhere(Expression $expression)
+    {
+        if ($this-&gt;expression === null) {
+            return $this-&gt;where($expression);
+        }
+
+        $this-&gt;expression = new CompositeExpression(CompositeExpression::TYPE_AND, array(
+            $this-&gt;expression, $expression
+        ));
+
+        return $this;
+    }
+
+    /**
+     * Appends the where expression to evaluate when this Criteria is searched for
+     * using an OR with previous expression.
+     *
+     * @param Expression $expression
+     *
+     * @return Criteria
+     */
+    public function orWhere(Expression $expression)
+    {
+        if ($this-&gt;expression === null) {
+            return $this-&gt;where($expression);
+        }
+
+        $this-&gt;expression = new CompositeExpression(CompositeExpression::TYPE_OR, array(
+            $this-&gt;expression, $expression
+        ));
+
+        return $this;
+    }
+
+    /**
+     * Gets the expression attached to this Criteria.
+     *
+     * @return Expression|null
+     */
+    public function getWhereExpression()
+    {
+        return $this-&gt;expression;
+    }
+
+    /**
+     * Gets the current orderings of this Criteria.
+     *
+     * @return string[]
+     */
+    public function getOrderings()
+    {
+        return $this-&gt;orderings;
+    }
+
+    /**
+     * Sets the ordering of the result of this Criteria.
+     *
+     * Keys are field and values are the order, being either ASC or DESC.
+     *
+     * @see Criteria::ASC
+     * @see Criteria::DESC
+     *
+     * @param string[] $orderings
+     *
+     * @return Criteria
+     */
+    public function orderBy(array $orderings)
+    {
+        $this-&gt;orderings = array_map(
+            function ($ordering) {
+                return strtoupper($ordering) === Criteria::ASC ? Criteria::ASC : Criteria::DESC;
+            },
+            $orderings
+        );
+
+        return $this;
+    }
+
+    /**
+     * Gets the current first result option of this Criteria.
+     *
+     * @return int|null
+     */
+    public function getFirstResult()
+    {
+        return $this-&gt;firstResult;
+    }
+
+    /**
+     * Set the number of first result that this Criteria should return.
+     *
+     * @param int|null $firstResult The value to set.
+     *
+     * @return Criteria
+     */
+    public function setFirstResult($firstResult)
+    {
+        $this-&gt;firstResult = null === $firstResult ? null : (int) $firstResult;
+
+        return $this;
+    }
+
+    /**
+     * Gets maxResults.
+     *
+     * @return int|null
+     */
+    public function getMaxResults()
+    {
+        return $this-&gt;maxResults;
+    }
+
+    /**
+     * Sets maxResults.
+     *
+     * @param int|null $maxResults The value to set.
+     *
+     * @return Criteria
+     */
+    public function setMaxResults($maxResults)
+    {
+        $this-&gt;maxResults = null === $maxResults ? null : (int) $maxResults;
+
+        return $this;
+    }
+}
+</code></pre></div><div class="row"><div id="footer"> Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a> using <a href="https://github.com/nochso/sami-theme">nochso/sami-theme</a>. </div></div></div></body></html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="robots" content="index, follow, all" /><title>Doctrine\Common\Collections\Expr\ClosureExpressionVisitor | noch.so Benchmark documentation</title><link rel="stylesheet" type="text/css" href="../../../../css/normalize.css"><link rel="stylesheet" type="text/css" href="../../../../css/min.css"><link rel="stylesheet" type="text/css" href="../../../../css/prism.css"><link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,400italic' rel='stylesheet' type='text/css'><script src="../../../../js/prism.js"></script><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"></head><body id="class" data-name="class:Doctrine_Common_Collections_Expr_ClosureExpressionVisitor" data-root-path="../../../../"><nav><div class="container"><div class="title"><a href="../../../../index.html">noch.so Benchmark documentation</a></div><ul><li><a href="../../../../classes.html">Classes</a></li><li><a href="../../../../namespaces.html">Namespaces</a></li><li><a href="../../../../interfaces.html">Interfaces</a></li><li><a href="../../../../traits.html">Traits</a></li><li><a href="../../../../doc-index.html">Index</a></li><li><a href="../../../../search.html">Search</a></li></ul><ol class="breadcrumb"><li><a href="../../../../Doctrine.html">Doctrine</a></li><li><a href="../../../../Doctrine/Common.html">Common</a></li><li><a href="../../../../Doctrine/Common/Collections.html">Collections</a></li><li><a href="../../../../Doctrine/Common/Collections/Expr.html">Expr</a></li><li>ClosureExpressionVisitor</li></ol></div></nav><div class="container"><div class="row"><div id="control-panel"></div><div id="api-tree"></div></div><div class="row"><h1>ClosureExpressionVisitor</h1><p> class <strong>ClosureExpressionVisitor</strong> extends <a href="../../../../Doctrine/Common/Collections/Expr/ExpressionVisitor.html"><abbr title="Doctrine\Common\Collections\Expr\ExpressionVisitor">ExpressionVisitor</abbr></a></p><p>Walks an expression graph and turns it into a PHP closure.</p><p>This closure can be used with {@Collection#filter()} and is used internally by {@ArrayCollection#select()}.</p><h2>Methods</h2><table class="table"><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">mixed</code></td><td><code class="language-php"><a href="#method_walkComparison">walkComparison</a>(<abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\Comparison">Comparison</abbr> $comparison)</code></td><td> Converts a comparison expression into the target query language output. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">mixed</code></td><td><code class="language-php"><a href="#method_walkValue">walkValue</a>(<abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\Value">Value</abbr> $value)</code></td><td> Converts a value expression into the target query language part. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">mixed</code></td><td><code class="language-php"><a href="#method_walkCompositeExpression">walkCompositeExpression</a>(<abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\CompositeExpression">CompositeExpression</abbr> $expr)</code></td><td> Converts a composite expression into the target query language output. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">mixed</code></td><td><code class="language-php"><a href="#method_dispatch">dispatch</a>(<abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\Expression">Expression</abbr> $expr)</code></td><td> Dispatches walking an expression to the appropriate handler. </td><td><small>from&nbsp;<a href="../../../../Doctrine/Common/Collections/Expr/ExpressionVisitor.html#method_dispatch"><abbr title="Doctrine\Common\Collections\Expr\ExpressionVisitor">ExpressionVisitor</abbr></a></small></td></tr><tr><td><code class="language-php"> public static </code></td><td class="text-right"><code class="language-php">mixed</code></td><td><code class="language-php"><a href="#method_getObjectFieldValue">getObjectFieldValue</a>(object $object, string $field)</code></td><td> Accesses the field of a given object. This field has to be public directly or indirectly (through an accessor get*, is*, or a magic method, __get, __call). </td><td></td></tr><tr><td><code class="language-php"> public static </code></td><td class="text-right"><code class="language-php"><a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a></code></td><td><code class="language-php"><a href="#method_sortByField">sortByField</a>(string $name, int $orientation = 1, <abbr title="Doctrine\Common\Collections\Expr\Closure">Closure</abbr> $next = null)</code></td><td> Helper for sorting arrays of objects based on multiple fields + orientations. </td><td></td></tr></table><h2>Details</h2><div id="method-details"><div><div class="float-right"> at line <a href="#source.107">107</a></div><div><h3 id="method_walkComparison"><code class="language-php">walkComparison()</code></h3><code class="language-php">public mixed&nbsp;walkComparison(<abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\Comparison">Comparison</abbr> $comparison)</code></div></div><div class="details"><div><p>Converts a comparison expression into the target query language output.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\Comparison">Comparison</abbr></code></td><td><code class="language-php">$comparison</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.166">166</a></div><div><h3 id="method_walkValue"><code class="language-php">walkValue()</code></h3><code class="language-php">public mixed&nbsp;walkValue(<abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\Value">Value</abbr> $value)</code></div></div><div class="details"><div><p>Converts a value expression into the target query language part.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\Value">Value</abbr></code></td><td><code class="language-php">$value</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.174">174</a></div><div><h3 id="method_walkCompositeExpression"><code class="language-php">walkCompositeExpression()</code></h3><code class="language-php">public mixed&nbsp;walkCompositeExpression(<abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\CompositeExpression">CompositeExpression</abbr> $expr)</code></div></div><div class="details"><div><p>Converts a composite expression into the target query language output.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\CompositeExpression">CompositeExpression</abbr></code></td><td><code class="language-php">$expr</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td></td></tr></table></div><div><div class="float-right"> in <a href="../../../../Doctrine/Common/Collections/Expr/ExpressionVisitor.html#method_dispatch"><abbr title="Doctrine\Common\Collections\Expr\ExpressionVisitor">ExpressionVisitor</abbr></a> at line 66 </div><div><h3 id="method_dispatch"><code class="language-php">dispatch()</code></h3><code class="language-php">public mixed&nbsp;dispatch(<abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\Expression">Expression</abbr> $expr)</code></div></div><div class="details"><div><p>Dispatches walking an expression to the appropriate handler.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\Expression">Expression</abbr></code></td><td><code class="language-php">$expr</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td></td></tr></table><h4>Exceptions</h4><table class="table"><tr><td><a target="_blank" href="http://php.net/RuntimeException"><abbr title="RuntimeException">RuntimeException</abbr></a></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.43">43</a></div><div><h3 id="method_getObjectFieldValue"><code class="language-php">getObjectFieldValue()</code></h3><code class="language-php">public static mixed&nbsp;getObjectFieldValue(object $object, string $field)</code></div></div><div class="details"><div><p>Accesses the field of a given object. This field has to be public directly or indirectly (through an accessor get*, is*, or a magic method, __get, __call).</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">object</code></td><td><code class="language-php">$object</code></td><td></td></tr><tr><td><code class="language-php">string</code></td><td><code class="language-php">$field</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.84">84</a></div><div><h3 id="method_sortByField"><code class="language-php">sortByField()</code></h3><code class="language-php">public static <a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a>&nbsp;sortByField(string $name, int $orientation = 1, <abbr title="Doctrine\Common\Collections\Expr\Closure">Closure</abbr> $next = null)</code></div></div><div class="details"><div><p>Helper for sorting arrays of objects based on multiple fields + orientations.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">string</code></td><td><code class="language-php">$name</code></td><td></td></tr><tr><td><code class="language-php">int</code></td><td><code class="language-php">$orientation</code></td><td></td></tr><tr><td><code class="language-php"><abbr title="Doctrine\Common\Collections\Expr\Closure">Closure</abbr></code></td><td><code class="language-php">$next</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a></code></td><td></td></tr></table></div></div><h2>Source code</h2><pre class="language-php line-numbers" id="source"><code>&lt;?php
+/*
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license. For more information, see
+ * &lt;http://www.doctrine-project.org&gt;.
+ */
+
+namespace Doctrine\Common\Collections\Expr;
+
+/**
+ * Walks an expression graph and turns it into a PHP closure.
+ *
+ * This closure can be used with {@Collection#filter()} and is used internally
+ * by {@ArrayCollection#select()}.
+ *
+ * @author Benjamin Eberlei &lt;kontakt@beberlei.de&gt;
+ * @since  2.3
+ */
+class ClosureExpressionVisitor extends ExpressionVisitor
+{
+    /**
+     * Accesses the field of a given object. This field has to be public
+     * directly or indirectly (through an accessor get*, is*, or a magic
+     * method, __get, __call).
+     *
+     * @param object $object
+     * @param string $field
+     *
+     * @return mixed
+     */
+    public static function getObjectFieldValue($object, $field)
+    {
+        if (is_array($object)) {
+            return $object[$field];
+        }
+
+        $accessors = array(&#039;get&#039;, &#039;is&#039;);
+
+        foreach ($accessors as $accessor) {
+            $accessor .= $field;
+
+            if ( ! method_exists($object, $accessor)) {
+                continue;
+            }
+
+            return $object-&gt;$accessor();
+        }
+
+        // __call should be triggered for get.
+        $accessor = $accessors[0] . $field;
+
+        if (method_exists($object, &#039;__call&#039;)) {
+            return $object-&gt;$accessor();
+        }
+
+        if ($object instanceof \ArrayAccess) {
+            return $object[$field];
+        }
+
+        return $object-&gt;$field;
+    }
+
+    /**
+     * Helper for sorting arrays of objects based on multiple fields + orientations.
+     *
+     * @param string   $name
+     * @param int      $orientation
+     * @param \Closure $next
+     *
+     * @return \Closure
+     */
+    public static function sortByField($name, $orientation = 1, \Closure $next = null)
+    {
+        if ( ! $next) {
+            $next = function() {
+                return 0;
+            };
+        }
+
+        return function ($a, $b) use ($name, $next, $orientation) {
+            $aValue = ClosureExpressionVisitor::getObjectFieldValue($a, $name);
+            $bValue = ClosureExpressionVisitor::getObjectFieldValue($b, $name);
+
+            if ($aValue === $bValue) {
+                return $next($a, $b);
+            }
+
+            return (($aValue &gt; $bValue) ? 1 : -1) * $orientation;
+        };
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function walkComparison(Comparison $comparison)
+    {
+        $field = $comparison-&gt;getField();
+        $value = $comparison-&gt;getValue()-&gt;getValue(); // shortcut for walkValue()
+
+        switch ($comparison-&gt;getOperator()) {
+            case Comparison::EQ:
+                return function ($object) use ($field, $value) {
+                    return ClosureExpressionVisitor::getObjectFieldValue($object, $field) === $value;
+                };
+
+            case Comparison::NEQ:
+                return function ($object) use ($field, $value) {
+                    return ClosureExpressionVisitor::getObjectFieldValue($object, $field) !== $value;
+                };
+
+            case Comparison::LT:
+                return function ($object) use ($field, $value) {
+                    return ClosureExpressionVisitor::getObjectFieldValue($object, $field) &lt; $value;
+                };
+
+            case Comparison::LTE:
+                return function ($object) use ($field, $value) {
+                    return ClosureExpressionVisitor::getObjectFieldValue($object, $field) &lt;= $value;
+                };
+
+            case Comparison::GT:
+                return function ($object) use ($field, $value) {
+                    return ClosureExpressionVisitor::getObjectFieldValue($object, $field) &gt; $value;
+                };
+
+            case Comparison::GTE:
+                return function ($object) use ($field, $value) {
+                    return ClosureExpressionVisitor::getObjectFieldValue($object, $field) &gt;= $value;
+                };
+
+            case Comparison::IN:
+                return function ($object) use ($field, $value) {
+                    return in_array(ClosureExpressionVisitor::getObjectFieldValue($object, $field), $value);
+                };
+
+            case Comparison::NIN:
+                return function ($object) use ($field, $value) {
+                    return ! in_array(ClosureExpressionVisitor::getObjectFieldValue($object, $field), $value);
+                };
+
+            case Comparison::CONTAINS:
+                return function ($object) use ($field, $value) {
+                    return false !== strpos(ClosureExpressionVisitor::getObjectFieldValue($object, $field), $value);
+                };
+
+            default:
+                throw new \RuntimeException(&quot;Unknown comparison operator: &quot; . $comparison-&gt;getOperator());
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function walkValue(Value $value)
+    {
+        return $value-&gt;getValue();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function walkCompositeExpression(CompositeExpression $expr)
+    {
+        $expressionList = array();
+
+        foreach ($expr-&gt;getExpressionList() as $child) {
+            $expressionList[] = $this-&gt;dispatch($child);
+        }
+
+        switch($expr-&gt;getType()) {
+            case CompositeExpression::TYPE_AND:
+                return $this-&gt;andExpressions($expressionList);
+
+            case CompositeExpression::TYPE_OR:
+                return $this-&gt;orExpressions($expressionList);
+
+            default:
+                throw new \RuntimeException(&quot;Unknown composite &quot; . $expr-&gt;getType());
+        }
+    }
+
+    /**
+     * @param array $expressions
+     *
+     * @return callable
+     */
+    private function andExpressions($expressions)
+    {
+        return function ($object) use ($expressions) {
+            foreach ($expressions as $expression) {
+                if ( ! $expression($object)) {
+                    return false;
+                }
+            }
+            return true;
+        };
+    }
+
+    /**
+     * @param array $expressions
+     *
+     * @return callable
+     */
+    private function orExpressions($expressions)
+    {
+        return function ($object) use ($expressions) {
+            foreach ($expressions as $expression) {
+                if ($expression($object)) {
+                    return true;
+                }
+            }
+            return false;
+        };
+    }
+}
+</code></pre></div><div class="row"><div id="footer"> Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a> using <a href="https://github.com/nochso/sami-theme">nochso/sami-theme</a>. </div></div></div></body></html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="robots" content="index, follow, all" /><title>Doctrine\Common\Collections\ArrayCollection | noch.so Benchmark documentation</title><link rel="stylesheet" type="text/css" href="../../../css/normalize.css"><link rel="stylesheet" type="text/css" href="../../../css/min.css"><link rel="stylesheet" type="text/css" href="../../../css/prism.css"><link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,400italic' rel='stylesheet' type='text/css'><script src="../../../js/prism.js"></script><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"></head><body id="class" data-name="class:Doctrine_Common_Collections_ArrayCollection" data-root-path="../../../"><nav><div class="container"><div class="title"><a href="../../../index.html">noch.so Benchmark documentation</a></div><ul><li><a href="../../../classes.html">Classes</a></li><li><a href="../../../namespaces.html">Namespaces</a></li><li><a href="../../../interfaces.html">Interfaces</a></li><li><a href="../../../traits.html">Traits</a></li><li><a href="../../../doc-index.html">Index</a></li><li><a href="../../../search.html">Search</a></li></ul><ol class="breadcrumb"><li><a href="../../../Doctrine.html">Doctrine</a></li><li><a href="../../../Doctrine/Common.html">Common</a></li><li><a href="../../../Doctrine/Common/Collections.html">Collections</a></li><li>ArrayCollection</li></ol></div></nav><div class="container"><div class="row"><div id="control-panel"></div><div id="api-tree"></div></div><div class="row"><h1>ArrayCollection</h1><p> class <strong>ArrayCollection</strong> implements <a href="../../../Doctrine/Common/Collections/Collection.html"><abbr title="Doctrine\Common\Collections\Collection">Collection</abbr></a>, <a href="../../../Doctrine/Common/Collections/Selectable.html"><abbr title="Doctrine\Common\Collections\Selectable">Selectable</abbr></a></p><p>An ArrayCollection is a Collection implementation that wraps a regular PHP array.</p><h2>Methods</h2><table class="table"><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"></code></td><td><code class="language-php"><a href="#method___construct">__construct</a>(array $elements = array())</code></td><td> Initializes a new ArrayCollection. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">array</code></td><td><code class="language-php"><a href="#method_toArray">toArray</a>()</code></td><td> Gets a native PHP array representation of the collection. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">mixed</code></td><td><code class="language-php"><a href="#method_first">first</a>()</code></td><td> Sets the internal iterator to the first element in the collection and returns this element. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">mixed</code></td><td><code class="language-php"><a href="#method_last">last</a>()</code></td><td> Sets the internal iterator to the last element in the collection and returns this element. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">int|string</code></td><td><code class="language-php"><a href="#method_key">key</a>()</code></td><td> Gets the key/index of the element at the current iterator position. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">mixed</code></td><td><code class="language-php"><a href="#method_next">next</a>()</code></td><td> Moves the internal iterator position to the next element and returns this element. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">mixed</code></td><td><code class="language-php"><a href="#method_current">current</a>()</code></td><td> Gets the element of the collection at the current iterator position. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">mixed</code></td><td><code class="language-php"><a href="#method_remove">remove</a>(string|integer $key)</code></td><td> Removes the element at the specified index from the collection. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">boolean</code></td><td><code class="language-php"><a href="#method_removeElement">removeElement</a>(mixed $element)</code></td><td> Removes the specified element from the collection, if it is found. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"></code></td><td><code class="language-php"><a href="#method_offsetExists">offsetExists</a>($offset)</code></td><td> Required by interface ArrayAccess. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"></code></td><td><code class="language-php"><a href="#method_offsetGet">offsetGet</a>($offset)</code></td><td> Required by interface ArrayAccess. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"></code></td><td><code class="language-php"><a href="#method_offsetSet">offsetSet</a>($offset, $value)</code></td><td> Required by interface ArrayAccess. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"></code></td><td><code class="language-php"><a href="#method_offsetUnset">offsetUnset</a>($offset)</code></td><td> Required by interface ArrayAccess. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">boolean</code></td><td><code class="language-php"><a href="#method_containsKey">containsKey</a>(string|integer $key)</code></td><td> Checks whether the collection contains an element with the specified key/index. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">boolean</code></td><td><code class="language-php"><a href="#method_contains">contains</a>(mixed $element)</code></td><td> Checks whether an element is contained in the collection. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">boolean</code></td><td><code class="language-php"><a href="#method_exists">exists</a>(<a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a> $p)</code></td><td> Tests for the existence of an element that satisfies the given predicate. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">int|string|bool</code></td><td><code class="language-php"><a href="#method_indexOf">indexOf</a>(mixed $element)</code></td><td> Gets the index/key of a given element. The comparison of two elements is strict, that means not only the value but also the type must match. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">mixed</code></td><td><code class="language-php"><a href="#method_get">get</a>(string|integer $key)</code></td><td> Gets the element at the specified key/index. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">array</code></td><td><code class="language-php"><a href="#method_getKeys">getKeys</a>()</code></td><td> Gets all keys/indices of the collection. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">array</code></td><td><code class="language-php"><a href="#method_getValues">getValues</a>()</code></td><td> Gets all values of the collection. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"></code></td><td><code class="language-php"><a href="#method_count">count</a>()</code></td><td> {@inheritDoc} </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">void</code></td><td><code class="language-php"><a href="#method_set">set</a>(string|integer $key, mixed $value)</code></td><td> Sets an element in the collection at the specified key/index. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">boolean</code></td><td><code class="language-php"><a href="#method_add">add</a>($value)</code></td><td> Adds an element at the end of the collection. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">boolean</code></td><td><code class="language-php"><a href="#method_isEmpty">isEmpty</a>()</code></td><td> Checks whether the collection is empty (contains no elements). </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"></code></td><td><code class="language-php"><a href="#method_getIterator">getIterator</a>()</code></td><td> Required by interface IteratorAggregate. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"><a href="../../../Doctrine/Common/Collections/Collection.html"><abbr title="Doctrine\Common\Collections\Collection">Collection</abbr></a></code></td><td><code class="language-php"><a href="#method_map">map</a>(<a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a> $func)</code></td><td> Applies the given function to each element in the collection and returns a new collection with the elements returned by the function. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"><a href="../../../Doctrine/Common/Collections/Collection.html"><abbr title="Doctrine\Common\Collections\Collection">Collection</abbr></a></code></td><td><code class="language-php"><a href="#method_filter">filter</a>(<a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a> $p)</code></td><td> Returns all the elements of this collection that satisfy the predicate p. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">boolean</code></td><td><code class="language-php"><a href="#method_forAll">forAll</a>(<a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a> $p)</code></td><td> Tests whether the given predicate p holds for all elements of this collection. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">array</code></td><td><code class="language-php"><a href="#method_partition">partition</a>(<a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a> $p)</code></td><td> Partitions this collection in two collections according to a predicate. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">string</code></td><td><code class="language-php"><a href="#method___toString">__toString</a>()</code></td><td> Returns a string representation of this object. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">void</code></td><td><code class="language-php"><a href="#method_clear">clear</a>()</code></td><td> Clears the collection, removing all elements. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">array</code></td><td><code class="language-php"><a href="#method_slice">slice</a>(int $offset, int|null $length = null)</code></td><td> Extracts a slice of $length elements starting at position $offset from the Collection. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"><a href="../../../Doctrine/Common/Collections/Collection.html"><abbr title="Doctrine\Common\Collections\Collection">Collection</abbr></a></code></td><td><code class="language-php"><a href="#method_matching">matching</a>(<abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Criteria">Criteria</abbr> $criteria)</code></td><td> Selects all elements from a selectable that match the expression and returns a new collection containing these elements. </td><td></td></tr></table><h2>Details</h2><div id="method-details"><div><div class="float-right"> at line <a href="#source.48">48</a></div><div><h3 id="method___construct"><code class="language-php">__construct()</code></h3><code class="language-php">public __construct(array $elements = array())</code></div></div><div class="details"><div><p>Initializes a new ArrayCollection.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">array</code></td><td><code class="language-php">$elements</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.56">56</a></div><div><h3 id="method_toArray"><code class="language-php">toArray()</code></h3><code class="language-php">public array&nbsp;toArray()</code></div></div><div class="details"><div><p>Gets a native PHP array representation of the collection.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">array</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.64">64</a></div><div><h3 id="method_first"><code class="language-php">first()</code></h3><code class="language-php">public mixed&nbsp;first()</code></div></div><div class="details"><div><p>Sets the internal iterator to the first element in the collection and returns this element.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.72">72</a></div><div><h3 id="method_last"><code class="language-php">last()</code></h3><code class="language-php">public mixed&nbsp;last()</code></div></div><div class="details"><div><p>Sets the internal iterator to the last element in the collection and returns this element.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.80">80</a></div><div><h3 id="method_key"><code class="language-php">key()</code></h3><code class="language-php">public int|string&nbsp;key()</code></div></div><div class="details"><div><p>Gets the key/index of the element at the current iterator position.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">int|string</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.88">88</a></div><div><h3 id="method_next"><code class="language-php">next()</code></h3><code class="language-php">public mixed&nbsp;next()</code></div></div><div class="details"><div><p>Moves the internal iterator position to the next element and returns this element.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.96">96</a></div><div><h3 id="method_current"><code class="language-php">current()</code></h3><code class="language-php">public mixed&nbsp;current()</code></div></div><div class="details"><div><p>Gets the element of the collection at the current iterator position.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.104">104</a></div><div><h3 id="method_remove"><code class="language-php">remove()</code></h3><code class="language-php">public mixed&nbsp;remove(string|integer $key)</code></div></div><div class="details"><div><p>Removes the element at the specified index from the collection.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">string|integer</code></td><td><code class="language-php">$key</code></td><td>The kex/index of the element to remove.</td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td>The removed element or NULL, if the collection did not contain the element.</td></tr></table></div><div><div class="float-right"> at line <a href="#source.119">119</a></div><div><h3 id="method_removeElement"><code class="language-php">removeElement()</code></h3><code class="language-php">public boolean&nbsp;removeElement(mixed $element)</code></div></div><div class="details"><div><p>Removes the specified element from the collection, if it is found.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td><code class="language-php">$element</code></td><td>The element to remove.</td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">boolean</code></td><td>TRUE if this collection contained the specified element, FALSE otherwise.</td></tr></table></div><div><div class="float-right"> at line <a href="#source.137">137</a></div><div><h3 id="method_offsetExists"><code class="language-php">offsetExists()</code></h3><code class="language-php">public offsetExists($offset)</code></div></div><div class="details"><div><p>Required by interface ArrayAccess.</p><p>{@inheritDoc}</p></div><h4>Parameters</h4><table class="table"><tr><td></td><td><code class="language-php">$offset</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.147">147</a></div><div><h3 id="method_offsetGet"><code class="language-php">offsetGet()</code></h3><code class="language-php">public offsetGet($offset)</code></div></div><div class="details"><div><p>Required by interface ArrayAccess.</p><p>{@inheritDoc}</p></div><h4>Parameters</h4><table class="table"><tr><td></td><td><code class="language-php">$offset</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.157">157</a></div><div><h3 id="method_offsetSet"><code class="language-php">offsetSet()</code></h3><code class="language-php">public offsetSet($offset, $value)</code></div></div><div class="details"><div><p>Required by interface ArrayAccess.</p><p>{@inheritDoc}</p></div><h4>Parameters</h4><table class="table"><tr><td></td><td><code class="language-php">$offset</code></td><td></td></tr><tr><td></td><td><code class="language-php">$value</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.171">171</a></div><div><h3 id="method_offsetUnset"><code class="language-php">offsetUnset()</code></h3><code class="language-php">public offsetUnset($offset)</code></div></div><div class="details"><div><p>Required by interface ArrayAccess.</p><p>{@inheritDoc}</p></div><h4>Parameters</h4><table class="table"><tr><td></td><td><code class="language-php">$offset</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.179">179</a></div><div><h3 id="method_containsKey"><code class="language-php">containsKey()</code></h3><code class="language-php">public boolean&nbsp;containsKey(string|integer $key)</code></div></div><div class="details"><div><p>Checks whether the collection contains an element with the specified key/index.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">string|integer</code></td><td><code class="language-php">$key</code></td><td>The key/index to check for.</td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">boolean</code></td><td>TRUE if the collection contains an element with the specified key/index, FALSE otherwise.</td></tr></table></div><div><div class="float-right"> at line <a href="#source.187">187</a></div><div><h3 id="method_contains"><code class="language-php">contains()</code></h3><code class="language-php">public boolean&nbsp;contains(mixed $element)</code></div></div><div class="details"><div><p>Checks whether an element is contained in the collection.</p><p>This is an O(n) operation, where n is the size of the collection.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td><code class="language-php">$element</code></td><td>The element to search for.</td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">boolean</code></td><td>TRUE if the collection contains the element, FALSE otherwise.</td></tr></table></div><div><div class="float-right"> at line <a href="#source.195">195</a></div><div><h3 id="method_exists"><code class="language-php">exists()</code></h3><code class="language-php">public boolean&nbsp;exists(<a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a> $p)</code></div></div><div class="details"><div><p>Tests for the existence of an element that satisfies the given predicate.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a></code></td><td><code class="language-php">$p</code></td><td>The predicate.</td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">boolean</code></td><td>TRUE if the predicate is TRUE for at least one element, FALSE otherwise.</td></tr></table></div><div><div class="float-right"> at line <a href="#source.209">209</a></div><div><h3 id="method_indexOf"><code class="language-php">indexOf()</code></h3><code class="language-php">public int|string|bool&nbsp;indexOf(mixed $element)</code></div></div><div class="details"><div><p>Gets the index/key of a given element. The comparison of two elements is strict, that means not only the value but also the type must match.</p><p>For objects this means reference equality.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td><code class="language-php">$element</code></td><td>The element to search for.</td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">int|string|bool</code></td><td>The key/index of the element or FALSE if the element was not found.</td></tr></table></div><div><div class="float-right"> at line <a href="#source.217">217</a></div><div><h3 id="method_get"><code class="language-php">get()</code></h3><code class="language-php">public mixed&nbsp;get(string|integer $key)</code></div></div><div class="details"><div><p>Gets the element at the specified key/index.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">string|integer</code></td><td><code class="language-php">$key</code></td><td>The key/index of the element to retrieve.</td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.225">225</a></div><div><h3 id="method_getKeys"><code class="language-php">getKeys()</code></h3><code class="language-php">public array&nbsp;getKeys()</code></div></div><div class="details"><div><p>Gets all keys/indices of the collection.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">array</code></td><td>The keys/indices of the collection, in the order of the corresponding elements in the collection.</td></tr></table></div><div><div class="float-right"> at line <a href="#source.233">233</a></div><div><h3 id="method_getValues"><code class="language-php">getValues()</code></h3><code class="language-php">public array&nbsp;getValues()</code></div></div><div class="details"><div><p>Gets all values of the collection.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">array</code></td><td>The values of all elements in the collection, in the order they appear in the collection.</td></tr></table></div><div><div class="float-right"> at line <a href="#source.241">241</a></div><div><h3 id="method_count"><code class="language-php">count()</code></h3><code class="language-php">public count()</code></div></div><div class="details"><div><p>{@inheritDoc}</p></div></div><div><div class="float-right"> at line <a href="#source.249">249</a></div><div><h3 id="method_set"><code class="language-php">set()</code></h3><code class="language-php">public void&nbsp;set(string|integer $key, mixed $value)</code></div></div><div class="details"><div><p>Sets an element in the collection at the specified key/index.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">string|integer</code></td><td><code class="language-php">$key</code></td><td>The key/index of the element to set.</td></tr><tr><td><code class="language-php">mixed</code></td><td><code class="language-php">$value</code></td><td>The element to set.</td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">void</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.257">257</a></div><div><h3 id="method_add"><code class="language-php">add()</code></h3><code class="language-php">public boolean&nbsp;add($value)</code></div></div><div class="details"><div><p>Adds an element at the end of the collection.</p></div><h4>Parameters</h4><table class="table"><tr><td></td><td><code class="language-php">$value</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">boolean</code></td><td>Always TRUE.</td></tr></table></div><div><div class="float-right"> at line <a href="#source.267">267</a></div><div><h3 id="method_isEmpty"><code class="language-php">isEmpty()</code></h3><code class="language-php">public boolean&nbsp;isEmpty()</code></div></div><div class="details"><div><p>Checks whether the collection is empty (contains no elements).</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">boolean</code></td><td>TRUE if the collection is empty, FALSE otherwise.</td></tr></table></div><div><div class="float-right"> at line <a href="#source.277">277</a></div><div><h3 id="method_getIterator"><code class="language-php">getIterator()</code></h3><code class="language-php">public getIterator()</code></div></div><div class="details"><div><p>Required by interface IteratorAggregate.</p><p>{@inheritDoc}</p></div></div><div><div class="float-right"> at line <a href="#source.285">285</a></div><div><h3 id="method_map"><code class="language-php">map()</code></h3><code class="language-php">public <a href="../../../Doctrine/Common/Collections/Collection.html"><abbr title="Doctrine\Common\Collections\Collection">Collection</abbr></a>&nbsp;map(<a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a> $func)</code></div></div><div class="details"><div><p>Applies the given function to each element in the collection and returns a new collection with the elements returned by the function.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a></code></td><td><code class="language-php">$func</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../../Doctrine/Common/Collections/Collection.html"><abbr title="Doctrine\Common\Collections\Collection">Collection</abbr></a></code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.293">293</a></div><div><h3 id="method_filter"><code class="language-php">filter()</code></h3><code class="language-php">public <a href="../../../Doctrine/Common/Collections/Collection.html"><abbr title="Doctrine\Common\Collections\Collection">Collection</abbr></a>&nbsp;filter(<a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a> $p)</code></div></div><div class="details"><div><p>Returns all the elements of this collection that satisfy the predicate p.</p><p>The order of the elements is preserved.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a></code></td><td><code class="language-php">$p</code></td><td>The predicate used for filtering.</td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../../Doctrine/Common/Collections/Collection.html"><abbr title="Doctrine\Common\Collections\Collection">Collection</abbr></a></code></td><td>A collection with the results of the filter operation.</td></tr></table></div><div><div class="float-right"> at line <a href="#source.301">301</a></div><div><h3 id="method_forAll"><code class="language-php">forAll()</code></h3><code class="language-php">public boolean&nbsp;forAll(<a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a> $p)</code></div></div><div class="details"><div><p>Tests whether the given predicate p holds for all elements of this collection.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a></code></td><td><code class="language-php">$p</code></td><td>The predicate.</td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">boolean</code></td><td>TRUE, if the predicate yields TRUE for all elements, FALSE otherwise.</td></tr></table></div><div><div class="float-right"> at line <a href="#source.315">315</a></div><div><h3 id="method_partition"><code class="language-php">partition()</code></h3><code class="language-php">public array&nbsp;partition(<a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a> $p)</code></div></div><div class="details"><div><p>Partitions this collection in two collections according to a predicate.</p><p>Keys are preserved in the resulting collections.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><a target="_blank" href="http://php.net/Closure"><abbr title="Closure">Closure</abbr></a></code></td><td><code class="language-php">$p</code></td><td>The predicate on which to partition.</td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">array</code></td><td>An array with two elements. The first element contains the collection of elements where the predicate returned TRUE, the second element contains the collection of elements where the predicate returned FALSE.</td></tr></table></div><div><div class="float-right"> at line <a href="#source.335">335</a></div><div><h3 id="method___toString"><code class="language-php">__toString()</code></h3><code class="language-php">public string&nbsp;__toString()</code></div></div><div class="details"><div><p>Returns a string representation of this object.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">string</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.343">343</a></div><div><h3 id="method_clear"><code class="language-php">clear()</code></h3><code class="language-php">public void&nbsp;clear()</code></div></div><div class="details"><div><p>Clears the collection, removing all elements.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">void</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.351">351</a></div><div><h3 id="method_slice"><code class="language-php">slice()</code></h3><code class="language-php">public array&nbsp;slice(int $offset, int|null $length = null)</code></div></div><div class="details"><div><p>Extracts a slice of $length elements starting at position $offset from the Collection.</p><p>If $length is null it returns all elements from $offset to the end of the Collection. Keys have to be preserved by this method. Calling this method will only return the selected slice and NOT change the elements contained in the collection slice is called on.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">int</code></td><td><code class="language-php">$offset</code></td><td>The offset to start from.</td></tr><tr><td><code class="language-php">int|null</code></td><td><code class="language-php">$length</code></td><td>The maximum number of elements to return, or null for no limit.</td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">array</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.359">359</a></div><div><h3 id="method_matching"><code class="language-php">matching()</code></h3><code class="language-php">public <a href="../../../Doctrine/Common/Collections/Collection.html"><abbr title="Doctrine\Common\Collections\Collection">Collection</abbr></a>&nbsp;matching(<abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Criteria">Criteria</abbr> $criteria)</code></div></div><div class="details"><div><p>Selects all elements from a selectable that match the expression and returns a new collection containing these elements.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><abbr title="Doctrine\Common\Collections\Doctrine\Common\Collections\Criteria">Criteria</abbr></code></td><td><code class="language-php">$criteria</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../../Doctrine/Common/Collections/Collection.html"><abbr title="Doctrine\Common\Collections\Collection">Collection</abbr></a></code></td><td></td></tr></table></div></div><h2>Source code</h2><pre class="language-php line-numbers" id="source"><code>&lt;?php
+/*
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license. For more information, see
+ * &lt;http://www.doctrine-project.org&gt;.
+ */
+
+namespace Doctrine\Common\Collections;
+
+use ArrayIterator;
+use Closure;
+use Doctrine\Common\Collections\Expr\ClosureExpressionVisitor;
+
+/**
+ * An ArrayCollection is a Collection implementation that wraps a regular PHP array.
+ *
+ * @since  2.0
+ * @author Guilherme Blanco &lt;guilhermeblanco@hotmail.com&gt;
+ * @author Jonathan Wage &lt;jonwage@gmail.com&gt;
+ * @author Roman Borschel &lt;roman@code-factory.org&gt;
+ */
+class ArrayCollection implements Collection, Selectable
+{
+    /**
+     * An array containing the entries of this collection.
+     *
+     * @var array
+     */
+    private $elements;
+
+    /**
+     * Initializes a new ArrayCollection.
+     *
+     * @param array $elements
+     */
+    public function __construct(array $elements = array())
+    {
+        $this-&gt;elements = $elements;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray()
+    {
+        return $this-&gt;elements;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function first()
+    {
+        return reset($this-&gt;elements);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function last()
+    {
+        return end($this-&gt;elements);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function key()
+    {
+        return key($this-&gt;elements);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function next()
+    {
+        return next($this-&gt;elements);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function current()
+    {
+        return current($this-&gt;elements);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function remove($key)
+    {
+        if ( ! isset($this-&gt;elements[$key]) &amp;&amp; ! array_key_exists($key, $this-&gt;elements)) {
+            return null;
+        }
+
+        $removed = $this-&gt;elements[$key];
+        unset($this-&gt;elements[$key]);
+
+        return $removed;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeElement($element)
+    {
+        $key = array_search($element, $this-&gt;elements, true);
+
+        if ($key === false) {
+            return false;
+        }
+
+        unset($this-&gt;elements[$key]);
+
+        return true;
+    }
+
+    /**
+     * Required by interface ArrayAccess.
+     *
+     * {@inheritDoc}
+     */
+    public function offsetExists($offset)
+    {
+        return $this-&gt;containsKey($offset);
+    }
+
+    /**
+     * Required by interface ArrayAccess.
+     *
+     * {@inheritDoc}
+     */
+    public function offsetGet($offset)
+    {
+        return $this-&gt;get($offset);
+    }
+
+    /**
+     * Required by interface ArrayAccess.
+     *
+     * {@inheritDoc}
+     */
+    public function offsetSet($offset, $value)
+    {
+        if ( ! isset($offset)) {
+            return $this-&gt;add($value);
+        }
+
+        $this-&gt;set($offset, $value);
+    }
+
+    /**
+     * Required by interface ArrayAccess.
+     *
+     * {@inheritDoc}
+     */
+    public function offsetUnset($offset)
+    {
+        return $this-&gt;remove($offset);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function containsKey($key)
+    {
+        return isset($this-&gt;elements[$key]) || array_key_exists($key, $this-&gt;elements);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function contains($element)
+    {
+        return in_array($element, $this-&gt;elements, true);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function exists(Closure $p)
+    {
+        foreach ($this-&gt;elements as $key =&gt; $element) {
+            if ($p($key, $element)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function indexOf($element)
+    {
+        return array_search($element, $this-&gt;elements, true);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function get($key)
+    {
+        return isset($this-&gt;elements[$key]) ? $this-&gt;elements[$key] : null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getKeys()
+    {
+        return array_keys($this-&gt;elements);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getValues()
+    {
+        return array_values($this-&gt;elements);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function count()
+    {
+        return count($this-&gt;elements);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function set($key, $value)
+    {
+        $this-&gt;elements[$key] = $value;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function add($value)
+    {
+        $this-&gt;elements[] = $value;
+
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isEmpty()
+    {
+        return empty($this-&gt;elements);
+    }
+
+    /**
+     * Required by interface IteratorAggregate.
+     *
+     * {@inheritDoc}
+     */
+    public function getIterator()
+    {
+        return new ArrayIterator($this-&gt;elements);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function map(Closure $func)
+    {
+        return new static(array_map($func, $this-&gt;elements));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function filter(Closure $p)
+    {
+        return new static(array_filter($this-&gt;elements, $p));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function forAll(Closure $p)
+    {
+        foreach ($this-&gt;elements as $key =&gt; $element) {
+            if ( ! $p($key, $element)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function partition(Closure $p)
+    {
+        $matches = $noMatches = array();
+
+        foreach ($this-&gt;elements as $key =&gt; $element) {
+            if ($p($key, $element)) {
+                $matches[$key] = $element;
+            } else {
+                $noMatches[$key] = $element;
+            }
+        }
+
+        return array(new static($matches), new static($noMatches));
+    }
+
+    /**
+     * Returns a string representation of this object.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return __CLASS__ . &#039;@&#039; . spl_object_hash($this);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function clear()
+    {
+        $this-&gt;elements = array();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function slice($offset, $length = null)
+    {
+        return array_slice($this-&gt;elements, $offset, $length, true);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function matching(Criteria $criteria)
+    {
+        $expr     = $criteria-&gt;getWhereExpression();
+        $filtered = $this-&gt;elements;
+
+        if ($expr) {
+            $visitor  = new ClosureExpressionVisitor();
+            $filter   = $visitor-&gt;dispatch($expr);
+            $filtered = array_filter($filtered, $filter);
+        }
+
+        if ($orderings = $criteria-&gt;getOrderings()) {
+            foreach (array_reverse($orderings) as $field =&gt; $ordering) {
+                $next = ClosureExpressionVisitor::sortByField($field, $ordering == Criteria::DESC ? -1 : 1);
+            }
+
+            uasort($filtered, $next);
+        }
+
+        $offset = $criteria-&gt;getFirstResult();
+        $length = $criteria-&gt;getMaxResults();
+
+        if ($offset || $length) {
+            $filtered = array_slice($filtered, (int)$offset, $length);
+        }
+
+        return new static($filtered);
+    }
+}
+</code></pre></div><div class="row"><div id="footer"> Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a> using <a href="https://github.com/nochso/sami-theme">nochso/sami-theme</a>. </div></div></div></body></html>

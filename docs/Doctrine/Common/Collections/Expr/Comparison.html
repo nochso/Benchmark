@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="robots" content="index, follow, all" /><title>Doctrine\Common\Collections\Expr\Comparison | noch.so Benchmark documentation</title><link rel="stylesheet" type="text/css" href="../../../../css/normalize.css"><link rel="stylesheet" type="text/css" href="../../../../css/min.css"><link rel="stylesheet" type="text/css" href="../../../../css/prism.css"><link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,400italic' rel='stylesheet' type='text/css'><script src="../../../../js/prism.js"></script><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"></head><body id="class" data-name="class:Doctrine_Common_Collections_Expr_Comparison" data-root-path="../../../../"><nav><div class="container"><div class="title"><a href="../../../../index.html">noch.so Benchmark documentation</a></div><ul><li><a href="../../../../classes.html">Classes</a></li><li><a href="../../../../namespaces.html">Namespaces</a></li><li><a href="../../../../interfaces.html">Interfaces</a></li><li><a href="../../../../traits.html">Traits</a></li><li><a href="../../../../doc-index.html">Index</a></li><li><a href="../../../../search.html">Search</a></li></ul><ol class="breadcrumb"><li><a href="../../../../Doctrine.html">Doctrine</a></li><li><a href="../../../../Doctrine/Common.html">Common</a></li><li><a href="../../../../Doctrine/Common/Collections.html">Collections</a></li><li><a href="../../../../Doctrine/Common/Collections/Expr.html">Expr</a></li><li>Comparison</li></ol></div></nav><div class="container"><div class="row"><div id="control-panel"></div><div id="api-tree"></div></div><div class="row"><h1>Comparison</h1><p> class <strong>Comparison</strong> implements <a href="../../../../Doctrine/Common/Collections/Expr/Expression.html"><abbr title="Doctrine\Common\Collections\Expr\Expression">Expression</abbr></a></p><p>Comparison of a field with a value by the given operator.</p><h2>Constants</h2><table class="table"><tr><td><code class="language-php">EQ = &#039;=&#039;;</code></td><td><p><em></em></p><p></p></td></tr><tr><td><code class="language-php">NEQ = &#039;&lt;&gt;&#039;;</code></td><td><p><em></em></p><p></p></td></tr><tr><td><code class="language-php">LT = &#039;&lt;&#039;;</code></td><td><p><em></em></p><p></p></td></tr><tr><td><code class="language-php">LTE = &#039;&lt;=&#039;;</code></td><td><p><em></em></p><p></p></td></tr><tr><td><code class="language-php">GT = &#039;&gt;&#039;;</code></td><td><p><em></em></p><p></p></td></tr><tr><td><code class="language-php">GTE = &#039;&gt;=&#039;;</code></td><td><p><em></em></p><p></p></td></tr><tr><td><code class="language-php">IS = &#039;=&#039;; // no difference with EQ</code></td><td><p><em></em></p><p></p></td></tr><tr><td><code class="language-php">IN = &#039;IN&#039;;</code></td><td><p><em></em></p><p></p></td></tr><tr><td><code class="language-php">NIN = &#039;NIN&#039;;</code></td><td><p><em></em></p><p></p></td></tr><tr><td><code class="language-php">CONTAINS = &#039;CONTAINS&#039;;</code></td><td><p><em></em></p><p></p></td></tr></table><h2>Methods</h2><table class="table"><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"></code></td><td><code class="language-php"><a href="#method___construct">__construct</a>(string $field, string $operator, mixed $value)</code></td><td> No description </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">string</code></td><td><code class="language-php"><a href="#method_getField">getField</a>()</code></td><td> No description </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"><a href="../../../../Doctrine/Common/Collections/Expr/Value.html"><abbr title="Doctrine\Common\Collections\Expr\Value">Value</abbr></a></code></td><td><code class="language-php"><a href="#method_getValue">getValue</a>()</code></td><td> No description </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">string</code></td><td><code class="language-php"><a href="#method_getOperator">getOperator</a>()</code></td><td> No description </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">mixed</code></td><td><code class="language-php"><a href="#method_visit">visit</a>(<abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\ExpressionVisitor">ExpressionVisitor</abbr> $visitor)</code></td><td> No description </td><td></td></tr></table><h2>Details</h2><div id="method-details"><div><div class="float-right"> at line <a href="#source.61">61</a></div><div><h3 id="method___construct"><code class="language-php">__construct()</code></h3><code class="language-php">public __construct(string $field, string $operator, mixed $value)</code></div></div><div class="details"><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">string</code></td><td><code class="language-php">$field</code></td><td></td></tr><tr><td><code class="language-php">string</code></td><td><code class="language-php">$operator</code></td><td></td></tr><tr><td><code class="language-php">mixed</code></td><td><code class="language-php">$value</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.75">75</a></div><div><h3 id="method_getField"><code class="language-php">getField()</code></h3><code class="language-php">public string&nbsp;getField()</code></div></div><div class="details"><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">string</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.83">83</a></div><div><h3 id="method_getValue"><code class="language-php">getValue()</code></h3><code class="language-php">public <a href="../../../../Doctrine/Common/Collections/Expr/Value.html"><abbr title="Doctrine\Common\Collections\Expr\Value">Value</abbr></a>&nbsp;getValue()</code></div></div><div class="details"><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../../../Doctrine/Common/Collections/Expr/Value.html"><abbr title="Doctrine\Common\Collections\Expr\Value">Value</abbr></a></code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.91">91</a></div><div><h3 id="method_getOperator"><code class="language-php">getOperator()</code></h3><code class="language-php">public string&nbsp;getOperator()</code></div></div><div class="details"><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">string</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.99">99</a></div><div><h3 id="method_visit"><code class="language-php">visit()</code></h3><code class="language-php">public mixed&nbsp;visit(<abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\ExpressionVisitor">ExpressionVisitor</abbr> $visitor)</code></div></div><div class="details"><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><abbr title="Doctrine\Common\Collections\Expr\Doctrine\Common\Collections\Expr\ExpressionVisitor">ExpressionVisitor</abbr></code></td><td><code class="language-php">$visitor</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">mixed</code></td><td></td></tr></table></div></div><h2>Source code</h2><pre class="language-php line-numbers" id="source"><code>&lt;?php
+/*
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * This software consists of voluntary contributions made by many individuals
+ * and is licensed under the MIT license. For more information, see
+ * &lt;http://www.doctrine-project.org&gt;.
+ */
+
+namespace Doctrine\Common\Collections\Expr;
+
+/**
+ * Comparison of a field with a value by the given operator.
+ *
+ * @author Benjamin Eberlei &lt;kontakt@beberlei.de&gt;
+ * @since  2.3
+ */
+class Comparison implements Expression
+{
+    const EQ        = &#039;=&#039;;
+    const NEQ       = &#039;&lt;&gt;&#039;;
+    const LT        = &#039;&lt;&#039;;
+    const LTE       = &#039;&lt;=&#039;;
+    const GT        = &#039;&gt;&#039;;
+    const GTE       = &#039;&gt;=&#039;;
+    const IS        = &#039;=&#039;; // no difference with EQ
+    const IN        = &#039;IN&#039;;
+    const NIN       = &#039;NIN&#039;;
+    const CONTAINS  = &#039;CONTAINS&#039;;
+
+    /**
+     * @var string
+     */
+    private $field;
+
+    /**
+     * @var string
+     */
+    private $op;
+
+    /**
+     * @var Value
+     */
+    private $value;
+
+    /**
+     * @param string $field
+     * @param string $operator
+     * @param mixed  $value
+     */
+    public function __construct($field, $operator, $value)
+    {
+        if ( ! ($value instanceof Value)) {
+            $value = new Value($value);
+        }
+
+        $this-&gt;field = $field;
+        $this-&gt;op = $operator;
+        $this-&gt;value = $value;
+    }
+
+    /**
+     * @return string
+     */
+    public function getField()
+    {
+        return $this-&gt;field;
+    }
+
+    /**
+     * @return Value
+     */
+    public function getValue()
+    {
+        return $this-&gt;value;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOperator()
+    {
+        return $this-&gt;op;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function visit(ExpressionVisitor $visitor)
+    {
+        return $visitor-&gt;walkComparison($this);
+    }
+}
+</code></pre></div><div class="row"><div id="footer"> Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a> using <a href="https://github.com/nochso/sami-theme">nochso/sami-theme</a>. </div></div></div></body></html>
