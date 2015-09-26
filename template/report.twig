@@ -57,6 +57,9 @@
         <th>{{ param }}</th>
       {% endfor %}
       <th>Average &oslash;</th>
+      <th>
+        <span title="The fastest method scores 1x. A score of 3x means it's 3 times slower than the fastest method.">Score</span>
+      </th>
     </tr>
     </thead>
     <tbody>
@@ -76,9 +79,11 @@
           <pre><code>{{ method.getSourceCode }}</code></pre>
         </div>
       </td>
-      {% for result in unit.getResult.getMethodResults(method) %}
+      {% set unitResult = unit.getResult %}
+      {% for result in unitResult.getMethodResults(method) %}
         <td>{{ result }}</td>
       {% endfor %}
+      <td class="text-right score" style="background-color: {{ unitResult.getMethodScoreColor(method) }}"><span>{{ unitResult.getMethodScore(method)|number_format(1) }}x</span></td>
     </tr>
   {% endfor %}
 {% endblock %}
