@@ -45,7 +45,7 @@ class RoboFile extends \Robo\Tasks
 
     public function reports()
     {
-        $this->checkoutMaster();
+        $this->checkout('master');
         $this->_exec('php reports/search.php');
         $this->checkout('gh-pages');
         $this->_deleteDir('reports');
