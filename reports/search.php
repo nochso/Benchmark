@@ -97,7 +97,19 @@ $report->unitList->add($unit);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-$sortUnit = new Unit('Searching in a sorted list', 'Compares simple iteration to a binary search in a sorted list.');
+$sortUnit = new Unit('Searching in a sorted list', <<<'TAG'
+Looking for an object in sorted list can be actually slow or quite fast.
+
+**Assocative arrays** are still your best friend. Instead of sorting by
+position, objects are accessed by index.
+
+A **binary search** makes use of the fact that the list is sorted by the search
+needle. The complexity is O(log(n)) with n being the array size.
+
+**Iterative searches** are O(n) and are a good use for small lists.
+However searching in big lists will become quite slow.
+TAG
+);
 $sortUnit->addClosure(function ($n, $p) {
     $list = $p['list'];
     $needle = $p['needle'];
