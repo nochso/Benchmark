@@ -83,10 +83,12 @@ You can also change the minimum duration of tests which defaults to 1000 millsec
 
 ## History
 
-### Unreleased
+### 0.2.0 - 2015-09-26
 - Improve PHP docs
 - Use nochso/sami-theme for API documentation
 - Move `Path` and `Out` to new namespace `\nochso\Benchmark\Util`
+- Sort and color methods by average score using UnitResult
+- Add description property to Unit
 
 ### 0.1.0 - 2015-09-25
 First public release.
