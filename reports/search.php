@@ -5,8 +5,8 @@ use nochso\Benchmark\Parameter;
 use nochso\Benchmark\Report;
 use nochso\Benchmark\Unit;
 
-$report = new Report('Searching in lists');
-$unit = new Unit('Searching a specific string');
+$report = new Report('Performance of searching in lists in PHP', 'This report compares different ways of searching elements in lists.');
+$unit = new Unit('Searching a string', 'How much of a difference is there between searching through all elements and accessing it by key?');
 
 // Define closures to be added to the unit
 $foreachExact = function ($n, $p) {

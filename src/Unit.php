@@ -41,13 +41,21 @@ class Unit
      * @var string
      */
     private $name;
+    /**
+     * @var string
+     */
+    private $description;
 
     /**
+     * Both parameters are interpreted as Markdown.
+     *
      * @param string $name
+     * @param string $description Optional
      */
-    public function __construct($name)
+    public function __construct($name, $description = '')
     {
         $this->name = $name;
+        $this->description = $description;
     }
 
     /**
@@ -72,6 +80,14 @@ class Unit
     public function getResult()
     {
         return $this->result;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**

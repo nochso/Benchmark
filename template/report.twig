@@ -48,6 +48,7 @@
 
 {% block unit %}
   <h2><a name="{{ unitName|slugify }}"></a> {{ unitName }}</h2>
+  {{ unit.getDescription|markdown }}
   <table>
     <thead>
     <tr>
