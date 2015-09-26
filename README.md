@@ -89,6 +89,9 @@ You can also change the minimum duration of tests which defaults to 1000 millsec
 - Move `Path` and `Out` to new namespace `\nochso\Benchmark\Util`
 - Sort and color methods by average score using UnitResult
 - Add description property to Unit
+- Add RoboFile commands, e.g. `vendor/bin/robo <command>`
+  - `docs` Generates Sami API docs on master and adds them to gh-pages
+  - `reports` Generates an example report and adds it to gh-pages
 
 ### 0.1.0 - 2015-09-25
 First public release.
