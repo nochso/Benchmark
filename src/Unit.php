@@ -59,10 +59,24 @@ class Unit
     }
 
     /**
+     * Return first list of all methods. Sorted by score if available.
+     *
      * @return Method[]
      */
     public function getMethods()
     {
+        if ($this->result === null) {
+            return $this->methods;
+        }
+        // Sort methods best score first
+        uasort($this->methods, function ($first, $second) {
+            $aScore = $this->result->getMethodScore($first);
+            $bScore = $this->result->getMethodScore($second);
+            if ($aScore === $bScore) {
+                return 0;
+            }
+            return $aScore < $bScore ? -1 : 1;
+        });
         return $this->methods;
     }
 
