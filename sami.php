@@ -18,14 +18,9 @@ $iterator = Finder::create()
 ;
 
 $sami = new Sami\Sami($iterator, array(
-    'theme' => 'nochso-benchmark',
     'title' => 'noch.so Benchmark documentation',
     'build_dir' => __DIR__ . '/doc/build',
     'cache_dir' => __DIR__ . '/doc/cache',
-    'default_opened_level' => 2,
-    'template_dirs' => array(__DIR__ . '/doc/theme'),
 ));
-// Used for displaying source code
-/** @var Twig_Environment[] $sami */
-$sami['twig']->addFunction(new Twig_SimpleFunction('file_get_contents', 'file_get_contents'));
+nochso\SamiTheme\Theme::prepare($sami);
 return $sami;
