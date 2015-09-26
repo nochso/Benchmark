@@ -12,6 +12,12 @@ namespace nochso\Benchmark;
 
 use Jralph\Twig\Markdown\Contracts\MarkdownInterface;
 
+/**
+ * Used to register Github flavoured Markdown as a Twig filter.
+ *
+ * @author Marcel Voigt <mv@noch.so>
+ * @copyright Copyright (c) 2015 Marcel Voigt <mv@noch.so>
+ */
 class GithubMarkdownExtension implements MarkdownInterface
 {
     /**

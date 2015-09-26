@@ -86,6 +86,8 @@ class Report
     }
 
     /**
+     * Return the title of this report.
+     *
      * @return string
      */
     public function getTitle()
@@ -94,6 +96,8 @@ class Report
     }
 
     /**
+     * Return the description of this report.
+     *
      * @return string
      */
     public function getDescription()
@@ -101,6 +105,9 @@ class Report
         return $this->description;
     }
 
+    /**
+     * Runs all units and creates a HTML report.
+     */
     public function run()
     {
         Out::writeLine('Running nochso/benchmark ' . self::BENCHMARK_VERSION);

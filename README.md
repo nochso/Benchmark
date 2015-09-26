@@ -83,6 +83,9 @@ You can also change the minimum duration of tests which defaults to 1000 millsec
 
 ## History
 
+### Unreleased
+- Improve PHP docs
+
 ### 0.1.0 - 2015-09-25
 First public release.
 

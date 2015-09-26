@@ -61,6 +61,8 @@ class Method
     }
 
     /**
+     * Return the name of the method.
+     *
      * @return string
      */
     public function getName()
@@ -69,6 +71,8 @@ class Method
     }
 
     /**
+     * Return the description of the method.
+     *
      * @return string
      */
     public function getDescription()
@@ -95,6 +99,27 @@ class Method
         return $this->method;
     }
 
+    /**
+     * Returns the source code of the closure.
+     *
+     * The beginning of each line will be trimmed uniformly to remove excessive
+     * whitespace.
+     *
+     * e.g.
+     * ```
+     *     while {
+     *         do();
+     *     }
+     * ```
+     * becomes
+     * ```
+     * while {
+     *     do();
+     * }
+     * ```
+     *
+     * @return string
+     */
     public function getSourceCode()
     {
         $reflection = new \ReflectionFunction($this->method);
@@ -105,6 +130,11 @@ class Method
         return implode(PHP_EOL, $this->trimSourceLines($lines));
     }
 
+    /**
+     * @param $lines
+     *
+     * @return array
+     */
     private function trimSourceLines($lines)
     {
         $minSpaces = PHP_INT_MAX;

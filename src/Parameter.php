@@ -42,6 +42,8 @@ class Parameter
     }
 
     /**
+     * Return the parameter value.
+     *
      * @return mixed
      */
     public function getParameter()
@@ -50,6 +52,8 @@ class Parameter
     }
 
     /**
+     * Return the name of this parameter.
+     *
      * @return string
      */
     public function getName()

@@ -60,6 +60,8 @@ class Result
     }
 
     /**
+     * Get the number of iterations.
+     *
      * @return int
      */
     public function getOperations()
@@ -97,6 +99,8 @@ class Result
     }
 
     /**
+     * Get the operations per second as a float.
+     *
      * @return float
      */
     public function getOperationsPerSecond()
@@ -105,6 +109,8 @@ class Result
     }
 
     /**
+     * Get the method used to create this result.
+     *
      * @return Method
      */
     public function getMethod()
@@ -113,6 +119,8 @@ class Result
     }
 
     /**
+     * Get the parameter that was used to call the method.
+     *
      * @return Parameter
      */
     public function getParameter()
