@@ -83,6 +83,15 @@ You can also change the minimum duration of tests which defaults to 1000 millsec
 
 ## History
 
+### Unreleased
+#### Added
+- Show median operations/second
+- CompressHTML output with [wyrihaximus/html-compress](https://github.com/WyriHaximus/HtmlCompress)
+
+#### Changed
+- Base the score on median
+- Improve search report
+
 ### 0.2.0 - 2015-09-26
 #### Added
 - Add description property to Unit
