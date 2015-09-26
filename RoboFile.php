@@ -20,16 +20,12 @@ class RoboFile extends \Robo\Tasks
      */
     public function docs()
     {
-        $this->taskGitStack()
-            ->checkout('master')
-            ->run();
+        $this->checkout('master');
 
         $this->taskExec('php vendor/sami/sami/sami.php update sami.php --force')
             ->run();
 
-        $this->taskGitStack()
-            ->checkout('gh-pages')
-            ->run();
+        $this->checkout('gh-pages');
 
         $this->_deleteDir('docs');
         $this->_copyDir('doc/build', 'docs');
@@ -40,14 +36,18 @@ class RoboFile extends \Robo\Tasks
             ->run();
     }
 
-    public function reports() {
+    private function checkout($branch)
+    {
         $this->taskGitStack()
-            ->checkout('master')
+            ->checkout($branch)
             ->run();
+    }
+
+    public function reports()
+    {
+        $this->checkoutMaster();
         $this->_exec('php reports/search.php');
-        $this->taskGitStack()
-            ->checkout('gh-pages')
-            ->run();
+        $this->checkout('gh-pages');
         $this->_deleteDir('reports');
         $this->_copyDir('build', 'reports');
         $this->_rename('reports/index.html', 'reports/search.html');
