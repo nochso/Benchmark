@@ -141,13 +141,30 @@ $sortUnit->addClosure(function ($n, $p) {
     }
 }, 'Binary search');
 
+$sortUnit->addClosure(function ($n, $p) {
+    $map = $p['map'];
+    $needle = $p['needle'];
+    while ($n--) {
+        $result = null;
+        if (isset($map[$needle . '_'])) {
+            $result = $map[$needle . '_'];
+        }
+        if ($result !== $needle) {
+            throw new \Exception('');
+        }
+    }
+}, '`isset()`');
+
 $list = array();
+$map = array();
 // Fill with a sorted list
 for ($i = 0; $i < 1000; $i++) {
     $list[] = $i * 2;
+    $map[$i * 2 . '_'] = $i * 2;
 }
 $params = array(
     'list' => $list,
+    'map' => $map,
     'needle' => $list[0]
 );
 $sortUnit->addParam(new Parameter($params, '1/1000'));
@@ -159,12 +176,14 @@ $params['needle'] = $list[999];
 $sortUnit->addParam(new Parameter($params, '1000/1000'));
 
 $list = array();
-// Fill with a sorted list
+$map = array();
 for ($i = 0; $i < 100000; $i++) {
     $list[] = $i * 2;
+    $map[$i * 2 . '_'] = $i * 2;
 }
 $params = array(
     'list' => $list,
+    'map' => $map,
     'needle' => $list[0]
 );
 $sortUnit->addParam(new Parameter($params, '1/100k'));
