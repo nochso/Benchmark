@@ -12,6 +12,8 @@ namespace nochso\Benchmark;
 
 use Cocur\Slugify\Bridge\Twig\SlugifyExtension;
 use Cocur\Slugify\Slugify;
+use nochso\Benchmark\Util\Out;
+use nochso\Benchmark\Util\Path;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 

@@ -10,6 +10,8 @@
 
 namespace nochso\Benchmark;
 
+use nochso\Benchmark\Util\Out;
+
 /**
  * Unit is a list of related methods and the parameters they're called with.
  *

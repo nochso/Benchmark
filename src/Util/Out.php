@@ -8,7 +8,7 @@
  * @link      https://github.com/nochso/benchmark
  */
 
-namespace nochso\Benchmark;
+namespace nochso\Benchmark\Util;
 
 /**
  * Static helper for command line output.

@@ -10,6 +10,8 @@
 
 namespace nochso\Benchmark;
 
+use nochso\Benchmark\Util\Out;
+
 /**
  * Timer runs a closure for a minimum duration to ensure stable results.
  *
