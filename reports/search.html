@@ -82,6 +82,10 @@
     <p>This report compares different ways of searching elements in lists.</p>
 
 
+        <ul>
+              <li><a href="#searching-a-string">Searching a string</a></li>
+              <li><a href="#searching-in-a-sorted-list">Searching in a sorted list</a></li>
+          </ul>
                 <h2><a name="searching-a-string"></a> Searching a string</h2>
   <p>How much of a difference is there between searching through all elements and accessing it by key?</p>
 
@@ -89,11 +93,12 @@
     <thead>
     <tr>
       <th>Method</th>
-                    <th>First of 1000</th>
-              <th>Last of 1000</th>
-              <th>Not found</th>
-            <th>Average &oslash;</th>
-      <th>
+                      <th>First of 1000</th>
+                                <th>Last of 1000</th>
+                                <th>Not found</th>
+                                <th>Average</th>
+                                <th>Median</th>
+                      <th>
         <span title="The fastest method scores 1x. A score of 3x means it's 3 times slower than the fastest method.">Score</span>
       </th>
     </tr>
@@ -116,8 +121,9 @@ while ($n--) {
       </td>
                     <td>9.3M op/sec</td>
               <td>9.2M op/sec</td>
-              <td>31.2M op/sec</td>
-              <td>16.5M op/sec</td>
+              <td>30.4M op/sec</td>
+              <td>16.4M op/sec</td>
+              <td>9.3M op/sec</td>
             <td class="text-right score" style="background-color: #71ef71"><span>1.0x</span></td>
     </tr>
       <tr>
@@ -139,7 +145,8 @@ while ($n--) {
               <td>5.8M op/sec</td>
               <td>10.9M op/sec</td>
               <td>7.5M op/sec</td>
-            <td class="text-right score" style="background-color: #c6f8c6"><span>2.2x</span></td>
+              <td>5.8M op/sec</td>
+            <td class="text-right score" style="background-color: #9af39a"><span>1.6x</span></td>
     </tr>
       <tr>
       <td>
@@ -157,10 +164,11 @@ while ($n--) {
         </div>
       </td>
                     <td>9.5M op/sec</td>
-              <td>45.6K op/sec</td>
-              <td>45.6K op/sec</td>
+              <td>45.9K op/sec</td>
+              <td>45.4K op/sec</td>
               <td>3.2M op/sec</td>
-            <td class="text-right score" style="background-color: white"><span>5.1x</span></td>
+              <td>45.9K op/sec</td>
+            <td class="text-right score" style="background-color: #fdc3c3"><span>201.6x</span></td>
     </tr>
       <tr>
       <td>
@@ -183,11 +191,12 @@ while ($n--) {
 }</code></pre>
         </div>
       </td>
-                    <td>45.4K op/sec</td>
-              <td>19.4K op/sec</td>
-              <td>20.4K op/sec</td>
-              <td>28.4K op/sec</td>
-            <td class="text-right score" style="background-color: #fb6060"><span>582.0x</span></td>
+                    <td>44.7K op/sec</td>
+              <td>19.1K op/sec</td>
+              <td>20.2K op/sec</td>
+              <td>28.1K op/sec</td>
+              <td>20.2K op/sec</td>
+            <td class="text-right score" style="background-color: #fb7777"><span>458.1x</span></td>
     </tr>
       <tr>
       <td>
@@ -210,11 +219,161 @@ while ($n--) {
 }</code></pre>
         </div>
       </td>
-                    <td>45.6K op/sec</td>
+                    <td>44.7K op/sec</td>
               <td>15.5K op/sec</td>
+              <td>15.2K op/sec</td>
+              <td>25.2K op/sec</td>
               <td>15.5K op/sec</td>
-              <td>25.5K op/sec</td>
-            <td class="text-right score" style="background-color: #fb4e4e"><span>649.6x</span></td>
+            <td class="text-right score" style="background-color: #fb4e4e"><span>598.7x</span></td>
+    </tr>
+  
+    </tbody>
+  </table>
+
+            <h2><a name="searching-in-a-sorted-list"></a> Searching in a sorted list</h2>
+  <p>Looking for an object in sorted list can be actually slow or quite fast.</p>
+<p><strong>Assocative arrays</strong> are still your best friend. Instead of sorting by
+position, objects are accessed by index.</p>
+<p>A <strong>binary search</strong> makes use of the fact that the list is sorted by the search
+needle. The complexity is O(log(n)) with n being the array size.</p>
+<p><strong>Iterative searches</strong> are O(n) and are a good use for small lists.
+However searching in big lists will become quite slow.</p>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Method</th>
+                      <th>1/1000</th>
+                                <th>333/1000</th>
+                                <th>500/1000</th>
+                                <th>1000/1000</th>
+                                <th>1/100k</th>
+                                <th>3333/100k</th>
+                                <th>50k/100k</th>
+                                <th>6666/100k</th>
+                                <th>100k/100k</th>
+                                <th>Average</th>
+                                <th>Median</th>
+                      <th>
+        <span title="The fastest method scores 1x. A score of 3x means it's 3 times slower than the fastest method.">Score</span>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+          <tr>
+      <td>
+        <label class="collapse" for="_isset"><p><code>isset()</code></p>
+</label>
+        <input id="_isset" type="checkbox">
+        <div>
+          
+          <pre><code>$map = $p[&#039;map&#039;];
+$needle = $p[&#039;needle&#039;];
+while ($n--) {
+    $result = null;
+    if (isset($map[$needle . &#039;_&#039;])) {
+        $result = $map[$needle . &#039;_&#039;];
+    }
+    if ($result !== $needle) {
+        throw new \Exception(&#039;&#039;);
+    }
+}</code></pre>
+        </div>
+      </td>
+                    <td>4.2M op/sec</td>
+              <td>3.9M op/sec</td>
+              <td>4.0M op/sec</td>
+              <td>3.9M op/sec</td>
+              <td>4.2M op/sec</td>
+              <td>3.8M op/sec</td>
+              <td>3.9M op/sec</td>
+              <td>3.8M op/sec</td>
+              <td>3.8M op/sec</td>
+              <td>4.0M op/sec</td>
+              <td>3.9M op/sec</td>
+            <td class="text-right score" style="background-color: #71ef71"><span>1.0x</span></td>
+    </tr>
+      <tr>
+      <td>
+        <label class="collapse" for="_binary-search"><p>Binary search</p>
+</label>
+        <input id="_binary-search" type="checkbox">
+        <div>
+          
+          <pre><code>$list = $p[&#039;list&#039;];
+$needle = $p[&#039;needle&#039;];
+while ($n--) {
+    $count = count($list);
+    $left = 0;
+    $right = $count - 1;
+    $result = null;
+    while ($left &lt;= $right) {
+        $middle = (int)($left + (($right - $left) / 2));
+        if ($list[$middle] === $needle) {
+            $result = $middle;
+            break;
+        }
+        if ($list[$middle] &gt; $needle) {
+            $right = $middle - 1;
+        } else {
+            $left = $middle + 1;
+        }
+    }
+    if ($list[$result] !== $needle) {
+        throw new \Exception(&#039;&#039;);
+    }
+}</code></pre>
+        </div>
+      </td>
+                    <td>1.0M op/sec</td>
+              <td>1.0M op/sec</td>
+              <td>5.1M op/sec</td>
+              <td>953.9K op/sec</td>
+              <td>606.5K op/sec</td>
+              <td>599.2K op/sec</td>
+              <td>5.1M op/sec</td>
+              <td>586.7K op/sec</td>
+              <td>574.9K op/sec</td>
+              <td>1.7M op/sec</td>
+              <td>953.9K op/sec</td>
+            <td class="text-right score" style="background-color: white"><span>4.1x</span></td>
+    </tr>
+      <tr>
+      <td>
+        <label class="collapse" for="_for-i-0-i-count-i-break"><p><code>for ($i = 0; $i &lt; $count; $i++) break;</code></p>
+</label>
+        <input id="_for-i-0-i-count-i-break" type="checkbox">
+        <div>
+          
+          <pre><code>$list = $p[&#039;list&#039;];
+$needle = $p[&#039;needle&#039;];
+while ($n--) {
+    $result = null;
+    $count = count($list);
+    for ($i = 0; $i &lt; $count; $i++) {
+        if ($list[$i] === $needle) {
+            $result = $i;
+            break;
+        }
+    }
+    if ($list[$result] !== $needle) {
+        throw new \Exception(&#039;&#039;);
+    }
+}</code></pre>
+        </div>
+      </td>
+                    <td>6.5M op/sec</td>
+              <td>78.2K op/sec</td>
+              <td>51.3K op/sec</td>
+              <td>25.9K op/sec</td>
+              <td>6.5M op/sec</td>
+              <td>719.5 op/sec</td>
+              <td>476.7 op/sec</td>
+              <td>348.9 op/sec</td>
+              <td>233.9 op/sec</td>
+              <td>1.5M op/sec</td>
+              <td>25.9K op/sec</td>
+            <td class="text-right score" style="background-color: #fb4e4e"><span>150.9x</span></td>
     </tr>
   
     </tbody>
@@ -225,13 +384,13 @@ while ($n--) {
       <dt><a href="https://github.com/nochso/benchmark">nochso/Benchmark</a></dt>
       <dd>0.2.0</dd>
       <dt>ran each test</dt>
-      <dd>&gt; 1000 ms</dd>
+      <dd>&gt; 50 ms</dd>
 
       <dt>on</dt>
-      <dd>    <time datetime="2015-09-26T18:37:40+02:00" title="2015-09-26T18:37:40+02:00">Sep. 26th, 2015 18:37 CEST</time>
+      <dd>    <time datetime="2015-09-26T23:02:04+02:00" title="2015-09-26T23:02:04+02:00">Sep. 26th, 2015 23:02 CEST</time>
 </dd>
       <dt>in</dt>
-      <dd>18.4 seconds</dd>
+      <dd>3.4 seconds</dd>
       <dt>using PHP</dt>
       <dd>5.6.13-1+deb.sury.org~trusty+3</dd>
       <dt><span title="only Zend extensions are listed">with</span></dt>
