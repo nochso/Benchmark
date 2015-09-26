@@ -141,7 +141,6 @@ class Unit
         foreach ($this->methods as $method) {
             Out::writeLine('Method: ' . $method->getName());
             $this->fetchMethodResults($method);
-            $this->addAverageMethodResult($method);
         }
         return $this->result;
     }
@@ -161,19 +160,6 @@ class Unit
             $this->result->add($result);
             Out::writeLine();
         }
-    }
-
-    /**
-     * @param Method $method
-     */
-    private function addAverageMethodResult(Method $method)
-    {
-        // No need for averages with only one result.
-        if (count($this->params) === 0) {
-            return;
-        }
-        $averageResult = $this->result->getAverageMethodResult($method);
-        $this->result->add($averageResult);
     }
 
     /**

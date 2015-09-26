@@ -18,7 +18,6 @@ class UnitResult
      * @var Result[][]
      */
     private $results = array();
-    private $averageResults = array();
     private $maxOpsPerSec = null;
     private $minOpsPerSec = null;
 
@@ -32,11 +31,18 @@ class UnitResult
 
     /**
      * @param Method $method
+     * @param bool   $includeAverages
      *
      * @return Result[]
      */
-    public function getMethodResults(Method $method)
+    public function getMethodResults(Method $method, $includeAverages = false)
     {
+        if ($includeAverages) {
+            $results = $this->results[$method->getName()];
+            $results[] = $this->getAverageMethodResult($method);
+            $results[] = $this->getMedianMethodResult($method);
+            return $results;
+        }
         return $this->results[$method->getName()];
     }
 
@@ -47,9 +53,6 @@ class UnitResult
      */
     public function getAverageMethodResult(Method $method)
     {
-        if (isset($this->averageResults[$method->getName()])) {
-            return $this->averageResults[$method->getName()];
-        }
         $duration = 0.0;
         $operations = 0;
         foreach ($this->results[$method->getName()] as $result) {
@@ -57,19 +60,34 @@ class UnitResult
             $operations += $result->getOperations();
         }
         $averageResult = new Result($duration, $operations, $method, new Parameter(null, 'Average'));
-        $this->averageResults[$method->getName()] = $averageResult;
         return $averageResult;
+    }
+
+    public function getMedianMethodResult(Method $method)
+    {
+        $sortedResults = $this->getMethodResults($method);
+        usort($sortedResults, function ($a, $b) {
+            $aOps = $a->getOperationsPerSecond();
+            $bOps = $b->getOperationsPerSecond();
+            if ($aOps === $bOps) {
+                return 0;
+            }
+            return $aOps > $bOps ? 1 : -1;
+        });
+        $medianResult = $sortedResults[(int) (count($sortedResults) / 2)];
+        $result = new Result($medianResult->getDuration(), $medianResult->getOperations(), $method, new Parameter(null, 'Median'));
+        return $result;
     }
 
     public function getMethodScore(Method $method)
     {
-        $this->prepareBounds();
-        return $this->maxOpsPerSec / $this->getAverageMethodResult($method)->getOperationsPerSecond();
+        $this->prepareBoundsMedian();
+        return $this->maxOpsPerSec / $this->getMedianMethodResult($method)->getOperationsPerSecond();
     }
 
     public function getMethodScoreColor(Method $method)
     {
-        $this->prepareBounds();
+        $this->prepareBoundsMedian();
         $score = $this->getMethodScore($method);
         if ($score <= 3) {
             return '#' . $this->blendHex('71EF71', 'FFFFFF', ($score - 1) / 2);
@@ -111,7 +129,7 @@ class UnitResult
         return sprintf('%02x%02x%02x', $red, $green, $blue);
     }
 
-    private function prepareBounds()
+    private function prepareBoundsMedian()
     {
         if ($this->maxOpsPerSec !== null) {
             return;
@@ -120,7 +138,7 @@ class UnitResult
         $this->minOpsPerSec = PHP_INT_MAX;
         foreach ($this->results as $methodName => $results) {
             $res = reset($results);
-            $opsPerSec = $this->getAverageMethodResult($res->getMethod())->getOperationsPerSecond();
+            $opsPerSec = $this->getMedianMethodResult($res->getMethod())->getOperationsPerSecond();
             $this->maxOpsPerSec = max($this->maxOpsPerSec, $opsPerSec);
             $this->minOpsPerSec = min($this->minOpsPerSec, $opsPerSec);
         }

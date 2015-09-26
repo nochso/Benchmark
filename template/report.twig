@@ -53,11 +53,11 @@
     <thead>
     <tr>
       <th>Method</th>
-      {% set params = report.unitList.get(unitName).getParams %}
-      {% for param in params %}
-        <th>{{ param }}</th>
+      {% for result in unit.getResult.getMethodResults(unit.getMethods|first, true) %}
+        {% if result.getParameter is not null %}
+        <th>{{ result.getParameter.getName }}</th>
+          {% endif %}
       {% endfor %}
-      <th>Average &oslash;</th>
       <th>
         <span title="The fastest method scores 1x. A score of 3x means it's 3 times slower than the fastest method.">Score</span>
       </th>
@@ -81,7 +81,7 @@
         </div>
       </td>
       {% set unitResult = unit.getResult %}
-      {% for result in unitResult.getMethodResults(method) %}
+      {% for result in unitResult.getMethodResults(method, true) %}
         <td>{{ result }}</td>
       {% endfor %}
       <td class="text-right score" style="background-color: {{ unitResult.getMethodScoreColor(method) }}"><span>{{ unitResult.getMethodScore(method)|number_format(1) }}x</span></td>

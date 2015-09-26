@@ -94,4 +94,87 @@ $unit->addParam(new Parameter($params, 'Not found'));
 
 // Finally add this single unit to the report and run it
 $report->unitList->add($unit);
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+$sortUnit = new Unit('Searching in a sorted list', 'Compares simple iteration to a binary search in a sorted list.');
+$sortUnit->addClosure(function ($n, $p) {
+    $list = $p['list'];
+    $needle = $p['needle'];
+    while ($n--) {
+        $result = null;
+        $count = count($list);
+        for ($i = 0; $i < $count; $i++) {
+            if ($list[$i] === $needle) {
+                $result = $i;
+                break;
+            }
+        }
+        if ($list[$result] !== $needle) {
+            throw new \Exception('');
+        }
+    }
+}, '`for ($i = 0; $i < $count; $i++) break;`');
+$sortUnit->addClosure(function ($n, $p) {
+    $list = $p['list'];
+    $needle = $p['needle'];
+    while ($n--) {
+        $count = count($list);
+        $left = 0;
+        $right = $count - 1;
+        $result = null;
+        while ($left <= $right) {
+            $middle = (int)($left + (($right - $left) / 2));
+            if ($list[$middle] === $needle) {
+                $result = $middle;
+                break;
+            }
+            if ($list[$middle] > $needle) {
+                $right = $middle - 1;
+            } else {
+                $left = $middle + 1;
+            }
+        }
+        if ($list[$result] !== $needle) {
+            throw new \Exception('');
+        }
+    }
+}, 'Binary search');
+
+$list = array();
+// Fill with a sorted list
+for ($i = 0; $i < 1000; $i++) {
+    $list[] = $i * 2;
+}
+$params = array(
+    'list' => $list,
+    'needle' => $list[0]
+);
+$sortUnit->addParam(new Parameter($params, '1/1000'));
+$params['needle'] = $list[332];
+$sortUnit->addParam(new Parameter($params, '333/1000'));
+$params['needle'] = $list[499];
+$sortUnit->addParam(new Parameter($params, '500/1000'));
+$params['needle'] = $list[999];
+$sortUnit->addParam(new Parameter($params, '1000/1000'));
+
+$list = array();
+// Fill with a sorted list
+for ($i = 0; $i < 100000; $i++) {
+    $list[] = $i * 2;
+}
+$params = array(
+    'list' => $list,
+    'needle' => $list[0]
+);
+$sortUnit->addParam(new Parameter($params, '1/100k'));
+$params['needle'] = $list[33332];
+$sortUnit->addParam(new Parameter($params, '3333/100k'));
+$params['needle'] = $list[49999];
+$sortUnit->addParam(new Parameter($params, '50k/100k'));
+$params['needle'] = $list[66665];
+$sortUnit->addParam(new Parameter($params, '6666/100k'));
+$params['needle'] = $list[99999];
+$sortUnit->addParam(new Parameter($params, '100k/100k'));
+$report->unitList->add($sortUnit);
 $report->run();
