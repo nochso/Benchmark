@@ -52,12 +52,6 @@ class Report
      */
     public $unitList;
     /**
-     * Grouped by unit name and then method name.
-     *
-     * @var Result[][][]
-     */
-    private $results = array();
-    /**
      * @var string
      */
     private $title;
@@ -116,11 +110,10 @@ class Report
         Out::writeLine();
         $duration = -microtime(true);
         foreach ($this->unitList as $unitName => $unit) {
-            $this->results[$unitName] = $unit->run();
+            $unit->run();
         }
         $duration += microtime(true);
         $data = array(
-            'results' => $this->results,
             'report' => $this,
             'title' => $this->getTitle(),
             'duration' => $duration,

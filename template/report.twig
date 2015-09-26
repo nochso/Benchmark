@@ -6,14 +6,14 @@
 
     {{ report.getDescription|markdown }}
 
-    {% if results|length > 1 %}
+    {% if report.unitList|length > 1 %}
     <ul>
-      {% for unitName, methods in results %}
+      {% for unitName, unit in report.unitList %}
         <li><a href="#{{ unitName|slugify }}">{{ unitName }}</a></li>
       {% endfor %}
     </ul>
     {% endif %}
-    {% for unitName, methods in results %}
+    {% for unitName, unit in report.unitList %}
       {{ block('unit') }}
     {% endfor %}
 
@@ -40,6 +40,7 @@
     </dl>
   </div>
 {% endblock %}
+
 {% macro datetime(dt) %}
   {% set rfc3339 = dt|date(constant('DateTime::RFC3339')) %}
   <time datetime="{{ rfc3339 }}" title="{{ rfc3339 }}">{{ dt|date('M. jS, Y H:i T') }}</time>
@@ -63,27 +64,19 @@
     </tbody>
   </table>
 {% endblock %}
+
 {% block methods %}
-  {% for methodName, methodResults in methods %}
+  {% for methodName, method in unit.getMethods %}
     <tr>
       <td>
-        {#<div class="collapse" tabindex="1">#}
-          {#{{ methodName|markdown }}#}
-          {#<div>#}
-            {#{{ methodResults|first.getMethod.getDescription|markdown }}#}
-            {#<pre><code class="language-php">#}
-              {#{{- methodResults|first.getMethod.getSourceCode -}}#}
-            {#</code></pre>#}
-          {#</div>#}
-        {#</div>#}
-        <label class="collapse" for="_{{ unitName~methodName|slugify }}">{{ methodName|markdown }}</label>
-        <input id="_{{ unitName~methodName|slugify }}" type="checkbox">
+        <label class="collapse" for="_{{ methodName|slugify }}">{{ methodName|markdown }}</label>
+        <input id="_{{ methodName|slugify }}" type="checkbox">
         <div>
-          {{ methodResults|first.getMethod.getDescription|markdown }}
-          <pre><code class="language-php">{{- methodResults|first.getMethod.getSourceCode -}}</code></pre>
+          {{ method.getDescription|markdown }}
+          <pre><code>{{ method.getSourceCode }}</code></pre>
         </div>
       </td>
-      {% for result in methodResults %}
+      {% for result in unit.getResult.getMethodResults(method) %}
         <td>{{ result }}</td>
       {% endfor %}
     </tr>

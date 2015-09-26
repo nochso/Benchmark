@@ -34,9 +34,9 @@ class Unit
     /**
      * List of Result objects with varying parameters grouped by method name.
      *
-     * @var Result[][]
+     * @var UnitResult
      */
-    private $results = array();
+    private $result;
     /**
      * @var string
      */
@@ -64,6 +64,14 @@ class Unit
     public function getParams()
     {
         return $this->params;
+    }
+
+    /**
+     * @return UnitResult
+     */
+    public function getResult()
+    {
+        return $this->result;
     }
 
     /**
@@ -95,34 +103,17 @@ class Unit
     /**
      * Runs all combinations and returns results grouped by method name.
      *
-     * @return Result[][]
+     * @return UnitResult
      */
     public function run()
     {
-        $this->results = array();
+        $this->result = new UnitResult();
         foreach ($this->methods as $method) {
             Out::writeLine('Method: ' . $method->getName());
             $this->fetchMethodResults($method);
             $this->addAverageMethodResult($method);
         }
-        return $this->results;
-    }
-
-    /**
-     * @param Method $method
-     *
-     * @return Result
-     */
-    private function getAverageMethodResult(Method $method)
-    {
-        $duration = 0.0;
-        $operations = 0;
-        foreach ($this->results[$method->getName()] as $result) {
-            $duration += $result->getDuration();
-            $operations += $result->getOperations();
-        }
-        $averageResult = new Result($duration, $operations, $method, new Parameter(null, 'Average'));
-        return $averageResult;
+        return $this->result;
     }
 
     /**
@@ -137,7 +128,7 @@ class Unit
         foreach ($params as $paramKey => $parameter) {
             Out::writeLine('Parameter: ' . ($parameter !== null ? $parameter->getName() : 'null'));
             $result = $method->time($parameter);
-            $this->addMethodResult($method, $result);
+            $this->result->add($result);
             Out::writeLine();
         }
     }
@@ -151,17 +142,8 @@ class Unit
         if (count($this->params) === 0) {
             return;
         }
-        $averageResult = $this->getAverageMethodResult($method);
-        $this->addMethodResult($method, $averageResult);
-    }
-
-    /**
-     * @param Method $method
-     * @param Result $result
-     */
-    private function addMethodResult(Method $method, $result)
-    {
-        $this->results[$method->getName()][] = $result;
+        $averageResult = $this->result->getAverageMethodResult($method);
+        $this->result->add($averageResult);
     }
 
     /**
