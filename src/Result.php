@@ -103,9 +103,13 @@ class Result
      *
      * @return float
      */
-    public function getOperationsPerSecond()
+    public function getOperationsPerSecond($withUnit = false)
     {
-        return ($this->operations / $this->duration) * 1000.0;
+        $opsPerSec = ($this->operations / $this->duration) * 1000.0;
+        if ($withUnit) {
+            return $this->formatNumber($opsPerSec);
+        }
+        return $opsPerSec;
     }
 
     /**
