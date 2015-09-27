@@ -9,6 +9,17 @@ nochso/benchmark creates pretty HTML benchmarks from any closures you supply:
 - Reliably compare different algorithms
 - Run tests for a minimum amount of time to ensure stable results
 
+[**View an example report**](http://nochso.github.io/Benchmark/reports/search.html)
+
+[**View the API documentation**](http://nochso.github.io/Benchmark/docs/nochso/Benchmark.html)
+
+* [Installation](#installation)
+* [Usage](#usage)
+* [Contributing](#contributing)
+* [History](#history)
+* [Credits](#credits)
+* [License](#license)
+
 ## Installation
 
 1. Install composer on [Linux / Unix / OSX][composeru] or [Windows][composerw]
