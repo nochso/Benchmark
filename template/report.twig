@@ -49,6 +49,19 @@
 {% block unit %}
   <h2><a name="{{ unitName|slugify }}"></a> {{ unitName }}</h2>
   {{ unit.getDescription|markdown }}
+  {% if loop.first %}
+    <div class="note">
+    {% markdown %}
+    #### Explanation of results
+    Results are measured in **operations per second** (K = 1000, M = 1,000,000).
+
+    The method score is based on the median average. The fastest method always has a base score of 1x and other
+    methods are compared to it. For example a score of 3x means it's 3 times slower than the fastest method.
+
+    You can see the source code of the closure by clicking on the method name.
+    {% endmarkdown %}
+    </div>
+  {% endif %}
   <table>
     <thead>
     <tr>
@@ -58,9 +71,7 @@
         <th>{{ result.getParameter.getName }}</th>
           {% endif %}
       {% endfor %}
-      <th>
-        <span title="The fastest method scores 1x. A score of 3x means it's 3 times slower than the fastest method.">Score</span>
-      </th>
+      <th>Score</th>
     </tr>
     </thead>
     <tbody>
