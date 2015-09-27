@@ -93,11 +93,11 @@
       </td>
       {% set unitResult = unit.getResult %}
       {% for result in unitResult.getMethodResults(method, true) %}
-        <td style="background-color: {{ unitResult.getParameterScoreColor(result) }}">
+        <td class="text-right" style="background-color: {{ unitResult.getParameterScoreColor(result) }}; color: {{ unitResult.getParameterScoreColor(result)|text_color }}">
           {{ result.getOperationsPerSecond(true) }}
         </td>
       {% endfor %}
-      <td class="text-right score" style="background-color: {{ unitResult.getMethodScoreColor(method) }}">
+      <td class="text-right score" style="background-color: {{ unitResult.getMethodScoreColor(method) }}; color: {{ unitResult.getMethodScoreColor(method)|text_color }}">
         {{ unitResult.getMethodScore(method)|number_format(1) }}x
       </td>
     </tr>

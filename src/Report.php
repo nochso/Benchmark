@@ -13,6 +13,7 @@ namespace nochso\Benchmark;
 use Cocur\Slugify\Bridge\Twig\SlugifyExtension;
 use Cocur\Slugify\Slugify;
 use nochso\Benchmark\Twig\MinifyHtmlTokenParser;
+use nochso\Benchmark\Twig\ReportExtension;
 use nochso\Benchmark\Util\Out;
 use nochso\Benchmark\Util\Path;
 use Symfony\Component\Finder\Finder;
@@ -77,6 +78,7 @@ class Report
         $loader = new \Twig_Loader_Filesystem($this->config['template_dir']);
         $this->twig = new \Twig_Environment($loader, $this->config['twig']);
         $this->twig->addExtension(new SlugifyExtension(Slugify::create()));
+        $this->twig->addExtension(new ReportExtension());
         $this->twig->addExtension(new \Jralph\Twig\Markdown\Extension(
             new GithubMarkdownExtension()
         ));

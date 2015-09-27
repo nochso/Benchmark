@@ -126,7 +126,7 @@ class UnitResult
             return '#' . $this->blendHex('71EF71', 'FFFFFF', ($score - 1) / 2);
         }
         if ($score <= 6) {
-            return 'white';
+            return '#ffffff';
         }
         $paramName = $result->getParameter()->getName();
         $worst = $this->max['parameter'][$paramName] / $this->min['parameter'][$paramName];
