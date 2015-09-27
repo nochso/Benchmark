@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-      <meta charset="utf-8">
-    <title>nochso/Benchmark - Performance of searching in lists in PHP</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="asset/css/normalize.css">
-    <link rel="stylesheet" href="asset/css/skeleton.css">
-    <link rel="stylesheet" href="asset/css/prism.css">
-    <style>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>nochso/Benchmark - Performance of searching in lists in PHP</title><meta name="description" content=""><meta name="author" content=""><meta name="viewport" content="width=device-width, initial-scale=1"><link href='https://fonts.googleapis.com/css?family=Cousine|Open+Sans:400,300,700' rel='stylesheet' type='text/css'><link rel="stylesheet" href="asset/css/normalize.css"><link rel="stylesheet" href="asset/css/skeleton.css"><link rel="stylesheet" href="asset/css/prism.css"><style>
       body {
-        font-size: 1.6em;
-        font-family: "Source Sans Pro","Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #333;
+        font-size: 1.4em;
+        font-family: "Open Sans","Source Sans Pro", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
       time, span[title] {
         text-decoration:  underline #1EAEDB;
@@ -29,6 +18,7 @@
       code, pre {
         border: none !important;
         background-color: transparent !important;
+        font-family: Cousine, Consolas, "Liberation Mono", Menlo, Courier, monospace !important;
       }
       td p {
         margin-bottom: 0;
@@ -63,6 +53,7 @@
       }
       td.score {
         padding: 0px 10px;
+        font-weight: bold;
       }
       h1 {
         margin: 0.67em 0px;
@@ -71,114 +62,33 @@
         padding: 5px 10px;
         border-bottom: none;
       }
-    </style>
-  </head>
-<body class="language-php">
-<script src="asset/js/prism.js"></script>
-  <div class="container">
-      <div class="row">
-    <h1>Performance of searching in lists in PHP</h1>
-
-    <p>This report compares different ways of searching elements in lists.</p>
-
-
-        <ul>
-              <li><a href="#searching-a-string">Searching a string</a></li>
-              <li><a href="#searching-in-a-sorted-list">Searching in a sorted list</a></li>
-          </ul>
-                <h2><a name="searching-a-string"></a> Searching a string</h2>
-  <p>How much of a difference is there between searching through all elements and accessing it by key?</p>
-
-  <table>
-    <thead>
-    <tr>
-      <th>Method</th>
-                      <th>First of 1000</th>
-                                <th>Last of 1000</th>
-                                <th>Not found</th>
-                                <th>Average</th>
-                                <th>Median</th>
-                      <th>
-        <span title="The fastest method scores 1x. A score of 3x means it's 3 times slower than the fastest method.">Score</span>
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-          <tr>
-      <td>
-        <label class="collapse" for="_isset-map-n"><p><code>isset($map[$n])</code></p>
-</label>
-        <input id="_isset-map-n" type="checkbox">
-        <div>
-          <p>Check if string key is set</p>
-
-          <pre><code>$map = $p[&#039;map&#039;];
+      .note {
+        padding: 1em 1em 0 1em;
+        background-color: #F8F8F8;
+        border: 1px solid #E1E1E1;
+        border-radius: 5px;
+        -webkit-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.3);
+        -moz-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.3);
+        box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.3);
+        margin: 2em 0;
+        width: 85%;
+      }
+      .note p {
+        margin: 1em 0;
+      }
+    </style></head><body class="language-php"><script src="asset/js/prism.js"></script><div class="container"><div class="row"><h1>Performance of searching in lists in PHP</h1><p>This report compares different ways of searching elements in lists.</p><ul><li><a href="#searching-a-string">Searching a string</a></li><li><a href="#searching-in-a-sorted-list">Searching in a sorted list</a></li></ul><h2><a name="searching-a-string"></a> Searching a string</h2><p>How much of a difference is there between searching through all elements and accessing it by key?</p><div class="note"><h4>Explanation of results</h4><p>Results are measured in <strong>operations per second</strong> (K = 1000, M = 1,000,000).</p><p>The method score is based on the median average. The fastest method always has a base score of 1x and other methods are compared to it. For example a score of 3x means it's 3 times slower than the fastest method.</p><p>You can see the source code of the closure by clicking on the method name.</p></div><table><thead><tr><th>Method</th><th>First of 1000</th><th>Last of 1000</th><th>Not found</th><th>Average</th><th>Median</th><th>Score</th></tr></thead><tbody><tr><td><label class="collapse" for="_isset-map-n"><p><code>isset($map[$n])</code></p></label><input id="_isset-map-n" type="checkbox"><div><p>Check if string key is set</p><pre><code>$map = $p[&#039;map&#039;];
 $needle = $p[&#039;needle&#039;];
 while ($n--) {
     $found = isset($map[$needle]);
-}</code></pre>
-        </div>
-      </td>
-                    <td>9.3M op/sec</td>
-              <td>9.2M op/sec</td>
-              <td>30.4M op/sec</td>
-              <td>16.4M op/sec</td>
-              <td>9.3M op/sec</td>
-            <td class="text-right score" style="background-color: #71ef71"><span>1.0x</span></td>
-    </tr>
-      <tr>
-      <td>
-        <label class="collapse" for="_array-key-exists-n-map"><p><code>array_key_exists($n, $map)</code></p>
-</label>
-        <input id="_array-key-exists-n-map" type="checkbox">
-        <div>
-          <p>Check for string key in a map</p>
-
-          <pre><code>$map = $p[&#039;map&#039;];
+}</code></pre></div></td><td class="text-right" style="background-color: #73ef73; color: #000000"> 9.3M </td><td class="text-right" style="background-color: #71ef71; color: #000000"> 9.3M </td><td class="text-right" style="background-color: #71ef71; color: #000000"> 31.2M </td><td class="text-right" style="background-color: #71ef71; color: #000000"> 16.6M </td><td class="text-right" style="background-color: #71ef71; color: #000000"> 9.3M </td><td class="text-right score" style="background-color: #71ef71; color: #000000"> 1.0x </td></tr><tr><td><label class="collapse" for="_array-key-exists-n-map"><p><code>array_key_exists($n, $map)</code></p></label><input id="_array-key-exists-n-map" type="checkbox"><div><p>Check for string key in a map</p><pre><code>$map = $p[&#039;map&#039;];
 $needle = $p[&#039;needle&#039;];
 while ($n--) {
     $found = array_key_exists($needle, $map);
-}</code></pre>
-        </div>
-      </td>
-                    <td>5.8M op/sec</td>
-              <td>5.8M op/sec</td>
-              <td>10.9M op/sec</td>
-              <td>7.5M op/sec</td>
-              <td>5.8M op/sec</td>
-            <td class="text-right score" style="background-color: #9af39a"><span>1.6x</span></td>
-    </tr>
-      <tr>
-      <td>
-        <label class="collapse" for="_array-search-n-l"><p><code>array_search($n, $l)</code></p>
-</label>
-        <input id="_array-search-n-l" type="checkbox">
-        <div>
-          <p>Search for value in list</p>
-
-          <pre><code>$list = $p[&#039;list&#039;];
+}</code></pre></div></td><td class="text-right" style="background-color: #9cf39c; color: #000000"> 6.0M </td><td class="text-right" style="background-color: #98f398; color: #000000"> 6.0M </td><td class="text-right" style="background-color: #f1fdf1; color: #000000"> 11.1M </td><td class="text-right" style="background-color: #c3f8c3; color: #000000"> 7.7M </td><td class="text-right" style="background-color: #98f398; color: #000000"> 6.0M </td><td class="text-right score" style="background-color: #98f398; color: #000000"> 1.6x </td></tr><tr><td><label class="collapse" for="_array-search-n-l"><p><code>array_search($n, $l)</code></p></label><input id="_array-search-n-l" type="checkbox"><div><p>Search for value in list</p><pre><code>$list = $p[&#039;list&#039;];
 $needle = $p[&#039;needle&#039;];
 while ($n--) {
     $found = array_search($needle, $list);
-}</code></pre>
-        </div>
-      </td>
-                    <td>9.5M op/sec</td>
-              <td>45.9K op/sec</td>
-              <td>45.4K op/sec</td>
-              <td>3.2M op/sec</td>
-              <td>45.9K op/sec</td>
-            <td class="text-right score" style="background-color: #fdc3c3"><span>201.6x</span></td>
-    </tr>
-      <tr>
-      <td>
-        <label class="collapse" for="_strict-foreach-v-n"><p>Strict <code>foreach $v === $n</code></p>
-</label>
-        <input id="_strict-foreach-v-n" type="checkbox">
-        <div>
-          <p>Strict comparison in a foreach loop</p>
-
-          <pre><code>$list = $p[&#039;list&#039;];
+}</code></pre></div></td><td class="text-right" style="background-color: #71ef71; color: #000000"> 9.6M </td><td class="text-right" style="background-color: #fdc3c3; color: #000000"> 45.4K </td><td class="text-right" style="background-color: #fdc4c4; color: #000000"> 45.5K </td><td class="text-right" style="background-color: #ffffff; color: #000000"> 3.3M </td><td class="text-right" style="background-color: #fdc3c3; color: #000000"> 45.5K </td><td class="text-right score" style="background-color: #fdc3c3; color: #000000"> 204.3x </td></tr><tr><td><label class="collapse" for="_strict-foreach-v-n"><p>Strict <code>foreach $v === $n</code></p></label><input id="_strict-foreach-v-n" type="checkbox"><div><p>Strict comparison in a foreach loop</p><pre><code>$list = $p[&#039;list&#039;];
 $needle = $p[&#039;needle&#039;];
 while ($n--) {
     $found = false;
@@ -188,25 +98,7 @@ while ($n--) {
             break;
         }
     }
-}</code></pre>
-        </div>
-      </td>
-                    <td>44.7K op/sec</td>
-              <td>19.1K op/sec</td>
-              <td>20.2K op/sec</td>
-              <td>28.1K op/sec</td>
-              <td>20.2K op/sec</td>
-            <td class="text-right score" style="background-color: #fb7777"><span>458.1x</span></td>
-    </tr>
-      <tr>
-      <td>
-        <label class="collapse" for="_loose-foreach-v-n"><p>Loose <code>foreach $v == $n</code></p>
-</label>
-        <input id="_loose-foreach-v-n" type="checkbox">
-        <div>
-          <p>Simple comparison in a foreach loop</p>
-
-          <pre><code>$list = $p[&#039;list&#039;];
+}</code></pre></div></td><td class="text-right" style="background-color: #fb5050; color: #FFFFFF"> 44.6K </td><td class="text-right" style="background-color: #fb7070; color: #000000"> 18.9K </td><td class="text-right" style="background-color: #fb7878; color: #000000"> 19.9K </td><td class="text-right" style="background-color: #fb6060; color: #000000"> 27.8K </td><td class="text-right" style="background-color: #fb7777; color: #000000"> 19.9K </td><td class="text-right score" style="background-color: #fb7777; color: #000000"> 466.8x </td></tr><tr><td><label class="collapse" for="_loose-foreach-v-n"><p>Loose <code>foreach $v == $n</code></p></label><input id="_loose-foreach-v-n" type="checkbox"><div><p>Simple comparison in a foreach loop</p><pre><code>$list = $p[&#039;list&#039;];
 $needle = $p[&#039;needle&#039;];
 while ($n--) {
     $found = false;
@@ -216,58 +108,7 @@ while ($n--) {
             break;
         }
     }
-}</code></pre>
-        </div>
-      </td>
-                    <td>44.7K op/sec</td>
-              <td>15.5K op/sec</td>
-              <td>15.2K op/sec</td>
-              <td>25.2K op/sec</td>
-              <td>15.5K op/sec</td>
-            <td class="text-right score" style="background-color: #fb4e4e"><span>598.7x</span></td>
-    </tr>
-  
-    </tbody>
-  </table>
-
-            <h2><a name="searching-in-a-sorted-list"></a> Searching in a sorted list</h2>
-  <p>Looking for an object in sorted list can be actually slow or quite fast.</p>
-<p><strong>Assocative arrays</strong> are still your best friend. Instead of sorting by
-position, objects are accessed by index.</p>
-<p>A <strong>binary search</strong> makes use of the fact that the list is sorted by the search
-needle. The complexity is O(log(n)) with n being the array size.</p>
-<p><strong>Iterative searches</strong> are O(n) and are a good use for small lists.
-However searching in big lists will become quite slow.</p>
-
-  <table>
-    <thead>
-    <tr>
-      <th>Method</th>
-                      <th>1/1000</th>
-                                <th>333/1000</th>
-                                <th>500/1000</th>
-                                <th>1000/1000</th>
-                                <th>1/100k</th>
-                                <th>3333/100k</th>
-                                <th>50k/100k</th>
-                                <th>6666/100k</th>
-                                <th>100k/100k</th>
-                                <th>Average</th>
-                                <th>Median</th>
-                      <th>
-        <span title="The fastest method scores 1x. A score of 3x means it's 3 times slower than the fastest method.">Score</span>
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-          <tr>
-      <td>
-        <label class="collapse" for="_isset"><p><code>isset()</code></p>
-</label>
-        <input id="_isset" type="checkbox">
-        <div>
-          
-          <pre><code>$map = $p[&#039;map&#039;];
+}</code></pre></div></td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 44.0K </td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 15.2K </td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 15.1K </td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 24.8K </td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 15.2K </td><td class="text-right score" style="background-color: #fb4e4e; color: #FFFFFF"> 611.8x </td></tr></tbody></table><h2><a name="searching-in-a-sorted-list"></a> Searching in a sorted list</h2><p>Looking for an object in sorted list can be actually slow or quite fast.</p><p><strong>Assocative arrays</strong> are still your best friend. Instead of sorting by position, objects are accessed by index.</p><p>A <strong>binary search</strong> makes use of the fact that the list is sorted by the search needle. The complexity is O(log(n)) with n being the array size.</p><p><strong>Iterative searches</strong> are O(n) and are a good use for small lists. However searching in big lists will become quite slow.</p><table><thead><tr><th>Method</th><th>1/1000</th><th>333/1000</th><th>500/1000</th><th>1000/1000</th><th>1/100k</th><th>3333/100k</th><th>50k/100k</th><th>6666/100k</th><th>100k/100k</th><th>Average</th><th>Median</th><th>Score</th></tr></thead><tbody><tr><td><label class="collapse" for="_isset"><p><code>isset()</code></p></label><input id="_isset" type="checkbox"><div><pre><code>$map = $p[&#039;map&#039;];
 $needle = $p[&#039;needle&#039;];
 while ($n--) {
     $result = null;
@@ -277,30 +118,7 @@ while ($n--) {
     if ($result !== $needle) {
         throw new \Exception(&#039;&#039;);
     }
-}</code></pre>
-        </div>
-      </td>
-                    <td>4.2M op/sec</td>
-              <td>3.9M op/sec</td>
-              <td>4.0M op/sec</td>
-              <td>3.9M op/sec</td>
-              <td>4.2M op/sec</td>
-              <td>3.8M op/sec</td>
-              <td>3.9M op/sec</td>
-              <td>3.8M op/sec</td>
-              <td>3.8M op/sec</td>
-              <td>4.0M op/sec</td>
-              <td>3.9M op/sec</td>
-            <td class="text-right score" style="background-color: #71ef71"><span>1.0x</span></td>
-    </tr>
-      <tr>
-      <td>
-        <label class="collapse" for="_binary-search"><p>Binary search</p>
-</label>
-        <input id="_binary-search" type="checkbox">
-        <div>
-          
-          <pre><code>$list = $p[&#039;list&#039;];
+}</code></pre></div></td><td class="text-right" style="background-color: #96f396; color: #000000"> 4.2M </td><td class="text-right" style="background-color: #71ef71; color: #000000"> 4.0M </td><td class="text-right" style="background-color: #84f184; color: #000000"> 4.0M </td><td class="text-right" style="background-color: #71ef71; color: #000000"> 4.0M </td><td class="text-right" style="background-color: #97f397; color: #000000"> 4.2M </td><td class="text-right" style="background-color: #71ef71; color: #000000"> 3.9M </td><td class="text-right" style="background-color: #86f186; color: #000000"> 3.9M </td><td class="text-right" style="background-color: #71ef71; color: #000000"> 3.9M </td><td class="text-right" style="background-color: #71ef71; color: #000000"> 3.8M </td><td class="text-right" style="background-color: #71ef71; color: #000000"> 4.0M </td><td class="text-right" style="background-color: #71ef71; color: #000000"> 4.0M </td><td class="text-right score" style="background-color: #71ef71; color: #000000"> 1.0x </td></tr><tr><td><label class="collapse" for="_binary-search"><p>Binary search</p></label><input id="_binary-search" type="checkbox"><div><pre><code>$list = $p[&#039;list&#039;];
 $needle = $p[&#039;needle&#039;];
 while ($n--) {
     $count = count($list);
@@ -322,30 +140,7 @@ while ($n--) {
     if ($list[$result] !== $needle) {
         throw new \Exception(&#039;&#039;);
     }
-}</code></pre>
-        </div>
-      </td>
-                    <td>1.0M op/sec</td>
-              <td>1.0M op/sec</td>
-              <td>5.1M op/sec</td>
-              <td>953.9K op/sec</td>
-              <td>606.5K op/sec</td>
-              <td>599.2K op/sec</td>
-              <td>5.1M op/sec</td>
-              <td>586.7K op/sec</td>
-              <td>574.9K op/sec</td>
-              <td>1.7M op/sec</td>
-              <td>953.9K op/sec</td>
-            <td class="text-right score" style="background-color: white"><span>4.1x</span></td>
-    </tr>
-      <tr>
-      <td>
-        <label class="collapse" for="_for-i-0-i-count-i-break"><p><code>for ($i = 0; $i &lt; $count; $i++) break;</code></p>
-</label>
-        <input id="_for-i-0-i-count-i-break" type="checkbox">
-        <div>
-          
-          <pre><code>$list = $p[&#039;list&#039;];
+}</code></pre></div></td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 1.0M </td><td class="text-right" style="background-color: #ffffff; color: #000000"> 1.0M </td><td class="text-right" style="background-color: #71ef71; color: #000000"> 5.1M </td><td class="text-right" style="background-color: #ffffff; color: #000000"> 957.2K </td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 603.9K </td><td class="text-right" style="background-color: #fefefe; color: #000000"> 614.1K </td><td class="text-right" style="background-color: #71ef71; color: #000000"> 5.1M </td><td class="text-right" style="background-color: #fefefe; color: #000000"> 581.4K </td><td class="text-right" style="background-color: #fefefe; color: #000000"> 573.6K </td><td class="text-right" style="background-color: #cdf9cd; color: #000000"> 1.7M </td><td class="text-right" style="background-color: #ffffff; color: #000000"> 957.2K </td><td class="text-right score" style="background-color: white; color: #FFFFFF"> 4.2x </td></tr><tr><td><label class="collapse" for="_for-i-0-i-count-i-break"><p><code>for ($i = 0; $i &lt; $count; $i++) break;</code></p></label><input id="_for-i-0-i-count-i-break" type="checkbox"><div><pre><code>$list = $p[&#039;list&#039;];
 $needle = $p[&#039;needle&#039;];
 while ($n--) {
     $result = null;
@@ -359,46 +154,4 @@ while ($n--) {
     if ($list[$result] !== $needle) {
         throw new \Exception(&#039;&#039;);
     }
-}</code></pre>
-        </div>
-      </td>
-                    <td>6.5M op/sec</td>
-              <td>78.2K op/sec</td>
-              <td>51.3K op/sec</td>
-              <td>25.9K op/sec</td>
-              <td>6.5M op/sec</td>
-              <td>719.5 op/sec</td>
-              <td>476.7 op/sec</td>
-              <td>348.9 op/sec</td>
-              <td>233.9 op/sec</td>
-              <td>1.5M op/sec</td>
-              <td>25.9K op/sec</td>
-            <td class="text-right score" style="background-color: #fb4e4e"><span>150.9x</span></td>
-    </tr>
-  
-    </tbody>
-  </table>
-
-    
-    <dl>
-      <dt><a href="https://github.com/nochso/benchmark">nochso/Benchmark</a></dt>
-      <dd>0.2.0</dd>
-      <dt>ran each test</dt>
-      <dd>&gt; 50 ms</dd>
-
-      <dt>on</dt>
-      <dd>    <time datetime="2015-09-26T23:02:04+02:00" title="2015-09-26T23:02:04+02:00">Sep. 26th, 2015 23:02 CEST</time>
-</dd>
-      <dt>in</dt>
-      <dd>3.4 seconds</dd>
-      <dt>using PHP</dt>
-      <dd>5.6.13-1+deb.sury.org~trusty+3</dd>
-      <dt><span title="only Zend extensions are listed">with</span></dt>
-              <dd>Zend OPcache</dd>
-            <dt>on</dt>
-      <dd>Linux 3.16.0-38-genericx86_64</dd>
-    </dl>
-  </div>
-  </div>
-</body>
-</html>
+}</code></pre></div></td><td class="text-right" style="background-color: #71ef71; color: #000000"> 6.5M </td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 77.6K </td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 51.7K </td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 25.9K </td><td class="text-right" style="background-color: #71ef71; color: #000000"> 6.5M </td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 733.8 </td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 482.5 </td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 359.3 </td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 236.6 </td><td class="text-right" style="background-color: #ecfcec; color: #000000"> 1.5M </td><td class="text-right" style="background-color: #fb4e4e; color: #FFFFFF"> 25.9K </td><td class="text-right score" style="background-color: #fb4e4e; color: #FFFFFF"> 154.9x </td></tr></tbody></table><dl><dt><a href="https://github.com/nochso/benchmark">nochso/Benchmark</a></dt><dd>0.3.0</dd><dt>ran each test</dt><dd>&gt; 1000 ms</dd><dt>on</dt><dd><time datetime="2015-09-27T21:29:58+02:00" title="2015-09-27T21:29:58+02:00">Sep. 27th, 2015 21:29 CEST</time></dd><dt>in</dt><dd>59.3 seconds</dd><dt>using PHP</dt><dd>5.6.13-1+deb.sury.org~trusty+3</dd><dt><span title="only Zend extensions are listed">with</span></dt><dd>Zend OPcache</dd><dt>on</dt><dd>Linux 3.16.0-38-genericx86_64</dd></dl></div></div></body></html>
