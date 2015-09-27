@@ -103,7 +103,7 @@ class UnitResult
             return '#' . $this->blendHex('71EF71', 'FFFFFF', ($score - 1) / 2);
         }
         if ($score <= 6) {
-            return 'white';
+            return '#FFFFFF';
         }
         $worst = $this->maxOpsPerSec / $this->minOpsPerSec;
         return '#' . $this->blendHex('FFFFFF', 'FB4E4E', $score / $worst);
