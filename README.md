@@ -85,25 +85,29 @@ You can also change the minimum duration of tests which defaults to 1000 millsec
 
 ### Unreleased
 #### Added
-- Show median operations/second
-- CompressHTML output with [wyrihaximus/html-compress](https://github.com/WyriHaximus/HtmlCompress)
+- Show median operations/second.
+- Compress HTML output with [wyrihaximus/html-compress](https://github.com/WyriHaximus/HtmlCompress).
+- Add a note explaining the results before the first result in each report.
+- Color each parameter result based on its score compared to other methods.
+- Add twig extension to calculate text color based on background color.
 
 #### Changed
-- Base the score on median
-- Improve search report
+- Base the score on median average.
+- Improve search report.
+- Change fonts to Open Sans and Cousine.
 
 ### 0.2.0 - 2015-09-26
 #### Added
-- Add description property to Unit
+- Add description property to Unit.
 - Add RoboFile commands, e.g. `vendor/bin/robo <command>`
-  - `docs` Generates Sami API docs on master and adds them to gh-pages
-  - `reports` Generates an example report and adds it to gh-pages
-- Sort and color methods by average score using UnitResult
+  - `docs` generates Sami API docs on master and adds them to gh-pages.
+  - `reports` generates an example report and adds it to gh-pages.
+- Sort and color methods by average score using UnitResult.
 
 #### Changed
-- Improve PHP docs
-- Use nochso/sami-theme for API documentation
-- Move `Path` and `Out` to new namespace `\nochso\Benchmark\Util`
+- Improve PHP docs.
+- Use nochso/sami-theme for API documentation.
+- Move `Path` and `Out` to new namespace `\nochso\Benchmark\Util`.
 
 ### 0.1.0 - 2015-09-25
 First public release.
