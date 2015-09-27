@@ -10,6 +10,14 @@
 
 namespace nochso\Benchmark;
 
+/**
+ * UnitResult.
+ *
+ * The min/max variables and handling want to be refactored!
+ *
+ * @author Marcel Voigt <mv@noch.so>
+ * @copyright Copyright (c) 2015 Marcel Voigt <mv@noch.so>
+ */
 class UnitResult
 {
     /**
@@ -20,6 +28,8 @@ class UnitResult
     private $results = array();
     private $maxOpsPerSec = null;
     private $minOpsPerSec = null;
+    private $min = array();
+    private $max = array();
 
     /**
      * @param Result $result
@@ -99,6 +109,30 @@ class UnitResult
         return '#' . $this->blendHex('FFFFFF', 'FB4E4E', $score / $worst);
     }
 
+    public function getParameterScore(Result $result)
+    {
+        $this->prepareBoundsParameter();
+        $paramName = null;
+        if ($result->getParameter() !== null) {
+            $paramName = $result->getParameter()->getName();
+        }
+        return $this->max['parameter'][$paramName] / $result->getOperationsPerSecond();
+    }
+
+    public function getParameterScoreColor(Result $result)
+    {
+        $score = $this->getParameterScore($result);
+        if ($score <= 3) {
+            return '#' . $this->blendHex('71EF71', 'FFFFFF', ($score - 1) / 2);
+        }
+        if ($score <= 6) {
+            return 'white';
+        }
+        $paramName = $result->getParameter()->getName();
+        $worst = $this->max['parameter'][$paramName] / $this->min['parameter'][$paramName];
+        return '#' . $this->blendHex('FFFFFF', 'FB4E4E', $score / $worst);
+    }
+
     /**
      * Blend two hexadecimal colours specifying the fractional position.
      *
@@ -107,7 +141,7 @@ class UnitResult
      *     blend_hex('66cc00', 'cc2200', 0.1); // "70bb00"
      *
      * @link http://www.sitepoint.com/forums/showthread.php?606853-On-a-scale-of-red-to-green&s=79cdcc0fff69e031276f7ab7794b0889&p=4195901&viewfull=1#post4195901
-     * 
+     *
      * @param $fromHex
      * @param $toHex
      * @param float $position
@@ -141,6 +175,36 @@ class UnitResult
             $opsPerSec = $this->getMedianMethodResult($res->getMethod())->getOperationsPerSecond();
             $this->maxOpsPerSec = max($this->maxOpsPerSec, $opsPerSec);
             $this->minOpsPerSec = min($this->minOpsPerSec, $opsPerSec);
+        }
+    }
+
+    private function prepareBoundsParameter()
+    {
+        if (isset($this->max['parameter']) && count($this->max['parameter']) > 0) {
+            return;
+        }
+        $this->max['parameter'] = array();
+        $this->min['parameter'] = array();
+
+        foreach ($this->results as $methodName => $results) {
+            /** @var Result $first */
+            $first = reset($results);
+            $method = $first->getMethod();
+            foreach ($this->getMethodResults($method, true) as $result) {
+                $paramName = null;
+                if ($result->getParameter() !== null) {
+                    $paramName = $result->getParameter()->getName();
+                }
+                if (!isset($this->max['parameter'][$paramName])) {
+                    $this->max['parameter'][$paramName] = 0;
+                }
+                if (!isset($this->min['parameter'][$paramName])) {
+                    $this->min['parameter'][$paramName] = PHP_INT_MAX;
+                }
+
+                $this->max['parameter'][$paramName] = max($this->max['parameter'][$paramName], $result->getOperationsPerSecond());
+                $this->min['parameter'][$paramName] = min($this->min['parameter'][$paramName], $result->getOperationsPerSecond());
+            }
         }
     }
 }
