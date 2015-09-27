@@ -83,7 +83,7 @@ You can also change the minimum duration of tests which defaults to 1000 millsec
 
 ## History
 
-### Unreleased
+### 0.3.0 - 2015-09-27
 #### Added
 - Show median operations/second.
 - Compress HTML output with [wyrihaximus/html-compress](https://github.com/WyriHaximus/HtmlCompress).

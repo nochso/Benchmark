@@ -27,7 +27,7 @@ use Symfony\Component\Finder\SplFileInfo;
  */
 class Report
 {
-    const BENCHMARK_VERSION = '0.2.0';
+    const BENCHMARK_VERSION = '0.3.0';
 
     /**
      * @var array
