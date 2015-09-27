@@ -62,6 +62,8 @@
     {% endmarkdown %}
     </div>
   {% endif %}
+  {# Tables escape the container div to allow full width #}
+  </div></div>
   <table>
     <thead>
     <tr>
@@ -78,6 +80,7 @@
     {{ block('methods') }}
     </tbody>
   </table>
+  <div class="container"><div class="row">
 {% endblock %}
 
 {% block methods %}
