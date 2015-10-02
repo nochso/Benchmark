@@ -16,7 +16,7 @@
 class RoboFile extends \Robo\Tasks
 {
     /**
-     * Create docs and add them to gh-pages without comitting
+     * Create docs and add them to gh-pages without comitting.
      */
     public function docs()
     {

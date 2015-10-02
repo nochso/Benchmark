@@ -1,4 +1,13 @@
 <?php
+
+/*
+ * This file is part of nochso/benchmark.
+ *
+ * @copyright Copyright (c) 2015 Marcel Voigt <mv@noch.so>
+ * @license   https://github.com/nochso/benchmark/blob/master/LICENSE ISC
+ * @link      https://github.com/nochso/benchmark
+ */
+
 require 'vendor/autoload.php';
 
 use nochso\Benchmark\Parameter;
@@ -81,7 +90,7 @@ $map = array_flip($list);
 $params = array(
     'list' => $list,
     'map' => $map,
-    'needle' => $list[0]
+    'needle' => $list[0],
 );
 $unit->addParam(new Parameter($params, 'First of 1000'));
 
@@ -136,7 +145,7 @@ $sortUnit->addClosure(function ($n, $p) {
         $right = $count - 1;
         $result = null;
         while ($left <= $right) {
-            $middle = (int)($left + (($right - $left) / 2));
+            $middle = (int) ($left + (($right - $left) / 2));
             if ($list[$middle] === $needle) {
                 $result = $middle;
                 break;
@@ -177,7 +186,7 @@ for ($i = 0; $i < 1000; $i++) {
 $params = array(
     'list' => $list,
     'map' => $map,
-    'needle' => $list[0]
+    'needle' => $list[0],
 );
 $sortUnit->addParam(new Parameter($params, '1/1000'));
 $params['needle'] = $list[332];
@@ -196,7 +205,7 @@ for ($i = 0; $i < 100000; $i++) {
 $params = array(
     'list' => $list,
     'map' => $map,
-    'needle' => $list[0]
+    'needle' => $list[0],
 );
 $sortUnit->addParam(new Parameter($params, '1/100k'));
 $params['needle'] = $list[33332];
