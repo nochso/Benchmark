@@ -12,6 +12,7 @@ namespace nochso\Benchmark;
 
 use Cocur\Slugify\Bridge\Twig\SlugifyExtension;
 use Cocur\Slugify\Slugify;
+use nochso\Benchmark\Twig\GithubMarkdownExtension;
 use nochso\Benchmark\Twig\MinifyHtmlTokenParser;
 use nochso\Benchmark\Twig\ReportExtension;
 use nochso\Benchmark\Util\Out;
