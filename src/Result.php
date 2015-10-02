@@ -101,6 +101,8 @@ class Result
     /**
      * Get the operations per second as a float.
      *
+     * @param bool $withUnit Optionally format with abbreviated unit. Default is false.
+     *
      * @return float
      */
     public function getOperationsPerSecond($withUnit = false)

@@ -36,7 +36,9 @@ class UnitResult
      */
     public function add($result)
     {
-        $this->results[$result->getMethod()->getName()][] = $result;
+        $method = $result->getMethod();
+        $name = $method->getName();
+        $this->results[$name][] = $result;
     }
 
     /**
@@ -76,16 +78,17 @@ class UnitResult
     public function getMedianMethodResult(Method $method)
     {
         $sortedResults = $this->getMethodResults($method);
-        usort($sortedResults, function ($a, $b) {
-            $aOps = $a->getOperationsPerSecond();
-            $bOps = $b->getOperationsPerSecond();
-            if ($aOps === $bOps) {
+        usort($sortedResults, function (Result $first, Result $second) {
+            $firstOps = $first->getOperationsPerSecond();
+            $secondOps = $second->getOperationsPerSecond();
+            if ($firstOps === $secondOps) {
                 return 0;
             }
-            return $aOps > $bOps ? 1 : -1;
+            return $firstOps > $secondOps ? 1 : -1;
         });
         $medianResult = $sortedResults[(int) (count($sortedResults) / 2)];
-        $result = new Result($medianResult->getDuration(), $medianResult->getOperations(), $method, new Parameter(null, 'Median'));
+        $parameter = new Parameter(null, 'Median');
+        $result = new Result($medianResult->getDuration(), $medianResult->getOperations(), $method, $parameter);
         return $result;
     }
 
@@ -113,8 +116,9 @@ class UnitResult
     {
         $this->prepareBoundsParameter();
         $paramName = null;
-        if ($result->getParameter() !== null) {
-            $paramName = $result->getParameter()->getName();
+        $parameter = $result->getParameter();
+        if ($parameter !== null) {
+            $paramName = $parameter->getName();
         }
         return $this->max['parameter'][$paramName] / $result->getOperationsPerSecond();
     }
@@ -128,7 +132,8 @@ class UnitResult
         if ($score <= 6) {
             return '#ffffff';
         }
-        $paramName = $result->getParameter()->getName();
+        $parameter = $result->getParameter();
+        $paramName = $parameter->getName();
         $worst = $this->max['parameter'][$paramName] / $this->min['parameter'][$paramName];
         return '#' . $this->blendHex('FFFFFF', 'FB4E4E', $score / $worst);
     }
@@ -140,7 +145,7 @@ class UnitResult
      *     // 10% along the gradient between #66cc00 and #cc2200
      *     blend_hex('66cc00', 'cc2200', 0.1); // "70bb00"
      *
-     * @link http://www.sitepoint.com/forums/showthread.php?606853-On-a-scale-of-red-to-green&s=79cdcc0fff69e031276f7ab7794b0889&p=4195901&viewfull=1#post4195901
+     * @link http://www.sitepoint.com/forums/showthread.php?606853#post4195901
      *
      * @param $fromHex
      * @param $toHex
@@ -172,7 +177,8 @@ class UnitResult
         $this->minOpsPerSec = PHP_INT_MAX;
         foreach ($this->results as $methodName => $results) {
             $res = reset($results);
-            $opsPerSec = $this->getMedianMethodResult($res->getMethod())->getOperationsPerSecond();
+            $methodResult = $this->getMedianMethodResult($res->getMethod());
+            $opsPerSec = $methodResult->getOperationsPerSecond();
             $this->maxOpsPerSec = max($this->maxOpsPerSec, $opsPerSec);
             $this->minOpsPerSec = min($this->minOpsPerSec, $opsPerSec);
         }
@@ -185,26 +191,42 @@ class UnitResult
         }
         $this->max['parameter'] = array();
         $this->min['parameter'] = array();
-
         foreach ($this->results as $methodName => $results) {
-            /** @var Result $first */
-            $first = reset($results);
-            $method = $first->getMethod();
-            foreach ($this->getMethodResults($method, true) as $result) {
-                $paramName = null;
-                if ($result->getParameter() !== null) {
-                    $paramName = $result->getParameter()->getName();
-                }
-                if (!isset($this->max['parameter'][$paramName])) {
-                    $this->max['parameter'][$paramName] = 0;
-                }
-                if (!isset($this->min['parameter'][$paramName])) {
-                    $this->min['parameter'][$paramName] = PHP_INT_MAX;
-                }
-
-                $this->max['parameter'][$paramName] = max($this->max['parameter'][$paramName], $result->getOperationsPerSecond());
-                $this->min['parameter'][$paramName] = min($this->min['parameter'][$paramName], $result->getOperationsPerSecond());
-            }
+            $this->prepareBoundsMethodResults($results);
         }
+    }
+
+    /**
+     * @param Result[] $results
+     */
+    private function prepareBoundsMethodResults($results)
+    {
+        /** @var Result $first */
+        $first = reset($results);
+        $method = $first->getMethod();
+        foreach ($this->getMethodResults($method, true) as $result) {
+            $this->prepareBoundsMethodResult($result);
+        }
+    }
+
+    /**
+     * @param Result $result
+     */
+    private function prepareBoundsMethodResult(Result $result)
+    {
+        $paramName = null;
+        $parameter = $result->getParameter();
+        if ($parameter !== null) {
+            $paramName = $parameter->getName();
+        }
+        if (!isset($this->max['parameter'][$paramName])) {
+            $this->max['parameter'][$paramName] = 0;
+        }
+        if (!isset($this->min['parameter'][$paramName])) {
+            $this->min['parameter'][$paramName] = PHP_INT_MAX;
+        }
+        $ops = $result->getOperationsPerSecond();
+        $this->max['parameter'][$paramName] = max($this->max['parameter'][$paramName], $ops);
+        $this->min['parameter'][$paramName] = min($this->min['parameter'][$paramName], $ops);
     }
 }

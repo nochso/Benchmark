@@ -16,12 +16,14 @@ class MinifyHtmlTokenParser extends \Twig_TokenParser
 {
     public function parse(Twig_Token $token)
     {
-        $lineno = $token->getLine();
-        $this->parser->getStream()->expect(Twig_Token::BLOCK_END_TYPE);
+        $lineNumber = $token->getLine();
+        $stream = $this->parser->getStream();
+        $stream->expect(Twig_Token::BLOCK_END_TYPE);
         $body = $this->parser->subparse(array($this, 'decideMinifyHtmlEnd'), true);
-        $this->parser->getStream()->expect(Twig_Token::BLOCK_END_TYPE);
+        $stream->expect(Twig_Token::BLOCK_END_TYPE);
 
-        return new MinifyHtmlNode(array('body' => $body), array(), $lineno, $this->getTag());
+        $nodes = array('body' => $body);
+        return new MinifyHtmlNode($nodes, array(), $lineNumber, $this->getTag());
     }
 
     public function getTag()
