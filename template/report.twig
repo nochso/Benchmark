@@ -13,10 +13,11 @@
       {% endfor %}
     </ul>
     {% endif %}
+    <hr>
     {% for unitName, unit in report.unitList %}
       {{ block('unit') }}
     {% endfor %}
-
+    <hr>
     <dl>
       <dt><a href="https://github.com/nochso/benchmark">nochso/Benchmark</a></dt>
       <dd>{{ constant('nochso\\Benchmark\\Report::BENCHMARK_VERSION') }}</dd>
@@ -50,7 +51,9 @@
   <h2><a name="{{ unitName|slugify }}"></a> {{ unitName }}</h2>
   {{ unit.getDescription|markdown }}
   {% if loop.first %}
-    <div class="note">
+    <input id="result-note" type="checkbox" class="hide" />
+    <div class="note" id="show">
+    <label for="result-note" class="hide">&times;</label>
     {% markdown %}
     #### Explanation of results
     Results are measured in **operations per second** (K = 1000, M = 1,000,000).

@@ -1,13 +1,19 @@
 body {
     color: #333;
     font-size: 1.4em;
+    line-height: 1.714em;
     font-family: "Open Sans", "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.container {
+    max-width: 700px;
 }
 
 time, span[title] {
     text-decoration: underline #1EAEDB;
 }
 
+/* Style definitions as tables */
 dt {
     float: left;
     text-align: right;
@@ -28,6 +34,7 @@ td p {
     margin-bottom: 0;
 }
 
+/* Pure CSS hide/show on click */
 .collapse {
     display: inline;
 }
@@ -59,6 +66,25 @@ label.collapse {
     cursor: pointer;
 }
 
+/* Pure CSS hide on click */
+input.hide {
+    display: none;
+}
+
+input.hide:checked ~ #show {
+    display: none;
+}
+
+label.hide {
+    float: right;
+    font-size: 3rem;
+    padding: 8px;
+}
+
+label.hide:hover {
+    cursor: pointer;
+}
+
 .text-right {
     text-align: right;
 }
@@ -72,9 +98,14 @@ h1 {
     margin: 0.67em 0px;
 }
 
+table {
+    margin: 2em auto 4em auto;
+}
+
 th, td {
-    padding: 5px 7px;
+    padding: 4px 6px;
     border-bottom: none;
+    line-height: normal;
 }
 
 .note {
@@ -92,6 +123,3 @@ th, td {
     margin: 1em 0;
 }
 
-table {
-    margin: 2em auto 4em auto;
-}
