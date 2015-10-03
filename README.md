@@ -99,9 +99,10 @@ You can also change the minimum duration of tests which defaults to 1000 millsec
 - Click to hide explanation of results.
 
 #### Changed
-- Move `nochso\Benchmark\GithubMarkdownExtension` to `nochso\Benchmark\Twig` namespace.
+- Minify and inline both Javascript and CSS.
 - Center table on whole page.
 - Improved explanation of results.
+- Move `nochso\Benchmark\GithubMarkdownExtension` to `nochso\Benchmark\Twig` namespace.
 
 ### 0.3.0 - 2015-09-27
 #### Added

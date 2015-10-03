@@ -18,7 +18,6 @@ use nochso\Benchmark\Twig\ReportExtension;
 use nochso\Benchmark\Util\Out;
 use nochso\Benchmark\Util\Path;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * Report takes a list of Unit objects and creates a HTML report of the results.
@@ -128,7 +127,6 @@ class Report
         );
 
         $this->render($data);
-        $this->moveAssets();
     }
 
     /**
@@ -137,7 +135,9 @@ class Report
     private function render($data)
     {
         $outputDir = $this->config['output_dir'];
-        $this->makeFolder($outputDir);
+        if (!is_dir($outputDir)) {
+            mkdir($outputDir, 0777, true);
+        }
         $path = Path::join($outputDir, 'index.html');
         Out::writeLine('Saving HTML report to ' . $path);
         $html = $this->twig->render('report.twig', $data);
@@ -145,27 +145,40 @@ class Report
     }
 
     /**
-     * @param $dir
+     * Returns the combined and minified JS files from template_dir/asset/js.
+     *
+     * @return string
      */
-    private function makeFolder($dir)
+    public function getJavascript()
     {
-        if (!is_dir($dir)) {
-            mkdir($dir, 0777, true);
+        $finder = Finder::create()
+            ->in(Path::join($this->config['template_dir'], 'asset/js'))
+            ->files()
+            ->name('*.js');
+        $javascript = '';
+        foreach ($finder as $filepath) {
+            $javascript .= file_get_contents($filepath) . "\n";
         }
+        return $javascript;
     }
 
-    private function moveAssets()
+    /**
+     * @return string
+     */
+    public function getCSS()
     {
-        $assetDir = Path::join($this->config['template_dir'], 'asset');
-        $assets = Finder::create()
-            ->in($assetDir)
-            ->files();
-        foreach ($assets as $asset) {
-            /* @var SplFileInfo $asset */
-            $targetFile = Path::join($this->config['output_dir'], 'asset', $asset->getRelativePathname());
-            $targetDir = dirname($targetFile);
-            $this->makeFolder($targetDir);
-            copy($asset->getPathname(), $targetFile);
+        $names = array(
+            'normalize',
+            'skeleton',
+            'prism',
+            'benchmark',
+        );
+        $cssDir = Path::join($this->config['template_dir'], 'asset/css');
+        $css = '';
+        foreach ($names as $name) {
+            $path = Path::join($cssDir, $name . '.css');
+            $css .= file_get_contents($path) . "\n";
         }
+        return $css;
     }
 }

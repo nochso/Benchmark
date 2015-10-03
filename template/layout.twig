@@ -9,14 +9,11 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Cousine|Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="asset/css/normalize.css">
-    <link rel="stylesheet" href="asset/css/skeleton.css">
-    <link rel="stylesheet" href="asset/css/prism.css">
-    <link rel="stylesheet" href="asset/css/benchmark.css">
+    <style>{{ report.getCSS|raw }}</style>
   {% endblock %}
 </head>
 <body class="language-php">
-<script src="asset/js/prism.js"></script>
+<script type="text/javascript">{{ report.getJavascript|raw }}</script>
 {% block body %}
   <div class="container">
     {% block content %}{% endblock %}
