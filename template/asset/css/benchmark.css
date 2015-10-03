@@ -1,0 +1,97 @@
+body {
+    color: #333;
+    font-size: 1.4em;
+    font-family: "Open Sans", "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+time, span[title] {
+    text-decoration: underline #1EAEDB;
+}
+
+dt {
+    float: left;
+    text-align: right;
+    width: 170px;
+}
+
+dd {
+    margin-left: 185px;
+}
+
+code, pre {
+    border: none !important;
+    background-color: transparent !important;
+    font-family: Cousine, Consolas, "Liberation Mono", Menlo, Courier, monospace !important;
+}
+
+td p {
+    margin-bottom: 0;
+}
+
+.collapse {
+    display: inline;
+}
+
+.collapse + input {
+    display: none;
+}
+
+.collapse + input + * {
+    display: none;
+    background-color: white;
+    border: 1px solid #E1E1E1;
+    -webkit-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 0.7em;
+}
+
+.collapse + input:checked + * {
+    display: block;
+    position: absolute;
+    z-index: 999;
+}
+
+/* Override Skeleton's label */
+label.collapse {
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.text-right {
+    text-align: right;
+}
+
+td.score {
+    padding: 0px 10px;
+    font-weight: bold;
+}
+
+h1 {
+    margin: 0.67em 0px;
+}
+
+th, td {
+    padding: 5px 7px;
+    border-bottom: none;
+}
+
+.note {
+    padding: 1em 1em 0 1em;
+    background-color: #F8F8F8;
+    border: 1px solid #E1E1E1;
+    border-radius: 5px;
+    -webkit-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.3);
+    margin: 2em 0;
+}
+
+.note p {
+    margin: 1em 0;
+}
+
+table {
+    margin: 2em auto 4em auto;
+}
