@@ -19,6 +19,15 @@ namespace nochso\Benchmark;
 class ResultBounds
 {
     private $bounds = array();
+    /**
+     * @var UnitResult
+     */
+    private $unitResult;
+
+    public function __construct($unitResult)
+    {
+        $this->unitResult = $unitResult;
+    }
 
     /**
      * @param string $path
@@ -84,5 +93,63 @@ class ResultBounds
             $this->set($path, min($this->get($path, PHP_INT_MAX), $value));
         }
         return $this->get($path);
+    }
+
+    public function prepare()
+    {
+        $this->prepareBoundsParameter();
+        $this->prepareBoundsMedian();
+    }
+
+    private function prepareBoundsParameter()
+    {
+        if ($this->get('parameter') !== null) {
+            return;
+        }
+        foreach ($this->unitResult->getResults() as $methodName => $results) {
+            $this->prepareBoundsMethodResults($results);
+        }
+    }
+
+    private function prepareBoundsMedian()
+    {
+        if ($this->get('median.max') !== null) {
+            return;
+        }
+        foreach ($this->unitResult->getResults() as $methodName => $results) {
+            $res = reset($results);
+            $methodResult = $this->unitResult->getMedianMethodResult($res->getMethod());
+            $opsPerSec = $methodResult->getOperationsPerSecond();
+            $this->max('median', $opsPerSec);
+            $this->min('median', $opsPerSec);
+        }
+    }
+
+    /**
+     * @param Result[] $results
+     */
+    private function prepareBoundsMethodResults($results)
+    {
+        /** @var Result $first */
+        $first = reset($results);
+        $method = $first->getMethod();
+        foreach ($this->unitResult->getMethodResults($method, true) as $result) {
+            $this->prepareBoundsMethodResult($result);
+        }
+    }
+
+    /**
+     * @param Result $result
+     */
+    private function prepareBoundsMethodResult(Result $result)
+    {
+        $paramName = null;
+        $parameter = $result->getParameter();
+        if ($parameter !== null) {
+            $paramName = $parameter->getName();
+        }
+        $ops = $result->getOperationsPerSecond();
+        $this->max('parameter.' . $paramName, $ops);
+        $this->min('parameter.' . $paramName, $ops);
     }
 }

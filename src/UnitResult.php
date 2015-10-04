@@ -33,7 +33,15 @@ class UnitResult
 
     public function __construct()
     {
-        $this->bounds = new ResultBounds();
+        $this->bounds = new ResultBounds($this);
+    }
+
+    /**
+     * @return Result[][]
+     */
+    public function getResults()
+    {
+        return $this->results;
     }
 
     /**
@@ -104,20 +112,20 @@ class UnitResult
 
     public function getMethodScore(Method $method)
     {
-        $this->prepareBoundsMedian();
+        $this->bounds->prepare();
         return $this->bounds->max('median') / $this->getMedianMethodResult($method)->getOperationsPerSecond();
     }
 
     public function getMethodScoreColor(Method $method)
     {
-        $this->prepareBoundsMedian();
+        $this->bounds->prepare();
         $score = $this->getMethodScore($method);
         return $this->getScoreColor('median', $score);
     }
 
     public function getParameterScore(Result $result)
     {
-        $this->prepareBoundsParameter();
+        $this->bounds->prepare();
         $paramName = null;
         $parameter = $result->getParameter();
         if ($parameter !== null) {
@@ -179,57 +187,5 @@ class UnitResult
 
         // 3. Format toHex 6-char HEX colour string
         return sprintf('%02x%02x%02x', $red, $green, $blue);
-    }
-
-    private function prepareBoundsMedian()
-    {
-        if ($this->bounds->get('median.max') !== null) {
-            return;
-        }
-        foreach ($this->results as $methodName => $results) {
-            $res = reset($results);
-            $methodResult = $this->getMedianMethodResult($res->getMethod());
-            $opsPerSec = $methodResult->getOperationsPerSecond();
-            $this->bounds->max('median', $opsPerSec);
-            $this->bounds->min('median', $opsPerSec);
-        }
-    }
-
-    private function prepareBoundsParameter()
-    {
-        if ($this->bounds->get('parameter') !== null) {
-            return;
-        }
-        foreach ($this->results as $methodName => $results) {
-            $this->prepareBoundsMethodResults($results);
-        }
-    }
-
-    /**
-     * @param Result[] $results
-     */
-    private function prepareBoundsMethodResults($results)
-    {
-        /** @var Result $first */
-        $first = reset($results);
-        $method = $first->getMethod();
-        foreach ($this->getMethodResults($method, true) as $result) {
-            $this->prepareBoundsMethodResult($result);
-        }
-    }
-
-    /**
-     * @param Result $result
-     */
-    private function prepareBoundsMethodResult(Result $result)
-    {
-        $paramName = null;
-        $parameter = $result->getParameter();
-        if ($parameter !== null) {
-            $paramName = $parameter->getName();
-        }
-        $ops = $result->getOperationsPerSecond();
-        $this->bounds->max('parameter.' . $paramName, $ops);
-        $this->bounds->min('parameter.' . $paramName, $ops);
     }
 }
