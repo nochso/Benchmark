@@ -26,10 +26,15 @@ class UnitResult
      * @var Result[][]
      */
     private $results = array();
-    private $maxOpsPerSec = null;
-    private $minOpsPerSec = null;
-    private $min = array();
-    private $max = array();
+    /**
+     * @var ResultBounds
+     */
+    private $bounds;
+
+    public function __construct()
+    {
+        $this->bounds = new ResultBounds();
+    }
 
     /**
      * @param Result $result
@@ -100,7 +105,7 @@ class UnitResult
     public function getMethodScore(Method $method)
     {
         $this->prepareBoundsMedian();
-        return $this->maxOpsPerSec / $this->getMedianMethodResult($method)->getOperationsPerSecond();
+        return $this->bounds->max('median') / $this->getMedianMethodResult($method)->getOperationsPerSecond();
     }
 
     public function getMethodScoreColor(Method $method)
@@ -113,7 +118,7 @@ class UnitResult
         if ($score <= 6) {
             return '#FFFFFF';
         }
-        $worst = $this->maxOpsPerSec / $this->minOpsPerSec;
+        $worst = $this->bounds->max('median') / $this->bounds->min('median');
         return '#' . $this->blendHex('FFFFFF', 'FB4E4E', $score / $worst);
     }
 
@@ -125,7 +130,7 @@ class UnitResult
         if ($parameter !== null) {
             $paramName = $parameter->getName();
         }
-        return $this->max['parameter'][$paramName] / $result->getOperationsPerSecond();
+        return $this->bounds->max('parameter.' . $paramName) / $result->getOperationsPerSecond();
     }
 
     public function getParameterScoreColor(Result $result)
@@ -139,7 +144,7 @@ class UnitResult
         }
         $parameter = $result->getParameter();
         $paramName = $parameter->getName();
-        $worst = $this->max['parameter'][$paramName] / $this->min['parameter'][$paramName];
+        $worst = $this->bounds->max('parameter.' . $paramName) / $this->bounds->min('parameter.' . $paramName);
         return '#' . $this->blendHex('FFFFFF', 'FB4E4E', $score / $worst);
     }
 
@@ -175,27 +180,23 @@ class UnitResult
 
     private function prepareBoundsMedian()
     {
-        if ($this->maxOpsPerSec !== null) {
+        if ($this->bounds->get('median.max') !== null) {
             return;
         }
-        $this->maxOpsPerSec = 0;
-        $this->minOpsPerSec = PHP_INT_MAX;
         foreach ($this->results as $methodName => $results) {
             $res = reset($results);
             $methodResult = $this->getMedianMethodResult($res->getMethod());
             $opsPerSec = $methodResult->getOperationsPerSecond();
-            $this->maxOpsPerSec = max($this->maxOpsPerSec, $opsPerSec);
-            $this->minOpsPerSec = min($this->minOpsPerSec, $opsPerSec);
+            $this->bounds->max('median', $opsPerSec);
+            $this->bounds->min('median', $opsPerSec);
         }
     }
 
     private function prepareBoundsParameter()
     {
-        if (isset($this->max['parameter']) && count($this->max['parameter']) > 0) {
+        if ($this->bounds->get('parameter') !== null) {
             return;
         }
-        $this->max['parameter'] = array();
-        $this->min['parameter'] = array();
         foreach ($this->results as $methodName => $results) {
             $this->prepareBoundsMethodResults($results);
         }
@@ -224,14 +225,8 @@ class UnitResult
         if ($parameter !== null) {
             $paramName = $parameter->getName();
         }
-        if (!isset($this->max['parameter'][$paramName])) {
-            $this->max['parameter'][$paramName] = 0;
-        }
-        if (!isset($this->min['parameter'][$paramName])) {
-            $this->min['parameter'][$paramName] = PHP_INT_MAX;
-        }
         $ops = $result->getOperationsPerSecond();
-        $this->max['parameter'][$paramName] = max($this->max['parameter'][$paramName], $ops);
-        $this->min['parameter'][$paramName] = min($this->min['parameter'][$paramName], $ops);
+        $this->bounds->max('parameter.' . $paramName, $ops);
+        $this->bounds->min('parameter.' . $paramName, $ops);
     }
 }
