@@ -112,14 +112,7 @@ class UnitResult
     {
         $this->prepareBoundsMedian();
         $score = $this->getMethodScore($method);
-        if ($score <= 3) {
-            return '#' . $this->blendHex('71EF71', 'FFFFFF', ($score - 1) / 2);
-        }
-        if ($score <= 6) {
-            return '#FFFFFF';
-        }
-        $worst = $this->bounds->max('median') / $this->bounds->min('median');
-        return '#' . $this->blendHex('FFFFFF', 'FB4E4E', $score / $worst);
+        return $this->getScoreColor('median', $score);
     }
 
     public function getParameterScore(Result $result)
@@ -136,15 +129,25 @@ class UnitResult
     public function getParameterScoreColor(Result $result)
     {
         $score = $this->getParameterScore($result);
+        $parameter = $result->getParameter();
+        return $this->getScoreColor('parameter.' . $parameter->getName(), $score);
+    }
+
+    /**
+     * @param string $path
+     * @param float  $score
+     *
+     * @return string
+     */
+    public function getScoreColor($path, $score)
+    {
         if ($score <= 3) {
             return '#' . $this->blendHex('71EF71', 'FFFFFF', ($score - 1) / 2);
         }
         if ($score <= 6) {
-            return '#ffffff';
+            return '#FFFFFF';
         }
-        $parameter = $result->getParameter();
-        $paramName = $parameter->getName();
-        $worst = $this->bounds->max('parameter.' . $paramName) / $this->bounds->min('parameter.' . $paramName);
+        $worst = $this->bounds->max($path) / $this->bounds->min($path);
         return '#' . $this->blendHex('FFFFFF', 'FB4E4E', $score / $worst);
     }
 
