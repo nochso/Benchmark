@@ -73,9 +73,11 @@
     <tr>
       <th>Method</th>
       {% for result in unit.getResult.getMethodResults(unit.getMethods|first, true) %}
-        {% if result.getParameter is not null %}
-        <th>{{ result.getParameter.getName }}</th>
+        <th>
+          {% if result.getParameter is not null %}
+            {{ result.getParameter.getName }}
           {% endif %}
+        </th>
       {% endfor %}
       <th>Score</th>
     </tr>
@@ -100,7 +102,10 @@
       </td>
       {% set unitResult = unit.getResult %}
       {% for result in unitResult.getMethodResults(method, true) %}
-        <td class="text-right" style="background-color: {{ unitResult.getParameterScoreColor(result) }}; color: {{ unitResult.getParameterScoreColor(result)|text_color }}">
+        <td class="text-right"{% if result.getParameter is not null %} style="background-color: {{ unitResult.getParameterScoreColor(result) }}; color: {{ unitResult.getParameterScoreColor(result)|text_color }}"
+        {% else %}
+         style="background-color: {{ unitResult.getMethodScoreColor(method) }}; color: {{ unitResult.getMethodScoreColor(method)|text_color }}"
+        {% endif %}>
           {{ result.getOperationsPerSecond(true) }}
         </td>
       {% endfor %}

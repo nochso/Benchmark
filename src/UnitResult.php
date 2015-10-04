@@ -49,6 +49,11 @@ class UnitResult
      */
     public function getMethodResults(Method $method, $includeAverages = false)
     {
+        // When no parameters were used, there's no point to include averages
+        $first = reset($this->results[$method->getName()]);
+        if ($first->getParameter() === null) {
+            $includeAverages = false;
+        }
         if ($includeAverages) {
             $results = $this->results[$method->getName()];
             $results[] = $this->getAverageMethodResult($method);

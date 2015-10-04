@@ -104,6 +104,9 @@ You can also change the minimum duration of tests which defaults to 1000 millsec
 - Improved explanation of results.
 - Move `nochso\Benchmark\GithubMarkdownExtension` to `nochso\Benchmark\Twig` namespace.
 
+#### Fixed
+- Fixed wrong layout when using units without parameters.
+
 ### 0.3.0 - 2015-09-27
 #### Added
 - Show median operations/second.
