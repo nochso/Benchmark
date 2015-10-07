@@ -67,18 +67,6 @@ class Unit
      */
     public function getMethods()
     {
-        if ($this->result === null) {
-            return $this->methods;
-        }
-        // Sort methods best score first
-        uasort($this->methods, function ($first, $second) {
-            $aScore = $this->result->getMethodScore($first);
-            $bScore = $this->result->getMethodScore($second);
-            if ($aScore === $bScore) {
-                return 0;
-            }
-            return $aScore < $bScore ? -1 : 1;
-        });
         return $this->methods;
     }
 
@@ -151,6 +139,7 @@ class Unit
         foreach ($this->methods as $method) {
             $this->fetchMethodResults($method);
         }
+        $this->sortByMethodScore();
         return $this->result;
     }
 
@@ -183,5 +172,20 @@ class Unit
         if ($this->progress !== null) {
             $this->progress->step();
         }
+    }
+
+    /**
+     * Sort methods best score first.
+     */
+    private function sortByMethodScore()
+    {
+        uasort($this->methods, function ($first, $second) {
+            $aScore = $this->result->getMethodScore($first);
+            $bScore = $this->result->getMethodScore($second);
+            if ($aScore === $bScore) {
+                return 0;
+            }
+            return $aScore < $bScore ? -1 : 1;
+        });
     }
 }
