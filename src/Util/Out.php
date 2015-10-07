@@ -30,18 +30,6 @@ class Out
         self::write("\r" . str_pad($line, max(strlen($line), strlen(self::$sticky)), ' ', STR_PAD_RIGHT) . "\n");
     }
 
-    /**
-     * @param string $line
-     */
-    private static function write($line = '')
-    {
-        if (self::isQuiet()) {
-            return;
-        }
-        echo $line;
-        echo self::$sticky;
-    }
-
     public static function writeSticky($line)
     {
         if (self::isQuiet()) {
@@ -50,6 +38,7 @@ class Out
         echo "\r" . str_pad($line, max(strlen($line), strlen(self::$sticky)), ' ', STR_PAD_RIGHT);
         self::$sticky = $line;
     }
+
     /**
      * Decides whether to enable output or not.
      *
@@ -63,5 +52,17 @@ class Out
             return true;
         }
         return false;
+    }
+
+    /**
+     * @param string $line
+     */
+    private static function write($line = '')
+    {
+        if (self::isQuiet()) {
+            return;
+        }
+        echo $line;
+        echo self::$sticky;
     }
 }

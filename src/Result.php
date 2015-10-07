@@ -69,35 +69,6 @@ class Result
         return $this->operations;
     }
 
-    public function __toString()
-    {
-        $ops = $this->formatNumber($this->getOperationsPerSecond());
-        return $ops . ' op/sec';
-    }
-
-    /**
-     * Turns 2000 into 2K, 2,000,000 into 2M, etc.
-     *
-     * This uses base10. Don't use it for bytes.
-     *
-     * @param int|float $value
-     * @param int       $decimals
-     *
-     * @return string
-     *
-     * @link http://stackoverflow.com/a/2510540
-     */
-    private function formatNumber($value, $decimals = 1)
-    {
-        $base = log($value, 1000);
-        $newValue = pow(1000, $base - floor($base));
-
-        $suffixes = array('', 'K', 'M', 'G', 'T');
-        $suffix = $suffixes[intval($base)];
-
-        return number_format($newValue, $decimals) . $suffix;
-    }
-
     /**
      * Get the operations per second as a float.
      *
@@ -132,5 +103,34 @@ class Result
     public function getParameter()
     {
         return $this->parameter;
+    }
+
+    public function __toString()
+    {
+        $ops = $this->formatNumber($this->getOperationsPerSecond());
+        return $ops . ' op/sec';
+    }
+
+    /**
+     * Turns 2000 into 2K, 2,000,000 into 2M, etc.
+     *
+     * This uses base10. Don't use it for bytes.
+     *
+     * @param int|float $value
+     * @param int       $decimals
+     *
+     * @return string
+     *
+     * @link http://stackoverflow.com/a/2510540
+     */
+    private function formatNumber($value, $decimals = 1)
+    {
+        $base = log($value, 1000);
+        $newValue = pow(1000, $base - floor($base));
+
+        $suffixes = array('', 'K', 'M', 'G', 'T');
+        $suffix = $suffixes[intval($base)];
+
+        return number_format($newValue, $decimals) . $suffix;
     }
 }

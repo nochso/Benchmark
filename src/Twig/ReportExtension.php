@@ -26,6 +26,14 @@ class ReportExtension extends \Twig_Extension
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'benchmark_report_extension';
+    }
+
+    /**
      * Returns the perceived brightness ranging from 0-1, zero being black.
      *
      * @param string $color Hex color. May include a leading '#'.
@@ -51,13 +59,5 @@ class ReportExtension extends \Twig_Extension
             return '#FFFFFF';
         }
         return '#000000';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'benchmark_report_extension';
     }
 }

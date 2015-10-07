@@ -46,6 +46,34 @@ class Timer
      */
     private $method;
 
+    public function __construct($minDuration = null)
+    {
+        $this->minDuration = self::$defaultMinDuration;
+        if ($minDuration !== null) {
+            $this->minDuration = $minDuration;
+        }
+    }
+
+    /**
+     * Sets the minimum duration of a run in milliseconds.
+     *
+     * @return int Minimum duration in milliseconds
+     */
+    public function getMinDuration()
+    {
+        return $this->minDuration;
+    }
+
+    /**
+     * Gets the minimum duration of a run in milliseconds.
+     *
+     * @param int $minDuration Minimum duration in milliseconds
+     */
+    public function setMinDuration($minDuration)
+    {
+        $this->minDuration = (int) $minDuration;
+    }
+
     /**
      * Runs and times a closure until a minimum duration has been reached.
      *
@@ -81,14 +109,6 @@ class Timer
             $this->iterationCount = $this->adjust($result);
         }
         return $result;
-    }
-
-    public function __construct($minDuration = null)
-    {
-        $this->minDuration = self::$defaultMinDuration;
-        if ($minDuration !== null) {
-            $this->minDuration = $minDuration;
-        }
     }
 
     /**
@@ -141,25 +161,5 @@ class Timer
         $new = (int) ($result->getOperations() * $factor);
         $new = max($new, $result->getOperations() + 1);
         return $new;
-    }
-
-    /**
-     * Sets the minimum duration of a run in milliseconds.
-     *
-     * @return int Minimum duration in milliseconds
-     */
-    public function getMinDuration()
-    {
-        return $this->minDuration;
-    }
-
-    /**
-     * Gets the minimum duration of a run in milliseconds.
-     *
-     * @param int $minDuration Minimum duration in milliseconds
-     */
-    public function setMinDuration($minDuration)
-    {
-        $this->minDuration = (int) $minDuration;
     }
 }

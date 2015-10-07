@@ -103,6 +103,14 @@ class Unit
     }
 
     /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * @param Method $method
      */
     public function addMethod(Method $method)
@@ -157,14 +165,6 @@ class Unit
             $this->result->add($result);
             $this->notifyProgress();
         }
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     private function notifyProgress()

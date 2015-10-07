@@ -81,17 +81,6 @@ class Method
     }
 
     /**
-     * @param Parameter $parameter
-     *
-     * @return Result
-     */
-    public function time(Parameter $parameter = null)
-    {
-        $timer = new Timer();
-        return $timer->time($this, $parameter);
-    }
-
-    /**
      * @return callable|\Closure
      */
     public function getMethod()
@@ -128,6 +117,17 @@ class Method
         $endLine = $reflection->getEndLine() - 1;
         $lines = array_slice($source, $startLine, $endLine - $startLine);
         return implode(PHP_EOL, $this->trimSourceLines($lines));
+    }
+
+    /**
+     * @param Parameter $parameter
+     *
+     * @return Result
+     */
+    public function time(Parameter $parameter = null)
+    {
+        $timer = new Timer();
+        return $timer->time($this, $parameter);
     }
 
     /**

@@ -27,6 +27,19 @@ use Doctrine\Common\Collections\ArrayCollection;
 class UnitList extends ArrayCollection
 {
     /**
+     * Initializes a new ArrayCollection.
+     *
+     * @param array $elements
+     */
+    public function __construct(array $elements = array())
+    {
+        parent::__construct(array());
+        foreach ($elements as $unit) {
+            $this->add($unit);
+        }
+    }
+
+    /**
      * @param Unit $value
      *
      * @return bool
@@ -49,18 +62,5 @@ class UnitList extends ArrayCollection
     public function set($key, $value)
     {
         $this->add($value);
-    }
-
-    /**
-     * Initializes a new ArrayCollection.
-     *
-     * @param array $elements
-     */
-    public function __construct(array $elements = array())
-    {
-        parent::__construct(array());
-        foreach ($elements as $unit) {
-            $this->add($unit);
-        }
     }
 }
