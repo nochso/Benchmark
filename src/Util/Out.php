@@ -18,6 +18,8 @@ namespace nochso\Benchmark\Util;
  */
 class Out
 {
+    private static $sticky;
+
     /**
      * Outputs a line including newline.
      *
@@ -25,22 +27,29 @@ class Out
      */
     public static function writeLine($line = '')
     {
-        self::write($line . "\n");
+        self::write("\r" . str_pad($line, max(strlen($line), strlen(self::$sticky)), ' ', STR_PAD_RIGHT) . "\n");
     }
 
     /**
-     * Outputs a line as it is.
-     *
      * @param string $line
      */
-    public static function write($line = '')
+    private static function write($line = '')
     {
         if (self::isQuiet()) {
             return;
         }
         echo $line;
+        echo self::$sticky;
     }
 
+    public static function writeSticky($line)
+    {
+        if (self::isQuiet()) {
+            return;
+        }
+        echo "\r" . str_pad($line, max(strlen($line), strlen(self::$sticky)), ' ', STR_PAD_RIGHT);
+        self::$sticky = $line;
+    }
     /**
      * Decides whether to enable output or not.
      *

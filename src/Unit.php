@@ -10,8 +10,6 @@
 
 namespace nochso\Benchmark;
 
-use nochso\Benchmark\Util\Out;
-
 /**
  * Unit is a list of related methods and the parameters they're called with.
  *
@@ -45,6 +43,10 @@ class Unit
      * @var string
      */
     private $description;
+    /**
+     * @var Progress
+     */
+    private $progress;
 
     /**
      * Both parameters are interpreted as Markdown.
@@ -105,6 +107,14 @@ class Unit
     }
 
     /**
+     * @param Progress $progress
+     */
+    public function setProgress($progress)
+    {
+        $this->progress = $progress;
+    }
+
+    /**
      * @param Method $method
      */
     public function addMethod(Method $method)
@@ -139,7 +149,6 @@ class Unit
     {
         $this->result = new UnitResult();
         foreach ($this->methods as $method) {
-            Out::writeLine('Method: ' . $method->getName());
             $this->fetchMethodResults($method);
         }
         return $this->result;
@@ -155,10 +164,9 @@ class Unit
             $params[] = null;
         }
         foreach ($params as $paramKey => $parameter) {
-            Out::writeLine('Parameter: ' . ($parameter !== null ? $parameter->getName() : 'null'));
             $result = $method->time($parameter);
             $this->result->add($result);
-            Out::writeLine();
+            $this->notifyProgress();
         }
     }
 
@@ -168,5 +176,12 @@ class Unit
     public function getName()
     {
         return $this->name;
+    }
+
+    private function notifyProgress()
+    {
+        if ($this->progress !== null) {
+            $this->progress->step();
+        }
     }
 }

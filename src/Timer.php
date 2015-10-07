@@ -10,8 +10,6 @@
 
 namespace nochso\Benchmark;
 
-use nochso\Benchmark\Util\Out;
-
 /**
  * Timer runs a closure for a minimum duration to ensure stable results.
  *
@@ -103,7 +101,6 @@ class Timer
     private function createResult()
     {
         $duration = $this->measure();
-        Out::writeLine($this->iterationCount . ' iterations in ' . number_format($duration) . 'ms');
         return new Result($duration, $this->iterationCount, $this->method, $this->parameter);
     }
 

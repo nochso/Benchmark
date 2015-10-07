@@ -112,7 +112,10 @@ class Report
         Out::writeLine('Running nochso/benchmark ' . self::BENCHMARK_VERSION);
         Out::writeLine();
         $duration = -microtime(true);
+        $progress = new Progress();
+        $progress->prepareUnitList($this->unitList);
         foreach ($this->unitList as $unitName => $unit) {
+            $unit->setProgress($progress);
             $unit->run();
         }
         $duration += microtime(true);
