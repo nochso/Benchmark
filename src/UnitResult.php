@@ -10,6 +10,8 @@
 
 namespace nochso\Benchmark;
 
+use nochso\Benchmark\Util\Color;
+
 /**
  * UnitResult.
  *
@@ -149,43 +151,17 @@ class UnitResult
      */
     public function getScoreColor($path, $score)
     {
+        $white = new Color(255, 255, 255);
         if ($score <= 3) {
-            return '#' . $this->blendHex('71EF71', 'FFFFFF', ($score - 1) / 2);
+            $green = Color::fromHex('71EF71');
+            return $green->blendTo($white, ($score - 1) / 2);
         }
         if ($score <= 6) {
-            return '#FFFFFF';
+            return $white;
         }
+        // Score after 6 to highest fades from white to red.
         $worst = $this->bounds->max($path) / $this->bounds->min($path);
-        return '#' . $this->blendHex('FFFFFF', 'FB4E4E', $score / $worst);
-    }
-
-    /**
-     * Blend two hexadecimal colours specifying the fractional position.
-     *
-     * Example:
-     *     // 10% along the gradient between #66cc00 and #cc2200
-     *     blend_hex('66cc00', 'cc2200', 0.1); // "70bb00"
-     *
-     * @link http://www.sitepoint.com/forums/showthread.php?606853#post4195901
-     *
-     * @param $fromHex
-     * @param $toHex
-     * @param float $position
-     *
-     * @return string
-     */
-    private function blendHex($fromHex, $toHex, $position = 0.5)
-    {
-        // 1. Grab RGB fromHex each colour
-        list($fromRed, $fromGreen, $fromBlue) = sscanf($fromHex, '%2x%2x%2x');
-        list($toRed, $toGreen, $toBlue) = sscanf($toHex, '%2x%2x%2x');
-
-        // 2. Calculate colour based on fractional position
-        $red = (int) ($fromRed - (($fromRed - $toRed) * $position));
-        $green = (int) ($fromGreen - (($fromGreen - $toGreen) * $position));
-        $blue = (int) ($fromBlue - (($fromBlue - $toBlue) * $position));
-
-        // 3. Format toHex 6-char HEX colour string
-        return sprintf('%02x%02x%02x', $red, $green, $blue);
+        $red = Color::fromHex('FB4E4E');
+        return $white->blendTo($red, $score / $worst);
     }
 }

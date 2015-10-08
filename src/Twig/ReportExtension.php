@@ -10,6 +10,14 @@
 
 namespace nochso\Benchmark\Twig;
 
+use nochso\Benchmark\Util\Color;
+
+/**
+ * ReportExtension.
+ *
+ * @author Marcel Voigt <mv@noch.so>
+ * @copyright Copyright (c) 2015 Marcel Voigt <mv@noch.so>
+ */
 class ReportExtension extends \Twig_Extension
 {
     /**
@@ -20,7 +28,6 @@ class ReportExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('brightness', array($this, 'calculateBrightness')),
             new \Twig_SimpleFilter('text_color', array($this, 'textColorForBackground')),
         );
     }
@@ -34,30 +41,20 @@ class ReportExtension extends \Twig_Extension
     }
 
     /**
-     * Returns the perceived brightness ranging from 0-1, zero being black.
-     *
-     * @param string $color Hex color. May include a leading '#'.
-     *
-     * @return float
-     */
-    public function calculateBrightness($color)
-    {
-        list($red, $green, $blue) = sscanf(ltrim($color, '#'), '%2x%2x%2x');
-        return sqrt($red * $red * 0.299 + $green * $green * 0.587 + $blue * $blue * 0.114) / 255;
-    }
-
-    /**
      * Returns an appropiate foreground color based on the brightness.
      *
-     * @param string $backgroundColor Hex color. May include a leading '#'.
+     * @param Color|string $backgroundColor Color object or hex string. May include a leading '#'.
      *
      * @return string
      */
     public function textColorForBackground($backgroundColor)
     {
-        if ($this->calculateBrightness($backgroundColor) < 0.6) {
-            return '#FFFFFF';
+        if (!$backgroundColor instanceof Color) {
+            $backgroundColor = Color::fromHex($backgroundColor);
         }
-        return '#000000';
+        if ($backgroundColor->getBrightness() < 0.6) {
+            return new Color(255, 255, 255);
+        }
+        return new Color(0, 0, 0);
     }
 }
