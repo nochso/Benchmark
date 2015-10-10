@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="robots" content="index, follow, all" /><title>nochso\Benchmark\Timer | noch.so Benchmark documentation</title><link rel="stylesheet" type="text/css" href="../../css/normalize.css"><link rel="stylesheet" type="text/css" href="../../css/min.css"><link rel="stylesheet" type="text/css" href="../../css/prism.css"><link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,400italic' rel='stylesheet' type='text/css'><script src="../../js/prism.js"></script><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"></head><body id="class" data-name="class:nochso_Benchmark_Timer" data-root-path="../../"><nav><div class="container"><div class="title"><a href="../../index.html">noch.so Benchmark documentation</a></div><ul><li><a href="../../classes.html">Classes</a></li><li><a href="../../namespaces.html">Namespaces</a></li><li><a href="../../interfaces.html">Interfaces</a></li><li><a href="../../traits.html">Traits</a></li><li><a href="../../doc-index.html">Index</a></li><li><a href="../../search.html">Search</a></li></ul><ol class="breadcrumb"><li><a href="../../nochso.html">nochso</a></li><li><a href="../../nochso/Benchmark.html">Benchmark</a></li><li>Timer</li></ol></div></nav><div class="container"><div class="row"><div id="control-panel"></div><div id="api-tree"></div></div><div class="row"><h1>Timer</h1><p> class <strong>Timer</strong></p><p>Timer runs a closure for a minimum duration to ensure stable results.</p><p>The minimum duration is configurable and defaults to 1000 milliseconds.</p><h2>Constants</h2><table class="table"><tr><td><code class="language-php">MAX_FACTOR = 15.0;</code></td><td><p><em>Increase $n only by this much between runs.</em></p><p></p></td></tr><tr><td><code class="language-php">BONUS_GAIN = 1.03;</code></td><td><p><em>Increase $n at least this much between runs.</em></p><p></p></td></tr></table><h2>Properties</h2><table class="table"><tr><td id="property_defaultMinDuration"><code class="language-php">static int</code></td><td><code class="language-php">$defaultMinDuration</code></td><td></td><td></td></tr></table><h2>Methods</h2><table class="table"><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"><a href="../../nochso/Benchmark/Result.html"><abbr title="nochso\Benchmark\Result">Result</abbr></a></code></td><td><code class="language-php"><a href="#method_time">time</a>(<abbr title="nochso\Benchmark\nochso\Benchmark\Method">Method</abbr> $method, <abbr title="nochso\Benchmark\nochso\Benchmark\Parameter">Parameter</abbr> $parameter = null)</code></td><td> Runs and times a closure until a minimum duration has been reached. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"></code></td><td><code class="language-php"><a href="#method___construct">__construct</a>($minDuration = null)</code></td><td> No description </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">int</code></td><td><code class="language-php"><a href="#method_getMinDuration">getMinDuration</a>()</code></td><td> Sets the minimum duration of a run in milliseconds. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"></code></td><td><code class="language-php"><a href="#method_setMinDuration">setMinDuration</a>(int $minDuration)</code></td><td> Gets the minimum duration of a run in milliseconds. </td><td></td></tr></table><h2>Details</h2><div id="method-details"><div><div class="float-right"> at line <a href="#source.70">70</a></div><div><h3 id="method_time"><code class="language-php">time()</code></h3><code class="language-php">public <a href="../../nochso/Benchmark/Result.html"><abbr title="nochso\Benchmark\Result">Result</abbr></a>&nbsp;time(<abbr title="nochso\Benchmark\nochso\Benchmark\Method">Method</abbr> $method, <abbr title="nochso\Benchmark\nochso\Benchmark\Parameter">Parameter</abbr> $parameter = null)</code></div></div><div class="details"><div><p>Runs and times a closure until a minimum duration has been reached.</p><p>The closure is called with a single integer $n. It is best to let $n control a simple loop in your closure.</p><p>If your test is computationally intensive by nature this might not work for you. In this case use $n to control the cost or difficulty of your algorithm.</p><p>It is important that you <strong>do not use a loop in addition</strong> when doing this. This also means you can not change the parameters of your algorithm when you are using a loop based on $n.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><abbr title="nochso\Benchmark\nochso\Benchmark\Method">Method</abbr></code></td><td><code class="language-php">$method</code></td><td></td></tr><tr><td><code class="language-php"><abbr title="nochso\Benchmark\nochso\Benchmark\Parameter">Parameter</abbr></code></td><td><code class="language-php">$parameter</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../nochso/Benchmark/Result.html"><abbr title="nochso\Benchmark\Result">Result</abbr></a></code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.88">88</a></div><div><h3 id="method___construct"><code class="language-php">__construct()</code></h3><code class="language-php">public __construct($minDuration = null)</code></div></div><div class="details"><h4>Parameters</h4><table class="table"><tr><td></td><td><code class="language-php">$minDuration</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.154">154</a></div><div><h3 id="method_getMinDuration"><code class="language-php">getMinDuration()</code></h3><code class="language-php">public int&nbsp;getMinDuration()</code></div></div><div class="details"><div><p>Sets the minimum duration of a run in milliseconds.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">int</code></td><td>Minimum duration in milliseconds</td></tr></table></div><div><div class="float-right"> at line <a href="#source.164">164</a></div><div><h3 id="method_setMinDuration"><code class="language-php">setMinDuration()</code></h3><code class="language-php">public setMinDuration(int $minDuration)</code></div></div><div class="details"><div><p>Gets the minimum duration of a run in milliseconds.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">int</code></td><td><code class="language-php">$minDuration</code></td><td>Minimum duration in milliseconds</td></tr></table></div></div><h2>Source code</h2><pre class="language-php line-numbers" id="source"><code>&lt;?php
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="robots" content="index, follow, all" /><title>nochso\Benchmark\Timer | noch.so Benchmark documentation</title><link rel="stylesheet" type="text/css" href="../../css/normalize.css"><link rel="stylesheet" type="text/css" href="../../css/min.css"><link rel="stylesheet" type="text/css" href="../../css/prism.css"><link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,400italic' rel='stylesheet' type='text/css'><script src="../../js/prism.js"></script><meta name="MobileOptimized" content="width"><meta name="HandheldFriendly" content="true"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"></head><body id="class" data-name="class:nochso_Benchmark_Timer" data-root-path="../../"><nav><div class="container"><div class="title"><a href="../../index.html">noch.so Benchmark documentation</a></div><ul><li><a href="../../classes.html">Classes</a></li><li><a href="../../namespaces.html">Namespaces</a></li><li><a href="../../interfaces.html">Interfaces</a></li><li><a href="../../traits.html">Traits</a></li><li><a href="../../doc-index.html">Index</a></li><li><a href="../../search.html">Search</a></li></ul><ol class="breadcrumb"><li><a href="../../nochso.html">nochso</a></li><li><a href="../../nochso/Benchmark.html">Benchmark</a></li><li>Timer</li></ol></div></nav><div class="container"><div class="row"><div id="control-panel"></div><div id="api-tree"></div></div><div class="row"><h1>Timer</h1><p> class <strong>Timer</strong></p><p>Timer runs a closure for a minimum duration to ensure stable results.</p><p>The minimum duration is configurable and defaults to 1000 milliseconds.</p><h2>Constants</h2><table class="table"><tr><td><code class="language-php">MAX_FACTOR = 15.0;</code></td><td><p><em>Increase $n only by this much between runs.</em></p><p></p></td></tr><tr><td><code class="language-php">BONUS_GAIN = 1.03;</code></td><td><p><em>Increase $n at least this much between runs.</em></p><p></p></td></tr></table><h2>Properties</h2><table class="table"><tr><td id="property_defaultMinDuration"><code class="language-php">static int</code></td><td><code class="language-php">$defaultMinDuration</code></td><td></td><td></td></tr></table><h2>Methods</h2><table class="table"><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"></code></td><td><code class="language-php"><a href="#method___construct">__construct</a>($minDuration = null)</code></td><td> No description </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php">int</code></td><td><code class="language-php"><a href="#method_getMinDuration">getMinDuration</a>()</code></td><td> Sets the minimum duration of a run in milliseconds. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"></code></td><td><code class="language-php"><a href="#method_setMinDuration">setMinDuration</a>(int $minDuration)</code></td><td> Gets the minimum duration of a run in milliseconds. </td><td></td></tr><tr><td><code class="language-php"> public </code></td><td class="text-right"><code class="language-php"><a href="../../nochso/Benchmark/Result.html"><abbr title="nochso\Benchmark\Result">Result</abbr></a></code></td><td><code class="language-php"><a href="#method_time">time</a>(<abbr title="nochso\Benchmark\nochso\Benchmark\Method">Method</abbr> $method, <abbr title="nochso\Benchmark\nochso\Benchmark\Parameter">Parameter</abbr> $parameter = null)</code></td><td> Runs and times a closure until a minimum duration has been reached. </td><td></td></tr></table><h2>Details</h2><div id="method-details"><div><div class="float-right"> at line <a href="#source.49">49</a></div><div><h3 id="method___construct"><code class="language-php">__construct()</code></h3><code class="language-php">public __construct($minDuration = null)</code></div></div><div class="details"><h4>Parameters</h4><table class="table"><tr><td></td><td><code class="language-php">$minDuration</code></td><td></td></tr></table></div><div><div class="float-right"> at line <a href="#source.62">62</a></div><div><h3 id="method_getMinDuration"><code class="language-php">getMinDuration()</code></h3><code class="language-php">public int&nbsp;getMinDuration()</code></div></div><div class="details"><div><p>Sets the minimum duration of a run in milliseconds.</p></div><h4>Return Value</h4><table class="table"><tr><td><code class="language-php">int</code></td><td>Minimum duration in milliseconds</td></tr></table></div><div><div class="float-right"> at line <a href="#source.72">72</a></div><div><h3 id="method_setMinDuration"><code class="language-php">setMinDuration()</code></h3><code class="language-php">public setMinDuration(int $minDuration)</code></div></div><div class="details"><div><p>Gets the minimum duration of a run in milliseconds.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php">int</code></td><td><code class="language-php">$minDuration</code></td><td>Minimum duration in milliseconds</td></tr></table></div><div><div class="float-right"> at line <a href="#source.96">96</a></div><div><h3 id="method_time"><code class="language-php">time()</code></h3><code class="language-php">public <a href="../../nochso/Benchmark/Result.html"><abbr title="nochso\Benchmark\Result">Result</abbr></a>&nbsp;time(<abbr title="nochso\Benchmark\nochso\Benchmark\Method">Method</abbr> $method, <abbr title="nochso\Benchmark\nochso\Benchmark\Parameter">Parameter</abbr> $parameter = null)</code></div></div><div class="details"><div><p>Runs and times a closure until a minimum duration has been reached.</p><p>The closure is called with a single integer $n. It is best to let $n control a simple loop in your closure.</p><p>If your test is computationally intensive by nature this might not work for you. In this case use $n to control the cost or difficulty of your algorithm.</p><p>It is important that you <strong>do not use a loop in addition</strong> when doing this. This also means you can not change the parameters of your algorithm when you are using a loop based on $n.</p></div><h4>Parameters</h4><table class="table"><tr><td><code class="language-php"><abbr title="nochso\Benchmark\nochso\Benchmark\Method">Method</abbr></code></td><td><code class="language-php">$method</code></td><td></td></tr><tr><td><code class="language-php"><abbr title="nochso\Benchmark\nochso\Benchmark\Parameter">Parameter</abbr></code></td><td><code class="language-php">$parameter</code></td><td></td></tr></table><h4>Return Value</h4><table class="table"><tr><td><code class="language-php"><a href="../../nochso/Benchmark/Result.html"><abbr title="nochso\Benchmark\Result">Result</abbr></a></code></td><td></td></tr></table></div></div><h2>Source code</h2><pre class="language-php line-numbers" id="source"><code>&lt;?php
 
 /*
  * This file is part of nochso/benchmark.
@@ -9,8 +9,6 @@
  */
 
 namespace nochso\Benchmark;
-
-use nochso\Benchmark\Util\Out;
 
 /**
  * Timer runs a closure for a minimum duration to ensure stable results.
@@ -47,6 +45,34 @@ class Timer
      * @var Method
      */
     private $method;
+
+    public function __construct($minDuration = null)
+    {
+        $this-&gt;minDuration = self::$defaultMinDuration;
+        if ($minDuration !== null) {
+            $this-&gt;minDuration = $minDuration;
+        }
+    }
+
+    /**
+     * Sets the minimum duration of a run in milliseconds.
+     *
+     * @return int Minimum duration in milliseconds
+     */
+    public function getMinDuration()
+    {
+        return $this-&gt;minDuration;
+    }
+
+    /**
+     * Gets the minimum duration of a run in milliseconds.
+     *
+     * @param int $minDuration Minimum duration in milliseconds
+     */
+    public function setMinDuration($minDuration)
+    {
+        $this-&gt;minDuration = (int) $minDuration;
+    }
 
     /**
      * Runs and times a closure until a minimum duration has been reached.
@@ -85,14 +111,6 @@ class Timer
         return $result;
     }
 
-    public function __construct($minDuration = null)
-    {
-        $this-&gt;minDuration = self::$defaultMinDuration;
-        if ($minDuration !== null) {
-            $this-&gt;minDuration = $minDuration;
-        }
-    }
-
     /**
      * Runs $closure and returns the duration in milliseconds.
      *
@@ -103,7 +121,6 @@ class Timer
     private function createResult()
     {
         $duration = $this-&gt;measure();
-        Out::writeLine($this-&gt;iterationCount . &#039; iterations in &#039; . number_format($duration) . &#039;ms&#039;);
         return new Result($duration, $this-&gt;iterationCount, $this-&gt;method, $this-&gt;parameter);
     }
 
@@ -144,26 +161,6 @@ class Timer
         $new = (int) ($result-&gt;getOperations() * $factor);
         $new = max($new, $result-&gt;getOperations() + 1);
         return $new;
-    }
-
-    /**
-     * Sets the minimum duration of a run in milliseconds.
-     *
-     * @return int Minimum duration in milliseconds
-     */
-    public function getMinDuration()
-    {
-        return $this-&gt;minDuration;
-    }
-
-    /**
-     * Gets the minimum duration of a run in milliseconds.
-     *
-     * @param int $minDuration Minimum duration in milliseconds
-     */
-    public function setMinDuration($minDuration)
-    {
-        $this-&gt;minDuration = (int) $minDuration;
     }
 }
 </code></pre></div><div class="row"><div id="footer"> Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a> using <a href="https://github.com/nochso/sami-theme">nochso/sami-theme</a>. </div></div></div></body></html>
