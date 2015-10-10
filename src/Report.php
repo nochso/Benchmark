@@ -32,7 +32,7 @@ class Report
      * @var array
      */
     protected $defaultConfig = array(
-        'template_dir' => 'template',
+        'template_dir' => __DIR__ . '/../template',
         'output_dir' => 'build',
         'twig' => array(
             'cache' => 'cache/twig',
