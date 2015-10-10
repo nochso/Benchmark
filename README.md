@@ -94,9 +94,10 @@ You can also change the minimum duration of tests which defaults to 1000 millsec
 
 ## History
 
-### Unreleased
+### 0.4.0 - 2015-10-10
 #### Added
 - Click to hide explanation of results.
+- Display report progress.
 
 #### Changed
 - Minify and inline both Javascript and CSS.
@@ -106,6 +107,7 @@ You can also change the minimum duration of tests which defaults to 1000 millsec
 
 #### Fixed
 - Fixed wrong layout when using units without parameters.
+- Fixed default path to template.
 
 ### 0.3.0 - 2015-09-27
 #### Added
