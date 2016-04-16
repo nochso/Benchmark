@@ -94,6 +94,10 @@ You can also change the minimum duration of tests which defaults to 1000 millsec
 
 ## History
 
+### 0.5.0 - 2016-04-16
+#### Changed
+- Update composer dependencies and explicitly require symfony/finder.
+
 ### 0.4.0 - 2015-10-10
 #### Added
 - Click to hide explanation of results.
