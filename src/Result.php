@@ -78,9 +78,13 @@ class Result
      */
     public function getOperationsPerSecond($withUnit = false)
     {
-        $opsPerSec = ($this->operations / $this->duration) * 1000.0;
+        if ($this->duration > 1100 && ($this->operations / $this->duration * 1000 < 1.0) && $withUnit) {
+            $secsPerOp = $this->duration / 1000.0;
+            return $this->formatNumber($secsPerOp) . 's';
+        }
+        $opsPerSec = $this->operations / $this->duration * 1000;
         if ($withUnit) {
-            return $this->formatNumber($opsPerSec);
+            return $this->formatNumber($opsPerSec) . '/s';
         }
         return $opsPerSec;
     }
