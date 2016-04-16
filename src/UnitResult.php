@@ -71,8 +71,8 @@ class UnitResult
         }
         if ($includeAverages) {
             $results = $this->results[$method->getName()];
-            $results[] = $this->getAverageMethodResult($method);
-            $results[] = $this->getMedianMethodResult($method);
+//            $results[] = $this->getAverageMethodResult($method);
+//            $results[] = $this->getMedianMethodResult($method);
             return $results;
         }
         return $this->results[$method->getName()];
