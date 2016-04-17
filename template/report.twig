@@ -106,7 +106,7 @@
         {% else %}
          style="background-color: {{ unitResult.getMethodScoreColor(method) }}; color: {{ unitResult.getMethodScoreColor(method)|text_color }}"
         {% endif %}>
-          {{ result.getOperationsPerSecond(true) }}
+          {{ result }}
         </td>
       {% endfor %}
       <td class="text-right score" style="background-color: {{ unitResult.getMethodScoreColor(method) }}; color: {{ unitResult.getMethodScoreColor(method)|text_color }}">

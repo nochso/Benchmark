@@ -72,17 +72,11 @@ class Result
     /**
      * Get the operations per second as a float.
      *
-     * @param bool $withUnit Optionally format with abbreviated unit. Default is false.
-     *
      * @return float
      */
-    public function getOperationsPerSecond($withUnit = false)
+    public function getOperationsPerSecond()
     {
-        $secsPerOp = 1 / ($this->duration / 1000 / $this->operations);
-        if ($withUnit) {
-            return $this->formatNumber($secsPerOp);
-        }
-        return $secsPerOp;
+        return $secsPerOp = 1 / ($this->duration / 1000 / $this->operations);
     }
 
     /**
