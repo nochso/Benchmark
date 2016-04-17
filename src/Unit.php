@@ -9,6 +9,7 @@
  */
 
 namespace nochso\Benchmark;
+use nochso\Benchmark\Util\Out;
 
 /**
  * Unit is a list of related methods and the parameters they're called with.
@@ -144,6 +145,7 @@ class Unit
     public function run()
     {
         $this->result = new UnitResult();
+        Out::writeLine('Unit: ' . $this->getName());
         foreach ($this->methods as $method) {
             $this->fetchMethodResults($method);
         }
@@ -161,16 +163,23 @@ class Unit
             $params[] = null;
         }
         foreach ($params as $paramKey => $parameter) {
+            $this->notifyText($method->getName() . ' / ' . $parameter->getName());
             $result = $method->time($parameter);
             $this->result->add($result);
             $this->notifyProgress();
         }
     }
 
-    private function notifyProgress()
+    private function notifyProgress($text = null)
     {
         if ($this->progress !== null) {
-            $this->progress->step();
+            $this->progress->step($text);
+        }
+    }
+
+    private function notifyText($text = null) {
+        if ($this->progress !== null) {
+            $this->progress->text($text);
         }
     }
 

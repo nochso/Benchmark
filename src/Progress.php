@@ -28,6 +28,7 @@ class Progress
      * @var int
      */
     private $totalSteps;
+    private $text;
 
     public function prepareUnitList(UnitList $unitList)
     {
@@ -41,9 +42,15 @@ class Progress
         $this->show();
     }
 
-    public function step()
+    public function step($text = null)
     {
         $this->step++;
+        $this->text = $text;
+        $this->show();
+    }
+
+    public function text($text = null) {
+        $this->text = $text;
         $this->show();
     }
 
@@ -53,7 +60,7 @@ class Progress
         $progress = round($this->step / $this->totalSteps * $width);
         $left = $width - $progress;
         $percentage = round($this->step / $this->totalSteps * 100.0);
-        Out::writeSticky('[' . str_repeat('#', $progress) . str_repeat('.', $left) . '] ' . $percentage . '%');
+        Out::writeSticky('[' . str_repeat('#', $progress) . str_repeat('.', $left) . '] ' . $percentage . '% ' . $this->text);
         if ($this->step >= $this->totalSteps) {
             Out::writeSticky('');
         }
