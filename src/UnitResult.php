@@ -87,8 +87,8 @@ class UnitResult
         $duration = 0.0;
         $operations = 0;
         foreach ($this->results[$method->getName()] as $result) {
-            $duration += $result->getDuration();
-            $operations += $result->getOperations();
+            $duration += ($result->getDuration() / $result->getOperations());
+            $operations++;
         }
         $averageResult = new Result($duration, $operations, $method, new Parameter(null, 'Average'));
         return $averageResult;
