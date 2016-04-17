@@ -106,8 +106,12 @@
         {% else %}
          style="background-color: {{ unitResult.getMethodScoreColor(method) }}; color: {{ unitResult.getMethodScoreColor(method)|text_color }}"
         {% endif %}>
-          {{ result }}
-          {{ result.getPrettyOperations }} operations in {{ result.getPrettyDuration }}
+        {% set resultSlug = "_" ~ (unit.getName~methodName~result.getParameter.getName)|slugify %}
+          <label class="collapse" for="{{ resultSlug }}">{{ result }}</label>
+            <input id="{{ resultSlug }}" type="checkbox">
+            <div style="color:#000000">
+              {{ result.getPrettyOperations }} operations in {{ result.getPrettyDuration }}
+            </div>
         </td>
       {% endfor %}
       <td class="text-right score" style="background-color: {{ unitResult.getMethodScoreColor(method) }}; color: {{ unitResult.getMethodScoreColor(method)|text_color }}">
