@@ -32,6 +32,7 @@
   "require-dev": {
     "fabpot/php-cs-fixer": "^1.10",
     "codegyre/robo": "*",
-    "phpunit/phpunit": "^5.3"
+    "phpunit/phpunit": "^5.3",
+    "nochso/sami-theme": "^0.2.0"
   }
 }
