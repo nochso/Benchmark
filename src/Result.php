@@ -9,6 +9,7 @@
  */
 
 namespace nochso\Benchmark;
+use nochso\Omni\Format\Duration;
 
 /**
  * Result contains the test results for a specific method and parameter.
@@ -60,6 +61,13 @@ class Result
     }
 
     /**
+     * @return string
+     */
+    public function getPrettyDuration() {
+        return Duration::create()->format($this->duration / 1000);
+    }
+
+    /**
      * Get the number of iterations.
      *
      * @return int
@@ -67,6 +75,10 @@ class Result
     public function getOperations()
     {
         return $this->operations;
+    }
+
+    public function getPrettyOperations() {
+        return $this->formatNumber($this->operations);
     }
 
     /**

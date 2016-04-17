@@ -26,7 +26,8 @@
     "cebe/markdown": "^1.1",
     "jralph/twig-markdown": "^1.0",
     "nochso/html-compress-twig": "^1.0",
-    "symfony/finder": "^3.0"
+    "symfony/finder": "^3.0",
+    "nochso/omni": "^0.3.8"
   },
   "require-dev": {
     "fabpot/php-cs-fixer": "^1.10",

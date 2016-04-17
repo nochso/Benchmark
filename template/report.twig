@@ -107,10 +107,11 @@
          style="background-color: {{ unitResult.getMethodScoreColor(method) }}; color: {{ unitResult.getMethodScoreColor(method)|text_color }}"
         {% endif %}>
           {{ result }}
+          {{ result.getPrettyOperations }} operations in {{ result.getPrettyDuration }}
         </td>
       {% endfor %}
       <td class="text-right score" style="background-color: {{ unitResult.getMethodScoreColor(method) }}; color: {{ unitResult.getMethodScoreColor(method)|text_color }}">
-        {{ unitResult.getMethodScore(method)|number_format(1) }}x
+        {{ unitResult.getMethodScore(method)|number_format(1) }}
       </td>
     </tr>
   {% endfor %}
