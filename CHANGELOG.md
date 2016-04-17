@@ -1,6 +1,6 @@
 # Change log
 
-## Unreleased
+## 0.5.2 - 2016-04-17
 ### Added
 - Clicking on parameter result shows original measurement.
 

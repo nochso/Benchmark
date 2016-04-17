@@ -26,7 +26,7 @@ use Symfony\Component\Finder\Finder;
  */
 class Report
 {
-    const BENCHMARK_VERSION = '0.5.1';
+    const BENCHMARK_VERSION = '0.5.2';
 
     /**
      * @var array
