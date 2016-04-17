@@ -84,12 +84,15 @@ class UnitResult
      */
     public function getAverageMethodResult(Method $method)
     {
-        $duration = 0.0;
-        $operations = 0;
+        $opsPer = 0;
+        $count = 0;
         foreach ($this->results[$method->getName()] as $result) {
-            $duration += ($result->getDuration() / $result->getOperations());
-            $operations++;
+            $opsPer += $result->getOperationsPerSecond();
+            $count++;
         }
+        $opsPer = $opsPer / $count;
+        $duration = 1/$opsPer*1000;
+        $operations = 1;
         $averageResult = new Result($duration, $operations, $method, new Parameter(null, 'Average'));
         return $averageResult;
     }

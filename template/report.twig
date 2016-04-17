@@ -56,7 +56,11 @@
     <label for="result-note" class="hide">&times;</label>
     {% markdown %}
     #### Explanation of results
-    Results are measured in **operations per second** (K = 1000, M = 1,000,000).
+    Results are measured in **operations per duration**.
+
+    Operations can have suffixes like K = 1000 or M = 1,000,000.
+
+    Durations are normalized so that the highest magnitude is used.
 
     The **method score** is based on the average. The fastest method always has a base score of 1x and other
     methods are compared to it. For example a score of 3x means it's 3 times slower than the fastest method.
@@ -107,10 +111,10 @@
          style="background-color: {{ unitResult.getMethodScoreColor(method) }}; color: {{ unitResult.getMethodScoreColor(method)|text_color }}"
         {% endif %}>
         {% set resultSlug = "_" ~ (unit.getName~methodName~result.getParameter.getName)|slugify %}
-          <label class="collapse" for="{{ resultSlug }}">{{ result }}</label>
+          <label class="collapse" for="{{ resultSlug }}">{{ result.getNormalizedOperationsPerUnit(unitResult) }}</label>
             <input id="{{ resultSlug }}" type="checkbox">
             <div style="color:#000000">
-              {{ result.getPrettyOperations }} operations in {{ result.getPrettyDuration }}
+              {{ result.getPrettyOperations }} in {{ result.getPrettyDuration }}
             </div>
         </td>
       {% endfor %}

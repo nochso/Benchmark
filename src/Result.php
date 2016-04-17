@@ -9,7 +9,9 @@
  */
 
 namespace nochso\Benchmark;
+use nochso\Omni\Arrays;
 use nochso\Omni\Format\Duration;
+use nochso\Omni\Format\Quantity;
 
 /**
  * Result contains the test results for a specific method and parameter.
@@ -64,7 +66,11 @@ class Result
      * @return string
      */
     public function getPrettyDuration() {
-        return Duration::create()->format($this->duration / 1000);
+        return Duration::create(Duration::FORMAT_LONG)->format($this->duration / 1000);
+    }
+
+    public function getPrettyAverageDuration() {
+        return Duration::create()->limitPeriods(2)->format($this->duration / $this->operations / 1000);
     }
 
     /**
@@ -78,7 +84,7 @@ class Result
     }
 
     public function getPrettyOperations() {
-        return $this->formatNumber($this->operations);
+        return $this->formatNumber($this->operations, 0) . Quantity::format(' op(s)', $this->operations);
     }
 
     /**
@@ -89,6 +95,27 @@ class Result
     public function getOperationsPerSecond()
     {
         return $secsPerOp = 1 / ($this->duration / 1000 / $this->operations);
+    }
+
+    public function getNormalizedOperationsPerUnit(UnitResult $unitResult) {
+        $allResults = Arrays::flatten($unitResult->getResults());
+        $minOpsPerSec = PHP_INT_MAX;
+        /** @var Result $result */
+        foreach ($allResults as $result) {
+            $minOpsPerSec = min($minOpsPerSec, $result->getOperationsPerSecond());
+        }
+        $opsPerUnit = $this->getOperationsPerSecond();
+        $unit = 's';
+        if ($minOpsPerSec < 1) {
+            $minOpsPerSec *= 60;
+            $opsPerUnit *= 60;
+            $unit = 'm';
+        }
+        if ($minOpsPerSec < 1) {
+            $opsPerUnit *= 60;
+            $unit = 'h';
+        }
+        return $this->formatNumber($opsPerUnit) . '/'. $unit ;
     }
 
     /**
@@ -109,24 +136,6 @@ class Result
     public function getParameter()
     {
         return $this->parameter;
-    }
-
-    public function __toString()
-    {
-        return Duration::create()->limitPeriods(2)->format($this->duration / 1000 / $this->operations);
-//        $ops = $this->getOperationsPerSecond();
-//        if ($ops >= 1) {
-//            $ops = $this->formatNumber($ops);
-//            return $ops . ' op/s';
-//        }
-//        $ops *= 60;
-//        if ($ops >= 1) {
-//            $ops = $this->formatNumber($ops);
-//            return $ops . ' op/m';
-//        }
-//        $ops *= 60;
-//        $ops = $this->formatNumber($ops);
-//        return $ops . ' op/h';
     }
 
     /**
