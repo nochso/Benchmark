@@ -98,7 +98,7 @@ class ResultBounds
     public function prepare()
     {
         $this->prepareBoundsParameter();
-        $this->prepareBoundsMedian();
+        $this->prepareBoundsAverage();
     }
 
     private function prepareBoundsParameter()
@@ -111,17 +111,17 @@ class ResultBounds
         }
     }
 
-    private function prepareBoundsMedian()
+    private function prepareBoundsAverage()
     {
-        if ($this->get('median.max') !== null) {
+        if ($this->get('average.max') !== null) {
             return;
         }
         foreach ($this->unitResult->getResults() as $methodName => $results) {
             $res = reset($results);
-            $methodResult = $this->unitResult->getMedianMethodResult($res->getMethod());
+            $methodResult = $this->unitResult->getAverageMethodResult($res->getMethod());
             $opsPerSec = $methodResult->getOperationsPerSecond();
-            $this->max('median', $opsPerSec);
-            $this->min('median', $opsPerSec);
+            $this->max('average', $opsPerSec);
+            $this->min('average', $opsPerSec);
         }
     }
 

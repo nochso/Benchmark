@@ -72,7 +72,6 @@ class UnitResult
         if ($includeAverages) {
             $results = $this->results[$method->getName()];
             $results[] = $this->getAverageMethodResult($method);
-            $results[] = $this->getMedianMethodResult($method);
             return $results;
         }
         return $this->results[$method->getName()];
@@ -95,34 +94,17 @@ class UnitResult
         return $averageResult;
     }
 
-    public function getMedianMethodResult(Method $method)
-    {
-        $sortedResults = $this->getMethodResults($method);
-        usort($sortedResults, function (Result $first, Result $second) {
-            $firstOps = $first->getOperationsPerSecond();
-            $secondOps = $second->getOperationsPerSecond();
-            if ($firstOps === $secondOps) {
-                return 0;
-            }
-            return $firstOps > $secondOps ? 1 : -1;
-        });
-        $medianResult = $sortedResults[(int) (count($sortedResults) / 2)];
-        $parameter = new Parameter(null, 'Median');
-        $result = new Result($medianResult->getDuration(), $medianResult->getOperations(), $method, $parameter);
-        return $result;
-    }
-
     public function getMethodScore(Method $method)
     {
         $this->bounds->prepare();
-        return $this->bounds->max('median') / $this->getMedianMethodResult($method)->getOperationsPerSecond();
+        return $this->bounds->max('average') / $this->getAverageMethodResult($method)->getOperationsPerSecond();
     }
 
     public function getMethodScoreColor(Method $method)
     {
         $this->bounds->prepare();
         $score = $this->getMethodScore($method);
-        return $this->getScoreColor('median', $score);
+        return $this->getScoreColor('average', $score);
     }
 
     public function getParameterScore(Result $result)
