@@ -8,7 +8,7 @@
 - Display normalized operations/unit instead of operations/sec.
 
 ### Removed
-- Median average.
+- Removed median average.
 
 ## 0.5.1 - 2016-04-16
 ### Changed
