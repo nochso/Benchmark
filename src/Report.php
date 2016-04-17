@@ -109,7 +109,7 @@ class Report
      */
     public function run()
     {
-        Out::writeLine('Running nochso/benchmark ' . self::BENCHMARK_VERSION);
+        Out::writeLine('nochso/benchmark ' . self::BENCHMARK_VERSION);
         Out::writeLine();
         $duration = -microtime(true);
         $progress = new Progress();
