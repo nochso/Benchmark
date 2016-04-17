@@ -52,7 +52,7 @@ class ReportExtension extends \Twig_Extension
         if (!$backgroundColor instanceof Color) {
             $backgroundColor = Color::fromHex($backgroundColor);
         }
-        if ($backgroundColor->getBrightness() < 0.6) {
+        if ($backgroundColor->getBrightness() < 0.65) {
             return new Color(255, 255, 255);
         }
         return new Color(0, 0, 0);
