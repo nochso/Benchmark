@@ -113,19 +113,20 @@ class Result
 
     public function __toString()
     {
-        $ops = $this->getOperationsPerSecond();
-        if ($ops >= 1) {
-            $ops = $this->formatNumber($ops);
-            return $ops . ' op/s';
-        }
-        $ops *= 60;
-        if ($ops >= 1) {
-            $ops = $this->formatNumber($ops);
-            return $ops . ' op/m';
-        }
-        $ops *= 60;
-        $ops = $this->formatNumber($ops);
-        return $ops . ' op/h';
+        return Duration::create()->limitPeriods(2)->format($this->duration / 1000 / $this->operations);
+//        $ops = $this->getOperationsPerSecond();
+//        if ($ops >= 1) {
+//            $ops = $this->formatNumber($ops);
+//            return $ops . ' op/s';
+//        }
+//        $ops *= 60;
+//        if ($ops >= 1) {
+//            $ops = $this->formatNumber($ops);
+//            return $ops . ' op/m';
+//        }
+//        $ops *= 60;
+//        $ops = $this->formatNumber($ops);
+//        return $ops . ' op/h';
     }
 
     /**
