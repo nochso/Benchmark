@@ -22,7 +22,7 @@ class RoboFile extends \Robo\Tasks
     {
         $this->checkout('master');
 
-        $this->taskExec('php vendor/sami/sami/sami.php update sami.php --force')
+        $this->taskExec('sami update sami.php --force')
             ->run();
 
         $this->checkout('gh-pages');
