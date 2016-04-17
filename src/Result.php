@@ -78,15 +78,11 @@ class Result
      */
     public function getOperationsPerSecond($withUnit = false)
     {
-        if ($this->duration > 1100 && ($this->operations / $this->duration * 1000 < 1.0) && $withUnit) {
-            $secsPerOp = $this->duration / 1000.0;
-            return $this->formatNumber($secsPerOp) . 's';
-        }
-        $opsPerSec = $this->operations / $this->duration * 1000;
+        $secsPerOp = 1 / ($this->duration / 1000 / $this->operations);
         if ($withUnit) {
-            return $this->formatNumber($opsPerSec) . '/s';
+            return $this->formatNumber($secsPerOp);
         }
-        return $opsPerSec;
+        return $secsPerOp;
     }
 
     /**
@@ -111,8 +107,19 @@ class Result
 
     public function __toString()
     {
-        $ops = $this->formatNumber($this->getOperationsPerSecond());
-        return $ops . ' op/sec';
+        $ops = $this->getOperationsPerSecond();
+        if ($ops >= 1) {
+            $ops = $this->formatNumber($ops);
+            return $ops . ' op/s';
+        }
+        $ops *= 60;
+        if ($ops >= 1) {
+            $ops = $this->formatNumber($ops);
+            return $ops . ' op/m';
+        }
+        $ops *= 60;
+        $ops = $this->formatNumber($ops);
+        return $ops . ' op/h';
     }
 
     /**
@@ -129,6 +136,9 @@ class Result
      */
     private function formatNumber($value, $decimals = 1)
     {
+        if ($value < 1) {
+            return number_format($value, $decimals);
+        }
         $base = log($value, 1000);
         $newValue = pow(1000, $base - floor($base));
 

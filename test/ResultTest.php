@@ -32,13 +32,19 @@ class ResultTest extends \PHPUnit_Framework_TestCase
     public function toStringProvider()
     {
         return array(
-            array(1000.0, 5, '5.0 op/sec'),
-            array(2000.0, 10, '5.0 op/sec'),
-            array(1000.0, 1001, '1.0K op/sec'),
-            array(1000.0, 1200, '1.2K op/sec'),
-            array(1000.0, 1200000, '1.2M op/sec'),
-            array(1000.0, 1200000000, '1.2G op/sec'),
-            array(1000.0, 1200000000000, '1.2T op/sec'),
+            array(100.0, 1, '10.0 op/s'),
+            array(2000.0, 1, '30.0 op/m'),
+            array(4000.0, 1, '15.0 op/m'),
+            array(60*1000, 1, '1.0 op/m'),
+            array(60*60*1000, 1, '1.0 op/h'),
+            array(1000.0, 1, '1.0 op/s'),
+            array(1000.0, 5, '5.0 op/s'),
+            array(2000.0, 10, '5.0 op/s'),
+            array(1000.0, 1001, '1.0K op/s'),
+            array(1000.0, 1200, '1.2K op/s'),
+            array(1000.0, 1200000, '1.2M op/s'),
+            array(1000.0, 1200000000, '1.2G op/s'),
+            array(1000.0, 1200000000000, '1.2T op/s'),
         );
     }
 }
