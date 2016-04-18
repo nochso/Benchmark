@@ -30,15 +30,21 @@ class Parameter
      * @var string
      */
     private $name;
+    /**
+     * @var string
+     */
+    private $description;
 
     /**
-     * @param mixed  $parameter
+     * @param mixed $parameter
      * @param string $name
+     * @param string $description
      */
-    public function __construct($parameter, $name)
+    public function __construct($parameter, $name, $description = '')
     {
         $this->parameter = $parameter;
         $this->name = $name;
+        $this->description = $description;
     }
 
     /**
@@ -59,6 +65,13 @@ class Parameter
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription() {
+        return $this->description;
     }
 
     public function __toString()

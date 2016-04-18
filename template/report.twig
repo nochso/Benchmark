@@ -79,7 +79,9 @@
       {% for result in unit.getResult.getMethodResults(unit.getMethods|first, true) %}
         <th>
           {% if result.getParameter is not null %}
-            {{ result.getParameter.getName }}
+            <label class="collapse" for="_{{ (unit.getName~result.getParameter.getName)|slugify }}">{{ result.getParameter.getName }}</label>
+            <input id="_{{ (unit.getName~result.getParameter.getName)|slugify }}" type="checkbox">
+            <div>{{ result.getParameter.getDescription|markdown }}</div>
           {% endif %}
         </th>
       {% endfor %}
