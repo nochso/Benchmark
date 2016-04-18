@@ -1,5 +1,9 @@
 # Change log
 
+## 0.5.3 - 2016-04-18
+### Added
+- Clicking on parameter header shows parameter description
+
 ## 0.5.2 - 2016-04-17
 ### Added
 - Clicking on parameter result shows original measurement.
